@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 7Pixels - Agencia de Marketing Digital
 
-## Getting Started
+Una moderna landing page para la agencia de marketing digital 7Pixels, construida con Next.js 15 y optimizada para Vercel.
 
-First, run the development server:
+## 🚀 Características
+
+- ⚡ **Next.js 15.4.7** - Framework React de última generación
+- 🎨 **Tailwind CSS v4** - Estilos modernos y responsivos
+- 🌙 **Dark Mode** - Modo oscuro/claro con toggle
+- 🌍 **Multiidioma** - Español e Inglés
+- 💫 **Animaciones** - Motion/React para efectos suaves
+- 📱 **Responsive** - Diseño adaptable a todos los dispositivos
+- ⚡ **Optimizado** - Rendimiento máximo en Vercel
+
+## 🛠️ Tecnologías
+
+- **Framework**: Next.js 15.4.7 con App Router
+- **Styling**: Tailwind CSS v4.0
+- **Animaciones**: Motion/React (Framer Motion v12)
+- **TypeScript**: Para tipado estático
+- **Deployment**: Optimizado para Vercel
+
+## 📦 Instalación
 
 ```bash
+# Clonar repositorio
+git clone [tu-repo]
+cd 7pixels-website
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build para producción
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Deploy en Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Conecta tu repositorio de GitHub con Vercel
+2. Vercel detectará automáticamente la configuración de Next.js
+3. El deploy será automático con cada push
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📧 Información de Contacto
 
-## Learn More
+- **Email**: contacto@7pixels.es
+- **Teléfono**: +34 610 154 191
+- **Ubicación**: Barcelona, España
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 Licencia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2024 7Pixels. Todos los derechos reservados.
