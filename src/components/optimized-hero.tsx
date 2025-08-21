@@ -84,7 +84,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
   return (
     <BackgroundLines 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-4 pb-4"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden pt-2 pb-2"
       svgOptions={{ duration: 15 }} // Slower animation for better performance
     >
       {/* Simplified gradient orbs with CSS transforms */}
@@ -142,7 +142,7 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Badge */}
         <motion.div
           variants={itemVariants}
-          className="inline-flex items-center px-6 py-3 mb-8 bg-white/10 dark:bg-black/10 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10"
+          className="inline-flex items-center px-4 py-2 mb-4 bg-white/10 dark:bg-black/10 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10"
         >
           <span className="text-sm font-medium text-green-400">
             {t.heroTag}
@@ -151,9 +151,9 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Main Title */}
-        <motion.div variants={itemVariants} className="mb-4">
+        <motion.div variants={itemVariants} className="mb-2">
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-black mb-3 will-change-transform"
+            className="text-3xl md:text-6xl lg:text-7xl font-black mb-2 will-change-transform"
             style={{
               background: "linear-gradient(135deg, #10b981, #059669, #047857)",
               WebkitBackgroundClip: "text",
@@ -167,8 +167,8 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Subtitle */}
-        <motion.div variants={itemVariants} className="mb-4">
-          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-white dark:text-white mb-3 leading-tight">
+        <motion.div variants={itemVariants} className="mb-3">
+          <h2 className="text-base md:text-2xl lg:text-3xl font-bold text-white dark:text-white mb-2 leading-tight">
             {t.heroSubtitle}{" "}
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
@@ -179,7 +179,7 @@ const OptimizedHero = memo(function OptimizedHero() {
               </span>
             </span>
           </h2>
-          <p className="text-base md:text-lg text-gray-300 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-lg text-gray-300 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             {t.heroDescription}{" "}
             <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
               {t.heroHighlight}
@@ -190,10 +190,10 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Optimized CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+          className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6"
         >
           <motion.button
-            className="group px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
+            className="group px-6 py-3 md:px-10 md:py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-base md:text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
               const contactSection = document.getElementById('contact');
@@ -207,7 +207,7 @@ const OptimizedHero = memo(function OptimizedHero() {
           </motion.button>
 
           <motion.button
-            className="group px-10 py-4 border-2 border-white/30 dark:border-white/20 text-white dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
+            className="group px-6 py-3 md:px-10 md:py-4 border-2 border-white/30 dark:border-white/20 text-white dark:text-white font-bold rounded-full text-base md:text-lg backdrop-blur-sm hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
               window.location.href = '/portfolio';
