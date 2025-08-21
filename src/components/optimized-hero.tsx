@@ -84,7 +84,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
   return (
     <BackgroundLines 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-8"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-4 pb-4"
       svgOptions={{ duration: 15 }} // Slower animation for better performance
     >
       {/* Simplified gradient orbs with CSS transforms */}
@@ -134,7 +134,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
       {/* Main Content */}
       <motion.div
-        className="relative z-20 text-center max-w-6xl mx-auto px-4 py-8"
+        className="relative z-20 text-center max-w-6xl mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -151,9 +151,9 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Main Title */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div variants={itemVariants} className="mb-4">
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 will-change-transform"
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-3 will-change-transform"
             style={{
               background: "linear-gradient(135deg, #10b981, #059669, #047857)",
               WebkitBackgroundClip: "text",
@@ -167,8 +167,8 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Subtitle */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white dark:text-white mb-4 leading-tight">
+        <motion.div variants={itemVariants} className="mb-4">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-white dark:text-white mb-3 leading-tight">
             {t.heroSubtitle}{" "}
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
@@ -179,7 +179,7 @@ const OptimizedHero = memo(function OptimizedHero() {
               </span>
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-300 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {t.heroDescription}{" "}
             <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
               {t.heroHighlight}
@@ -190,7 +190,7 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Optimized CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
         >
           <motion.button
             className="group px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
