@@ -109,13 +109,7 @@ const EnhancedServices = memo(function EnhancedServices() {
             transition={{ duration: 0.6, type: "spring" }}
             className="inline-flex items-center px-6 py-3 mb-8 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-lg rounded-full border border-green-400/40"
           >
-            <motion.span
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="mr-3 text-2xl"
-            >
-              ⚡
-            </motion.span>
+
             <span className="text-green-700 dark:text-green-300 font-semibold text-lg">{t.servicesTag}</span>
           </motion.div>
 
@@ -265,7 +259,7 @@ const EnhancedServices = memo(function EnhancedServices() {
             whileTap={{ scale: 0.95 }}
           >
             <span className="flex items-center">
-              💡 {t.servicesCta}
+              {t.servicesCta}
               <motion.span
                 className="ml-2"
                 animate={{ x: [0, 5, 0] }}

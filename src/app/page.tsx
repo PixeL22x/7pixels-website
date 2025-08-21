@@ -71,6 +71,15 @@ export default function Home() {
       {/* Contact Form Section */}
       <section id="contact" className="py-20 px-4 bg-gray-200 dark:bg-black relative">
         <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-black dark:text-white mb-8">
+              {t.contactTitle}
+            </h2>
+            <p className="text-xl text-gray-700 dark:text-gray-300 mb-12">
+              {t.contactDescription}
+            </p>
+          </div>
+          
           <ModernContactForm />
         </div>
       </section>
