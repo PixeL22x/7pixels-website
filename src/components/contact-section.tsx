@@ -50,6 +50,7 @@ export default function ContactSection() {
   // Enviar formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('🔥 FORMULARIO ENVIADO:', formData);
     
     // Validaciones
     if (!formData.name.trim()) {
@@ -75,6 +76,7 @@ export default function ContactSection() {
     setFormStatus({ type: 'loading', message: 'Enviando mensaje...' });
 
     try {
+      console.log('📡 Enviando a API:', formData);
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -83,15 +85,20 @@ export default function ContactSection() {
         body: JSON.stringify(formData),
       });
 
+      console.log('📩 Respuesta API:', response.status);
       const data = await response.json();
+      console.log('📄 Data recibida:', data);
 
       if (response.ok) {
+        console.log('✅ EMAIL ENVIADO EXITOSAMENTE');
         setFormStatus({ type: 'success', message: '¡Mensaje enviado correctamente! Te contactaremos pronto.' });
         setFormData({ name: '', email: '', company: '', message: '' });
       } else {
+        console.log('❌ Error en respuesta:', data);
         setFormStatus({ type: 'error', message: data.error || 'Error al enviar el mensaje' });
       }
-    } catch {
+    } catch (error) {
+      console.log('🚨 Error de conexión:', error);
       setFormStatus({ type: 'error', message: 'Error de conexión. Inténtalo de nuevo.' });
     }
   };
