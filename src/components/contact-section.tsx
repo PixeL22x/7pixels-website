@@ -50,6 +50,7 @@ export default function ContactSection() {
   // Enviar formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation(); // Evitar propagación que puede causar navegación
     console.log('🔥 FORMULARIO ENVIADO:', formData);
     
     // Validaciones
@@ -444,6 +445,11 @@ export default function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={formStatus.type === 'loading'}
+                  onClick={(e) => {
+                    // Evitar cualquier comportamiento de navegación
+                    e.stopPropagation();
+                    console.log('🔘 CLICK EN BOTON SUBMIT');
+                  }}
                   className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: formStatus.type !== 'loading' ? 1.02 : 1 }}
                   whileTap={{ scale: formStatus.type !== 'loading' ? 0.98 : 1 }}
