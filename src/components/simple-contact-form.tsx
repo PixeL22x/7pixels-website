@@ -20,7 +20,24 @@ export default function SimpleContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     console.log('🚀 FORMULARIO SIMPLE INICIADO');
+    console.log('📋 Datos del formulario:', formData);
+    
+    // Validaciones básicas
+    if (!formData.name.trim()) {
+      setStatus('error');
+      setMessage('El nombre es requerido');
+      console.log('❌ Error: Nombre requerido');
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      setStatus('error');
+      setMessage('El email es requerido');
+      console.log('❌ Error: Email requerido');
+      return;
+    }
     
     setStatus('loading');
     setMessage('Enviando...');
@@ -59,12 +76,19 @@ export default function SimpleContactForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+    <div className="max-w-md mx-auto p-6 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 relative z-50">
       <h3 className="text-2xl font-bold text-white mb-6 text-center">
         Contacta con 7Pixels
       </h3>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form 
+        onSubmit={handleSubmit} 
+        className="space-y-4"
+        onClick={(e) => {
+          console.log('📝 Click en formulario');
+          e.stopPropagation();
+        }}
+      >
         <div>
           <input
             type="text"
@@ -116,9 +140,12 @@ export default function SimpleContactForm() {
           type="submit"
           disabled={status === 'loading'}
           className="w-full p-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all duration-300 disabled:opacity-50"
-          onClick={() => console.log('🔘 CLICK DETECTADO')}
+          onClick={(e) => {
+            console.log('🔘 CLICK DETECTADO EN BOTÓN');
+            e.stopPropagation();
+          }}
         >
-          {status === 'loading' ? 'Enviando...' : '🚀 Enviar Mensaje'}
+          {status === 'loading' ? 'Enviando...' : '🚀 Comenzar Mi Proyecto'}
         </button>
       </form>
       
