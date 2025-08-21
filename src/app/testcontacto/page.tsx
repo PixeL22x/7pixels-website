@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function TestContacto() {
   const [formData, setFormData] = useState({
@@ -196,12 +197,12 @@ export default function TestContacto() {
 
         {/* Back Button */}
         <div className="mt-4 text-center">
-          <a 
+          <Link 
             href="/"
             className="inline-block px-6 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors duration-300"
           >
             ← Volver a 7Pixels
-          </a>
+          </Link>
         </div>
       </div>
     </div>
