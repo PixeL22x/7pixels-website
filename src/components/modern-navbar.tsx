@@ -245,9 +245,8 @@ const ModernNavbar = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleLanguage}
                   >
-                    <span className="mr-2">{language === 'es' ? '🇺🇸' : '🇪🇸'}</span>
                     <span className="text-sm font-medium">
-                      {language === 'es' ? 'English' : 'Español'}
+                      {language === 'es' ? 'Eng' : 'Esp'}
                     </span>
                   </motion.button>
 
@@ -257,9 +256,8 @@ const ModernNavbar = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleTheme}
                   >
-                    <span className="mr-2">{theme === 'dark' ? '☀️' : '🌙'}</span>
-                    <span className="text-sm font-medium">
-                      {theme === 'dark' ? 'Claro' : 'Oscuro'}
+                    <span className="text-2xl">
+                      {theme === 'dark' ? '☀️' : '🌙'}
                     </span>
                   </motion.button>
                 </motion.div>
