@@ -3,10 +3,98 @@ import { motion } from "motion/react";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useState } from "react";
 
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  message: string;
+}
+
+interface FormStatus {
+  type: 'idle' | 'loading' | 'success' | 'error';
+  message: string;
+}
+
 export default function ContactSection() {
   const t = useTranslations();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  
+  // Estados del formulario
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  
+  const [formStatus, setFormStatus] = useState<FormStatus>({
+    type: 'idle',
+    message: ''
+  });
+
+  // Manejar cambios en los inputs
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Validar email
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // Enviar formulario
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validaciones
+    if (!formData.name.trim()) {
+      setFormStatus({ type: 'error', message: 'El nombre es requerido' });
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      setFormStatus({ type: 'error', message: 'El email es requerido' });
+      return;
+    }
+    
+    if (!isValidEmail(formData.email)) {
+      setFormStatus({ type: 'error', message: 'El email no es válido' });
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      setFormStatus({ type: 'error', message: 'El mensaje es requerido' });
+      return;
+    }
+
+    setFormStatus({ type: 'loading', message: 'Enviando mensaje...' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus({ type: 'success', message: '¡Mensaje enviado correctamente! Te contactaremos pronto.' });
+        setFormData({ name: '', email: '', company: '', message: '' });
+      } else {
+        setFormStatus({ type: 'error', message: data.error || 'Error al enviar el mensaje' });
+      }
+    } catch (error) {
+      setFormStatus({ type: 'error', message: 'Error de conexión. Inténtalo de nuevo.' });
+    }
+  };
 
   const contactCards = [
     {
@@ -279,11 +367,28 @@ export default function ContactSection() {
               {/* Form glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-purple-500/10 rounded-3xl blur opacity-50"></div>
               
-              <form className="relative space-y-6">
+              <form onSubmit={handleSubmit} className="relative space-y-6">
+                {/* Status Message */}
+                {formStatus.message && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`p-4 rounded-xl text-center font-medium ${
+                      formStatus.type === 'success' 
+                        ? 'bg-green-500/20 text-green-300 border border-green-500/30'
+                        : formStatus.type === 'error'
+                        ? 'bg-red-500/20 text-red-300 border border-red-500/30'
+                        : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                    }`}
+                  >
+                    {formStatus.message}
+                  </motion.div>
+                )}
+
                 {[
-                  { placeholder: t.formName, type: "text", icon: "👤" },
-                  { placeholder: t.formEmail, type: "email", icon: "📧" },
-                  { placeholder: t.formCompany, type: "text", icon: "🏢" },
+                  { placeholder: t.formName, type: "text", icon: "👤", name: "name", required: true },
+                  { placeholder: t.formEmail, type: "email", icon: "📧", name: "email", required: true },
+                  { placeholder: t.formCompany, type: "text", icon: "🏢", name: "company", required: false },
                 ].map((field, index) => (
                   <motion.div 
                     key={index}
@@ -295,9 +400,13 @@ export default function ContactSection() {
                     </div>
                     <input
                       type={field.type}
+                      name={field.name}
+                      value={formData[field.name as keyof FormData]}
+                      onChange={handleInputChange}
                       placeholder={field.placeholder}
                       onFocus={() => setFocusedInput(field.placeholder)}
                       onBlur={() => setFocusedInput(null)}
+                      required={field.required}
                       className={`w-full pl-14 pr-4 py-4 rounded-xl bg-white/10 border transition-all duration-300 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-green-400/50 focus:border-green-400/50 ${
                         focusedInput === field.placeholder ? 'border-green-400/50 bg-white/15' : 'border-white/20'
                       }`}
@@ -311,10 +420,14 @@ export default function ContactSection() {
                 >
                   <div className="absolute left-4 top-4 text-xl opacity-60">💬</div>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder={t.formMessage}
                     rows={4}
                     onFocus={() => setFocusedInput('message')}
                     onBlur={() => setFocusedInput(null)}
+                    required
                     className={`w-full pl-14 pr-4 py-4 rounded-xl bg-white/10 border transition-all duration-300 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-green-400/50 focus:border-green-400/50 resize-none ${
                       focusedInput === 'message' ? 'border-green-400/50 bg-white/15' : 'border-white/20'
                     }`}
@@ -323,11 +436,24 @@ export default function ContactSection() {
                 
                 <motion.button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 relative overflow-hidden group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={formStatus.type === 'loading'}
+                  className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: formStatus.type !== 'loading' ? 1.02 : 1 }}
+                  whileTap={{ scale: formStatus.type !== 'loading' ? 0.98 : 1 }}
                 >
-                  <span className="relative z-10">{t.contactCta}</span>
+                  <span className="relative z-10">
+                    {formStatus.type === 'loading' ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Enviando...
+                      </span>
+                    ) : (
+                      t.contactCta
+                    )}
+                  </span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
