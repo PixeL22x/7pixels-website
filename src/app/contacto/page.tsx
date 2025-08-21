@@ -18,12 +18,6 @@ export default function ContactPage() {
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 text-sm font-medium mb-6">
             📞 {t.contactBadge}
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            {t.contactTitle} <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">{t.contactHighlight}</span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            {t.contactDescription}
-          </p>
         </div>
       </div>
 

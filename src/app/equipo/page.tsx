@@ -135,7 +135,7 @@ const TeamPage = () => {
                 onHoverStart={() => setHoveredMember(member.id)}
                 onHoverEnd={() => setHoveredMember(null)}
                 onClick={() => setSelectedMember(member)}
-                className="group relative cursor-pointer h-[600px]"
+                className="group relative cursor-pointer min-h-[600px]"
               >
                 {/* Card Background with Gradient */}
                 <div className={`relative backdrop-blur-2xl rounded-3xl p-8 h-full transition-all duration-500 overflow-hidden flex flex-col ${
