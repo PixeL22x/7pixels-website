@@ -195,6 +195,10 @@ const OptimizedHero = memo(function OptimizedHero() {
           <motion.button
             className="group px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              contactSection?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             <span className="flex items-center">
               {t.heroCta1}
@@ -205,6 +209,10 @@ const OptimizedHero = memo(function OptimizedHero() {
           <motion.button
             className="group px-10 py-4 border-2 border-white/30 dark:border-white/20 text-white dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const servicesSection = document.getElementById('services');
+              servicesSection?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             <span className="flex items-center">
               {t.heroCta2}
