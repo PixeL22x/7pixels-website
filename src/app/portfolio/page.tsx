@@ -139,7 +139,7 @@ export default function Portfolio() {
         ))}
       </div>
 
-                <div className="relative z-10 pt-20 pb-20 px-4">
+                                 <div className="relative z-10 pt-16 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">

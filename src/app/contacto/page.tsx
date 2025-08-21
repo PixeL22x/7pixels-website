@@ -13,7 +13,7 @@ export default function ContactPage() {
       <ModernNavbar />
       
       {/* Header Section */}
-      <div className="pt-20 pb-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-neutral-900 dark:to-black">
+      <div className="pt-16 pb-12 px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-neutral-900 dark:to-black">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 text-sm font-medium mb-6">
             📞 {t.contactBadge}
@@ -28,7 +28,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Form Section */}
-      <section className="py-20 px-4 bg-white dark:bg-black">
+      <section className="py-16 px-4 bg-white dark:bg-black">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -44,7 +44,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information Section */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-neutral-900">
+      <section className="py-16 px-4 bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
@@ -121,7 +121,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-green-500 to-emerald-600">
+      <section className="py-16 px-4 bg-gradient-to-r from-green-500 to-emerald-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             {t.contactCtaTitle}
