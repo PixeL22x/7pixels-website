@@ -1,44 +1,27 @@
-"use client";
-import React, { lazy, Suspense } from "react";
 import OptimizedHero from "@/components/optimized-hero";
+import OptimizedParticles from "@/components/optimized-particles";
 import StatsSection from "@/components/stats-section";
+import EnhancedServices from "@/components/enhanced-services";
+import ModernTestimonials from "@/components/modern-testimonials";
+import ContactSection from "@/components/contact-section";
+import FloatingNav from "@/components/floating-nav";
 import ScrollProgress from "@/components/scroll-progress";
-import ModernNavbar from "@/components/modern-navbar";
-
-// Lazy load heavy components below the fold
-const OptimizedParticles = lazy(() => import("@/components/optimized-particles"));
-const EnhancedServices = lazy(() => import("@/components/enhanced-services"));
-const ModernTestimonials = lazy(() => import("@/components/modern-testimonials"));
-// Formulario moderno interactivo
-import ModernContactForm from "@/components/modern-contact-form";
+import ThemeControls from "@/components/theme-controls";
 
 export default function Home() {
-  // Manejar navegación desde hash URLs
-  React.useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-      // Esperar un poco para que la página se cargue completamente
-      setTimeout(() => {
-        const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  }, []);
-
   return (
     <div className="min-h-screen w-full overflow-hidden bg-white dark:bg-black transition-colors duration-300">
-      {/* Modern Navbar */}
-      <ModernNavbar />
-      
       {/* Scroll Progress Bar */}
       <ScrollProgress />
       
+      {/* Theme Controls */}
+      <ThemeControls />
+      
+      {/* Floating Navigation */}
+      <FloatingNav />
+      
       {/* Optimized Particles Background */}
-      <Suspense fallback={<div className="fixed inset-0 -z-10" />}>
-        <OptimizedParticles />
-      </Suspense>
+      <OptimizedParticles />
       
       {/* Optimized Hero Section */}
       <section id="hero">
@@ -52,29 +35,17 @@ export default function Home() {
       
       {/* Services Section */}
       <section id="services">
-        <Suspense fallback={<div className="h-screen bg-neutral-900 animate-pulse" />}>
-          <EnhancedServices />
-        </Suspense>
+        <EnhancedServices />
       </section>
       
       {/* Testimonials Section */}
       <section id="testimonials">
-        <Suspense fallback={<div className="h-screen bg-black animate-pulse" />}>
-          <ModernTestimonials />
-        </Suspense>
+        <ModernTestimonials />
       </section>
       
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-black relative">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold text-white mb-8">
-            ¿Listo para hacer crecer tu negocio?
-          </h2>
-          <p className="text-xl text-gray-300 mb-12">
-            Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas
-          </p>
-          <ModernContactForm />
-        </div>
+      <section id="contact">
+        <ContactSection />
       </section>
 
       {/* Footer */}

@@ -1,0 +1,13 @@
+{
+  "framework": "nextjs",
+  "regions": ["iad1", "fra1"],
+  "functions": {
+    "src/pages/api/**/*.ts": {
+      "maxDuration": 10
+    }
+  },
+  "crons": [],
+  "github": {
+    "autoAlias": true
+  }
+}

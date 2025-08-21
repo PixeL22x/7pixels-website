@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState, useMemo, memo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "motion/react";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { useTranslations } from "@/hooks/useTranslations";
 
-const OptimizedHero = memo(function OptimizedHero() {
+export default function OptimizedHero() {
   const t = useTranslations();
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -84,7 +84,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
   return (
     <BackgroundLines 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-8"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
       svgOptions={{ duration: 15 }} // Slower animation for better performance
     >
       {/* Simplified gradient orbs with CSS transforms */}
@@ -134,7 +134,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
       {/* Main Content */}
       <motion.div
-        className="relative z-20 text-center max-w-6xl mx-auto px-4 py-8"
+        className="relative z-20 text-center max-w-6xl mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -151,9 +151,9 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Main Title */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div variants={itemVariants} className="mb-8">
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 will-change-transform"
+            className="text-6xl md:text-8xl lg:text-9xl font-black mb-4 will-change-transform"
             style={{
               background: "linear-gradient(135deg, #10b981, #059669, #047857)",
               WebkitBackgroundClip: "text",
@@ -167,19 +167,19 @@ const OptimizedHero = memo(function OptimizedHero() {
         </motion.div>
 
         {/* Optimized Subtitle */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white dark:text-white mb-4 leading-tight">
+        <motion.div variants={itemVariants} className="mb-8">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white dark:text-white mb-4 leading-tight">
             {t.heroSubtitle}{" "}
-            <span className="relative inline-block">
+            <span className="relative">
               <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                 {displayText}
               </span>
-              <span className="absolute text-green-400 animate-pulse top-0 left-full ml-1">
+              <span className="absolute -right-1 top-0 text-green-400 animate-pulse">
                 |
               </span>
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-300 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             {t.heroDescription}{" "}
             <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
               {t.heroHighlight}
@@ -195,10 +195,6 @@ const OptimizedHero = memo(function OptimizedHero() {
           <motion.button
             className="group px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
             whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              const contactSection = document.getElementById('contact');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
           >
             <span className="flex items-center">
               {t.heroCta1}
@@ -209,9 +205,6 @@ const OptimizedHero = memo(function OptimizedHero() {
           <motion.button
             className="group px-10 py-4 border-2 border-white/30 dark:border-white/20 text-white dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
             whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              window.location.href = '/portfolio';
-            }}
           >
             <span className="flex items-center">
               {t.heroCta2}
@@ -230,8 +223,17 @@ const OptimizedHero = memo(function OptimizedHero() {
           </p>
         </motion.div>
       </motion.div>
+
+      {/* Simplified Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-green-400 rounded-full mt-2 animate-bounce" />
+        </div>
+      </motion.div>
     </BackgroundLines>
   );
-});
-
-export default OptimizedHero;
+}
