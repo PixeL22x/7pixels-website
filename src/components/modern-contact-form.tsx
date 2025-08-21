@@ -7,7 +7,7 @@ const ModernContactForm = () => {
     name: "",
     email: "",
     company: "",
-    services: [],
+    services: [] as string[],
     message: ""
   });
   
@@ -15,7 +15,7 @@ const ModernContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
 
   const serviceOptions = [
     { id: "social", label: "Marketing en Redes Sociales", icon: "📱" },
@@ -34,7 +34,7 @@ const ModernContactForm = () => {
     { id: "message", title: "Cuéntanos tu Proyecto", icon: "💭" }
   ];
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     // Limpiar error del campo cuando el usuario empiece a escribir
@@ -43,7 +43,7 @@ const ModernContactForm = () => {
     }
   };
 
-  const handleServiceToggle = (serviceId) => {
+  const handleServiceToggle = (serviceId: string) => {
     setFormData(prev => ({
       ...prev,
       services: prev.services.includes(serviceId)
@@ -52,8 +52,8 @@ const ModernContactForm = () => {
     }));
   };
 
-  const validateStep = (step) => {
-    const newErrors = {};
+  const validateStep = (step: number) => {
+    const newErrors: {[key: string]: string} = {};
     
     switch (step) {
       case 0:
@@ -146,7 +146,7 @@ const ModernContactForm = () => {
               setIsSubmitted(false);
               setCurrentStep(0);
               setFormData({
-                name: "", email: "", company: "", services: [], message: ""
+                name: "", email: "", company: "", services: [] as string[], message: ""
               });
             }}
             className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-400 hover:to-emerald-400 transition-all duration-300"
@@ -313,7 +313,7 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField("")}
-                  rows="6"
+                  rows={6}
                   className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 resize-none ${
                     focusedField === "message" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
                   } ${errors.message ? "border-red-400" : ""}`}

@@ -93,7 +93,7 @@ const categories = ["Todos", "E-commerce", "Fintech", "Healthcare", "Education",
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const filteredItems = selectedCategory === "Todos" 
     ? portfolioItems 
@@ -167,7 +167,7 @@ export default function Portfolio() {
 
           {/* Portfolio Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredItems.map((item, index) => (
+            {filteredItems.map((item) => (
               <PixelCard 
                 key={item.id} 
                 variant="green" 
