@@ -9,7 +9,8 @@ import { lazy, Suspense } from "react";
 const OptimizedParticles = lazy(() => import("@/components/optimized-particles"));
 const EnhancedServices = lazy(() => import("@/components/enhanced-services"));
 const ModernTestimonials = lazy(() => import("@/components/modern-testimonials"));
-const ContactSection = lazy(() => import("@/components/contact-section"));
+// Formulario simple y funcional
+import SimpleContactForm from "@/components/simple-contact-form";
 
 export default function Home() {
   return (
@@ -53,10 +54,16 @@ export default function Home() {
       </section>
       
       {/* Contact Section */}
-      <section id="contact">
-        <Suspense fallback={<div className="h-screen bg-black animate-pulse" />}>
-          <ContactSection />
-        </Suspense>
+      <section id="contact" className="py-20 px-4 bg-black relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl font-bold text-white mb-8">
+            ¿Listo para hacer crecer tu negocio?
+          </h2>
+          <p className="text-xl text-gray-300 mb-12">
+            Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas
+          </p>
+          <SimpleContactForm />
+        </div>
       </section>
 
       {/* Footer */}
