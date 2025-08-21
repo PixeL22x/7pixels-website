@@ -9,8 +9,8 @@ import { lazy, Suspense } from "react";
 const OptimizedParticles = lazy(() => import("@/components/optimized-particles"));
 const EnhancedServices = lazy(() => import("@/components/enhanced-services"));
 const ModernTestimonials = lazy(() => import("@/components/modern-testimonials"));
-// Formulario simple y funcional
-import SimpleContactForm from "@/components/simple-contact-form";
+// Formulario ultra simple para debugging
+import UltraSimpleForm from "@/components/ultra-simple-form";
 
 export default function Home() {
   return (
@@ -62,7 +62,7 @@ export default function Home() {
           <p className="text-xl text-gray-300 mb-12">
             Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas
           </p>
-          <SimpleContactForm />
+          <UltraSimpleForm />
         </div>
       </section>
 
