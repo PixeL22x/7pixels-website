@@ -91,7 +91,7 @@ export default function ContactSection() {
       } else {
         setFormStatus({ type: 'error', message: data.error || 'Error al enviar el mensaje' });
       }
-    } catch (error) {
+    } catch {
       setFormStatus({ type: 'error', message: 'Error de conexión. Inténtalo de nuevo.' });
     }
   };

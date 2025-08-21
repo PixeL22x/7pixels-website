@@ -11,8 +11,9 @@ const EnhancedServices = memo(function EnhancedServices() {
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+  // Scroll effects removed but keeping for potential future use
+  // const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  // const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   const services = [
     {

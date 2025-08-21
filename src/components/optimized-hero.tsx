@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useMemo, memo, useCallback } from "react";
+import React, { useEffect, useState, useMemo, memo } from "react";
 import { motion } from "motion/react";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { useTranslations } from "@/hooks/useTranslations";
