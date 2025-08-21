@@ -1,8 +1,12 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslations } from "@/hooks/useTranslations";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const ModernContactForm = () => {
+  const t = useTranslations();
+  const { language } = useTheme();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,9 +33,9 @@ const ModernContactForm = () => {
 
 
   const steps = [
-    { id: "contact", title: "Información Personal", icon: "👋" },
-    { id: "services", title: "Servicios de Interés", icon: "🎯" },
-    { id: "message", title: "Cuéntanos tu Proyecto", icon: "💭" }
+    { id: "contact", title: t.formStepContact, icon: "👋" },
+    { id: "services", title: t.formStepServices, icon: "🎯" },
+    { id: "message", title: t.formStepMessage, icon: "💭" }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -133,11 +137,11 @@ const ModernContactForm = () => {
           >
             <span className="text-3xl">✅</span>
           </motion.div>
-          <h3 className="text-2xl font-bold text-white mb-4">
-            ¡Mensaje Enviado!
+          <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
+            {t.formSuccessTitle}
           </h3>
-          <p className="text-gray-300 mb-6">
-            Gracias por contactarnos. Te responderemos en menos de 24 horas.
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            {t.formSuccessMessage}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -151,7 +155,7 @@ const ModernContactForm = () => {
             }}
             className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-400 hover:to-emerald-400 transition-all duration-300"
           >
-            Enviar Otro Mensaje
+            {t.formButtonSendAnother}
           </motion.button>
         </div>
       </motion.div>
@@ -183,14 +187,14 @@ const ModernContactForm = () => {
             </div>
           ))}
         </div>
-        <h3 className="text-xl font-bold text-white text-center">
+        <h3 className="text-xl font-bold text-black dark:text-white text-center">
           {steps[currentStep].title}
         </h3>
       </div>
 
       {/* Form Steps */}
       <motion.div
-        className="bg-black/40 backdrop-blur-xl rounded-3xl p-8 border border-white/10"
+        className="bg-white/90 dark:bg-black/40 backdrop-blur-xl rounded-3xl p-8 border border-gray-300 dark:border-white/10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         key={currentStep}
@@ -204,8 +208,8 @@ const ModernContactForm = () => {
               className="space-y-6"
             >
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Nombre Completo *
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t.formLabelName}
                 </label>
                 <motion.input
                   type="text"
@@ -214,17 +218,17 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
+                  className={`w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border rounded-xl text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 ${
                     focusedField === "name" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
                   } ${errors.name ? "border-red-400" : ""}`}
-                  placeholder="Tu nombre completo"
+                  placeholder={t.formPlaceholderName}
                 />
                 {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Email *
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t.formLabelEmail}
                 </label>
                 <motion.input
                   type="email"
@@ -233,17 +237,17 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
+                  className={`w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border rounded-xl text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 ${
                     focusedField === "email" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
                   } ${errors.email ? "border-red-400" : ""}`}
-                  placeholder="tu@email.com"
+                  placeholder={t.formPlaceholderEmail}
                 />
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Empresa (Opcional)
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t.formLabelCompany}
                 </label>
                 <motion.input
                   type="text"
@@ -252,10 +256,10 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("company")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
+                  className={`w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border rounded-xl text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 ${
                     focusedField === "company" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
                   }`}
-                  placeholder="Nombre de tu empresa"
+                  placeholder={t.formPlaceholderCompany}
                 />
               </div>
             </motion.div>
@@ -268,8 +272,8 @@ const ModernContactForm = () => {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-4"
             >
-              <p className="text-gray-300 mb-6">
-                ¿Qué servicios te interesan? (Selecciona todos los que apliquen)
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                {t.formServicesQuestion}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {serviceOptions.map((service) => (
@@ -280,7 +284,7 @@ const ModernContactForm = () => {
                     className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
                       formData.services.includes(service.id)
                         ? "border-green-400 bg-green-500/10 text-green-400"
-                        : "border-gray-600 bg-white/5 text-gray-300 hover:border-gray-500"
+                        : "border-gray-600 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:border-gray-500"
                     }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -304,8 +308,8 @@ const ModernContactForm = () => {
               className="space-y-6"
             >
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Cuéntanos sobre tu proyecto *
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t.formLabelMessage}
                 </label>
                 <motion.textarea
                   name="message"
@@ -314,21 +318,21 @@ const ModernContactForm = () => {
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField("")}
                   rows={6}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 resize-none ${
+                  className={`w-full px-4 py-3 bg-gray-100 dark:bg-white/5 border rounded-xl text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-300 resize-none ${
                     focusedField === "message" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
                   } ${errors.message ? "border-red-400" : ""}`}
-                  placeholder="Describe tu proyecto, objetivos, timeline, o cualquier detalle que consideres importante..."
+                  placeholder={t.formPlaceholderMessage}
                 />
                 {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
               </div>
 
               {/* Resumen */}
-              <div className="bg-white/5 rounded-xl p-4 border border-gray-600">
-                <h4 className="font-bold text-white mb-3">Resumen de tu solicitud:</h4>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <p><strong>Contacto:</strong> {formData.name} ({formData.email})</p>
-                  {formData.company && <p><strong>Empresa:</strong> {formData.company}</p>}
-                  <p><strong>Servicios:</strong> {formData.services.map(id => 
+              <div className="bg-gray-100 dark:bg-white/5 rounded-xl p-4 border border-gray-300 dark:border-gray-600">
+                <h4 className="font-bold text-black dark:text-white mb-3">{t.formSummaryTitle}</h4>
+                <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                  <p><strong>{t.formSummaryContact}</strong> {formData.name} ({formData.email})</p>
+                  {formData.company && <p><strong>{t.formSummaryCompany}</strong> {formData.company}</p>}
+                  <p><strong>{t.formSummaryServices}</strong> {formData.services.map(id => 
                     serviceOptions.find(s => s.id === id)?.label
                   ).join(", ")}</p>
                 </div>
@@ -346,12 +350,12 @@ const ModernContactForm = () => {
             className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
               currentStep === 0
                 ? "opacity-50 cursor-not-allowed text-gray-500"
-                : "text-gray-300 hover:text-white hover:bg-white/10"
+                : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10"
             }`}
             whileHover={currentStep > 0 ? { scale: 1.05 } : {}}
             whileTap={currentStep > 0 ? { scale: 0.95 } : {}}
           >
-            ← Anterior
+            {t.formButtonPrevious}
           </motion.button>
 
           {currentStep < steps.length - 1 ? (
@@ -362,7 +366,7 @@ const ModernContactForm = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Siguiente →
+              {t.formButtonNext}
             </motion.button>
           ) : (
             <motion.button
@@ -378,10 +382,10 @@ const ModernContactForm = () => {
               {isSubmitting ? (
                 <span className="flex items-center">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                  Enviando...
+                  {t.formButtonSending}
                 </span>
               ) : (
-                "🚀 Enviar Proyecto"
+                t.formButtonSubmit
               )}
             </motion.button>
           )}

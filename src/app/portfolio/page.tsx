@@ -1,8 +1,10 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import PixelCard from '@/components/PixelCard';
 import ModernNavbar from '@/components/modern-navbar';
-import { useState } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const portfolioItems = [
   {
@@ -89,13 +91,23 @@ const portfolioItems = [
   
 ];
 
-const categories = ["Todos", "E-commerce", "Fintech", "Healthcare", "Education", "Corporate", "Food & Delivery", "Real Estate", "Fashion", "Travel"];
-
 export default function Portfolio() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const t = useTranslations();
+  const { language } = useTheme();
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const filteredItems = selectedCategory === "Todos" 
+  // Definir categorías después de que se inicialice el hook
+  const categories = [t.portfolioAllCategories, "E-commerce", "Fintech", "Healthcare", "Education", "Corporate", "Food & Delivery", "Real Estate", "Fashion", "Travel"];
+
+  // Actualizar selectedCategory cuando se inicialice el hook
+  useEffect(() => {
+    if (t.portfolioAllCategories) {
+      setSelectedCategory(t.portfolioAllCategories);
+    }
+  }, [t.portfolioAllCategories]);
+
+  const filteredItems = selectedCategory && selectedCategory === t.portfolioAllCategories 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === selectedCategory);
 
@@ -127,24 +139,23 @@ export default function Portfolio() {
         ))}
       </div>
 
-                <div className="relative z-10 pt-32 pb-20 px-4">
+                <div className="relative z-10 pt-20 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-block mb-6">
               <span className="text-sm font-semibold text-green-400 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20">
-                PORTFOLIO
+                {t.portfolioBadge}
               </span>
             </div>
             <h1 className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tight">
-              Proyectos que{' '}
+              {t.portfolioTitle}{' '}
               <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 bg-clip-text text-transparent">
-                Transforman
+                {t.portfolioHighlight}
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Cada línea de código, cada pixel diseñado, cada estrategia implementada. 
-              Descubre cómo hemos revolucionado la presencia digital de marcas líderes en sus industrias.
+              {t.portfolioDescription}
             </p>
 
             {/* Category Filter */}
@@ -259,7 +270,7 @@ export default function Portfolio() {
                           {/* Button shine effect */}
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
                           <span className="relative flex items-center justify-center gap-2">
-                            Ver Proyecto
+                            {t.portfolioViewProject}
                             <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -280,10 +291,10 @@ export default function Portfolio() {
           <div className="mt-32 mb-20">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
-                { number: "50+", label: "Proyectos Completados" },
-                { number: "300%", label: "Promedio ROI" },
-                { number: "24/7", label: "Soporte Continuo" },
-                { number: "100%", label: "Clientes Satisfechos" }
+                { number: "50+", label: t.portfolioStatsProjects },
+                { number: "300%", label: t.portfolioStatsROI },
+                { number: "24/7", label: t.portfolioStatsSupport },
+                { number: "100%", label: t.portfolioStatsSatisfaction }
               ].map((stat, index) => (
                 <div key={index} className="group">
                   <div className="text-4xl md:text-5xl font-black text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -305,21 +316,20 @@ export default function Portfolio() {
               
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-                  ¿Listo para ser el
+                  {t.portfolioReadyTitle}
                   <span className="block bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                    Siguiente Éxito?
+                    {t.portfolioReadyHighlight}
                   </span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                  Cada proyecto que creamos está diseñado para superar expectativas y generar resultados extraordinarios. 
-                  Tu marca merece destacar en el mundo digital.
+                  {t.portfolioReadyDescription}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button className="bg-gradient-to-r from-green-500 to-emerald-500 text-black px-8 py-4 rounded-xl font-bold text-lg hover:from-green-400 hover:to-emerald-400 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-green-500/25">
-                    Iniciar Mi Proyecto
+                    {t.portfolioStartProject}
                   </button>
                   <button className="bg-transparent border-2 border-green-500/50 text-green-400 px-8 py-4 rounded-xl font-bold text-lg hover:bg-green-500/10 transition-all duration-300">
-                    Ver Más Casos
+                    {t.portfolioViewMoreCases}
                   </button>
                 </div>
               </div>

@@ -30,8 +30,6 @@ export default function FloatingNav() {
   const navItems = [
     { id: "hero", label: t.navHome, icon: "🏠" },
     { id: "stats", label: t.navStats, icon: "📊" },
-    { id: "services", label: t.navServices, icon: "🎯" },
-    { id: "testimonials", label: t.navTestimonials, icon: "💬" },
     { id: "contact", label: t.navContact, icon: "📧" },
   ];
 
@@ -42,7 +40,7 @@ export default function FloatingNav() {
       transition={{ duration: 0.3 }}
       className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50"
     >
-      <div className="bg-white/90 dark:bg-black/90 backdrop-blur-lg rounded-full px-6 py-3 shadow-2xl border border-neutral-200/50 dark:border-white/10">
+      <div className="bg-white/95 dark:bg-black/90 backdrop-blur-lg rounded-full px-6 py-3 shadow-2xl border border-gray-300 dark:border-white/10">
         <div className="flex space-x-2">
           {navItems.map((item) => (
             <motion.button
@@ -50,11 +48,11 @@ export default function FloatingNav() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection(item.id)}
-              className="group relative px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white text-neutral-700 dark:text-neutral-300"
+              className="group relative px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white text-gray-800 dark:text-neutral-300"
               title={item.label}
             >
               <span className="text-lg">{item.icon}</span>
-              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-neutral-900 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-neutral-900 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                 {item.label}
               </div>
             </motion.button>

@@ -1,12 +1,16 @@
 "use client";
 import { motion } from "motion/react";
+import { useTranslations } from "@/hooks/useTranslations";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function StatsSection() {
+  const t = useTranslations();
+  const { language } = useTheme();
   const stats = [
-    { number: "500+", label: "Proyectos Completados", icon: "🚀" },
-    { number: "98%", label: "Clientes Satisfechos", icon: "⭐" },
-    { number: "250%", label: "ROI Promedio", icon: "📈" },
-    { number: "24/7", label: "Soporte Disponible", icon: "💬" },
+    { number: "500+", label: t.statsProjects, icon: "🚀" },
+    { number: "98%", label: t.statsSatisfaction, icon: "⭐" },
+    { number: "250%", label: t.statsROI, icon: "📈" },
+    { number: "24/7", label: t.statsSupport, icon: "💬" },
   ];
 
   return (
@@ -19,10 +23,10 @@ export default function StatsSection() {
           className="text-center mb-16"
         >
           <h3 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
-            Resultados que Hablan por Sí Solos
+            {t.statsTitle}
           </h3>
           <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
-            Nuestros números reflejan nuestro compromiso con la excelencia
+            {t.statsDescription}
           </p>
         </motion.div>
 

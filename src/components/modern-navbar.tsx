@@ -26,6 +26,8 @@ const ModernNavbar = () => {
     
     if (currentPath === '/portfolio') {
       setActiveSection('portfolio');
+    } else if (currentPath === '/equipo') {
+      setActiveSection('equipo');
     } else if (currentPath === '/') {
       if (currentHash) {
         setActiveSection(currentHash);
@@ -62,10 +64,9 @@ const ModernNavbar = () => {
 
   const menuItems = [
     { id: "home", label: "Inicio", type: "scroll" }, // Siempre va a index
-    { id: "portfolio", label: "Portfolio", type: "page", path: "/portfolio" }, // Única página separada
-    { id: "services", label: "Servicios", type: "scroll" }, // Va a index#services
-    { id: "testimonials", label: "Testimonios", type: "scroll" }, // Va a index#testimonials
-    { id: "contact", label: "Contacto", type: "scroll" }, // Va a index#contact
+    { id: "portfolio", label: "Portfolio", type: "page", path: "/portfolio" }, // Página separada
+    { id: "equipo", label: "Team", type: "page", path: "/equipo" }, // Página separada
+    { id: "contact", label: "Contacto", type: "page", path: "/contacto" }, // Página separada
   ];
 
   return (
@@ -76,7 +77,7 @@ const ModernNavbar = () => {
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+            ? "bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-2xl"
             : "bg-transparent"
         }`}
       >
@@ -103,7 +104,7 @@ const ModernNavbar = () => {
                   className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeSection === item.id
                       ? "text-green-400"
-                      : "text-gray-300 hover:text-white"
+                      : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -137,7 +138,7 @@ const ModernNavbar = () => {
               <div className="flex items-center space-x-2 ml-4">
                 {/* Language Toggle */}
                 <motion.button
-                  className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-sm font-bold text-white hover:bg-white/20 transition-all duration-300"
+                  className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-sm font-bold text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleLanguage}
@@ -148,7 +149,7 @@ const ModernNavbar = () => {
 
                 {/* Theme Toggle */}
                 <motion.button
-                  className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-white hover:bg-white/20 transition-all duration-300"
+                  className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
                   whileHover={{ scale: 1.1, rotate: 180 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={toggleTheme}
@@ -213,7 +214,7 @@ const ModernNavbar = () => {
                     className={`block w-full text-left px-4 py-3 rounded-xl text-lg font-medium transition-all duration-300 ${
                       activeSection === item.id
                         ? "text-green-400 bg-green-500/10"
-                        : "text-gray-300 hover:text-white hover:bg-white/5"
+                        : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
                     }`}
                     onClick={() => {
                       if (item.type === "page") {
@@ -240,7 +241,7 @@ const ModernNavbar = () => {
                 >
                   {/* Language Toggle Mobile */}
                   <motion.button
-                    className="flex-1 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+                    className="flex-1 h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleLanguage}
                   >
@@ -252,7 +253,7 @@ const ModernNavbar = () => {
 
                   {/* Theme Toggle Mobile */}
                   <motion.button
-                    className="flex-1 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+                    className="flex-1 h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
                     whileTap={{ scale: 0.95 }}
                     onClick={toggleTheme}
                   >

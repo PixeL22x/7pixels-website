@@ -168,7 +168,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
         {/* Optimized Subtitle */}
         <motion.div variants={itemVariants} className="mb-4">
-          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-white dark:text-white mb-3 leading-tight">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-black dark:text-white mb-3 leading-tight">
             {t.heroSubtitle}{" "}
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
@@ -179,7 +179,7 @@ const OptimizedHero = memo(function OptimizedHero() {
               </span>
             </span>
           </h2>
-          <p className="text-base md:text-lg text-gray-300 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {t.heroDescription}{" "}
             <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
               {t.heroHighlight}
@@ -207,7 +207,7 @@ const OptimizedHero = memo(function OptimizedHero() {
           </motion.button>
 
           <motion.button
-            className="group px-10 py-4 border-2 border-white/30 dark:border-white/20 text-white dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-white/10 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
+            className="group px-10 py-4 border-2 border-gray-400 dark:border-white/20 text-gray-800 dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-gray-200 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
               window.location.href = '/portfolio';
@@ -225,7 +225,7 @@ const OptimizedHero = memo(function OptimizedHero() {
           variants={itemVariants}
           className="max-w-4xl mx-auto"
         >
-          <p className="text-lg md:text-xl text-gray-300 dark:text-gray-300 leading-relaxed text-center">
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-center">
             {t.heroFullDescription}
           </p>
         </motion.div>

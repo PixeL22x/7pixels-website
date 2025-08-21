@@ -1,8 +1,12 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, memo } from "react";
+import { useTranslations } from "@/hooks/useTranslations";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const EnhancedServices = memo(function EnhancedServices() {
+  const t = useTranslations();
+  const { language } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
   
@@ -18,54 +22,54 @@ const EnhancedServices = memo(function EnhancedServices() {
   const services = [
     {
       icon: "📱",
-      title: "Social Media Marketing",
-      description: "Estrategias que conectan tu marca con millones de usuarios activos en todas las plataformas.",
-      features: ["Content Strategy", "Community Management", "Influencer Marketing", "Paid Advertising"],
+      title: t.serviceSocial,
+      description: t.serviceSocialDesc,
+      features: [t.serviceFeatureContent, t.serviceFeatureCommunity, t.serviceFeatureInfluencer, t.serviceFeaturePaid],
       gradient: "from-green-400 via-emerald-500 to-teal-500",
       hoverGradient: "from-green-500 via-emerald-600 to-teal-600",
       delay: 0
     },
     {
       icon: "🎯",
-      title: "SEO & Google Ads",
-      description: "Dominamos los algoritmos para posicionar tu marca en los primeros resultados de búsqueda.",
-      features: ["Technical SEO", "Keyword Research", "PPC Campaigns", "Analytics & Reporting"],
+      title: t.serviceSEO,
+      description: t.serviceSEODesc,
+      features: [t.serviceFeatureTechnical, t.serviceFeatureKeyword, t.serviceFeaturePPC, t.serviceFeatureAnalytics],
       gradient: "from-emerald-400 via-green-500 to-lime-500",
       hoverGradient: "from-emerald-500 via-green-600 to-lime-600",
       delay: 0.2
     },
     {
       icon: "🎨",
-      title: "Creative Design",
-      description: "Diseños que capturan la esencia de tu marca y la transforman en experiencias memorables.",
-      features: ["Brand Identity", "UI/UX Design", "Motion Graphics", "Print & Digital"],
+      title: t.serviceDesign,
+      description: t.serviceDesignDesc,
+      features: [t.serviceFeatureBrand, t.serviceFeatureUI, t.serviceFeatureMotion, t.serviceFeaturePrint],
       gradient: "from-teal-400 via-cyan-500 to-blue-500",
       hoverGradient: "from-teal-500 via-cyan-600 to-blue-600",
       delay: 0.4
     },
     {
       icon: "⚡",
-      title: "Marketing Automation",
-      description: "Sistemas inteligentes que nutren leads y convierten prospects en clientes leales.",
-      features: ["Email Workflows", "Lead Scoring", "CRM Integration", "Behavioral Triggers"],
+      title: t.serviceAutomation,
+      description: t.serviceAutomationDesc,
+      features: [t.serviceFeatureEmail, t.serviceFeatureLead, t.serviceFeatureCRM, t.serviceFeatureBehavioral],
       gradient: "from-lime-400 via-green-500 to-emerald-500",
       hoverGradient: "from-lime-500 via-green-600 to-emerald-600",
       delay: 0.6
     },
     {
       icon: "💻",
-      title: "Web Development",
-      description: "Sitios web que no solo se ven increíbles, sino que convierten visitantes en ventas.",
-      features: ["React/Next.js", "E-commerce", "PWA", "Performance Optimization"],
+      title: t.serviceWeb,
+      description: t.serviceWebDesc,
+      features: [t.serviceFeatureReact, t.serviceFeatureEcommerce, t.serviceFeaturePWA, t.serviceFeaturePerformance],
       gradient: "from-cyan-400 via-teal-500 to-green-500",
       hoverGradient: "from-cyan-500 via-teal-600 to-green-600",
       delay: 0.8
     },
     {
       icon: "📊",
-      title: "Data Analytics",
-      description: "Insights profundos que revelan oportunidades ocultas y optimizan cada inversión.",
-      features: ["Advanced Analytics", "Custom Dashboards", "Conversion Optimization", "ROI Tracking"],
+      title: t.serviceAnalytics,
+      description: t.serviceAnalyticsDesc,
+      features: [t.serviceFeatureAdvanced, t.serviceFeatureDashboards, t.serviceFeatureConversion, t.serviceFeatureROI],
       gradient: "from-emerald-400 via-teal-500 to-cyan-500",
       hoverGradient: "from-emerald-500 via-teal-600 to-cyan-600",
       delay: 1.0
@@ -73,9 +77,9 @@ const EnhancedServices = memo(function EnhancedServices() {
   ];
 
   return (
-          <section ref={containerRef} className="py-6 bg-neutral-900 relative overflow-hidden">
+          <section ref={containerRef} className="py-6 bg-gray-100 dark:bg-neutral-900 relative overflow-hidden">
       {/* Subtle Background Effects - Much Reduced */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-0">
         <motion.div
           className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-green-500/8 to-emerald-500/8 rounded-full blur-3xl"
           animate={{
@@ -94,7 +98,7 @@ const EnhancedServices = memo(function EnhancedServices() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 relative z-50">
+      <div className="max-w-7xl mx-auto px-4 relative z-20">
         {/* Header */}
         <motion.div 
           className="text-center mb-14"
@@ -112,17 +116,17 @@ const EnhancedServices = memo(function EnhancedServices() {
             >
               ⚡
             </motion.span>
-            <span className="text-green-300 font-semibold text-lg">Servicios Premium</span>
+            <span className="text-green-700 dark:text-green-300 font-semibold text-lg">{t.servicesTag}</span>
           </motion.div>
 
                     <motion.h3 className="text-5xl md:text-7xl font-black mb-6">
-            {"Soluciones que Transforman".split(' ').map((word, index) => (
+            {`${t.servicesTitle} ${t.servicesHighlight}`.split(' ').map((word, index) => (
               <motion.span
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={index === 2 ? "bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent" : "text-white"}
+                className={index === 2 ? "bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent" : "text-gray-900 dark:text-white"}
               >
                 {word}{' '}
               </motion.span>
@@ -133,9 +137,9 @@ const EnhancedServices = memo(function EnhancedServices() {
                    initial={{ opacity: 0, y: 20 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    transition={{ duration: 0.8, delay: 0.2 }}
-                   className="text-xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-12"
+                   className="text-xl text-gray-700 dark:text-white max-w-4xl mx-auto leading-relaxed font-medium mb-12"
                  >
-                   Cada servicio está diseñado para impulsar tu negocio hacia el siguiente nivel
+                   {t.servicesDescription}
                  </motion.p>
         </motion.div>
 
@@ -166,7 +170,7 @@ const EnhancedServices = memo(function EnhancedServices() {
               style={{ perspective: "1000px" }}
             >
               {/* Card Background with Enhanced Glassmorphism */}
-              <div className="relative p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-green-400/30 group-[.active]:border-green-400/30 transition-all duration-500 overflow-hidden group-hover:bg-white/8 group-[.active]:bg-white/8">
+              <div className="relative p-8 rounded-3xl bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-300 dark:border-white/10 hover:border-green-400/30 group-[.active]:border-green-400/30 transition-all duration-500 overflow-hidden group-hover:bg-white/90 dark:group-hover:bg-white/8 group-[.active]:bg-white/90 dark:group-[.active]:bg-white/8">
                 {/* Primary Gradient Background */}
                 <motion.div
                   className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-15 group-[.active]:opacity-15 transition-opacity duration-500`}
@@ -197,11 +201,11 @@ const EnhancedServices = memo(function EnhancedServices() {
 
                 {/* Content */}
                 <div className="relative z-10">
-                                          <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-green-300 group-[.active]:text-green-300 transition-colors duration-300">
+                                          <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-green-700 dark:group-hover:text-green-300 group-[.active]:text-green-700 dark:group-[.active]:text-green-300 transition-colors duration-300">
                           {service.title}
                         </h4>
                   
-                  <p className="text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
 
@@ -213,7 +217,7 @@ const EnhancedServices = memo(function EnhancedServices() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: service.delay + idx * 0.1 }}
-                        className="flex items-center text-sm text-gray-400"
+                        className="flex items-center text-sm text-gray-600 dark:text-gray-400"
                       >
                         <motion.div
                           className="w-2 h-2 bg-gradient-to-r from-green-300 to-emerald-300 rounded-full mr-3"
@@ -231,7 +235,7 @@ const EnhancedServices = memo(function EnhancedServices() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Explorar Servicio
+                    {t.exploreService}
                   </motion.button>
                 </div>
 
@@ -261,7 +265,7 @@ const EnhancedServices = memo(function EnhancedServices() {
             whileTap={{ scale: 0.95 }}
           >
             <span className="flex items-center">
-              💡 Consulta Gratuita
+              💡 {t.servicesCta}
               <motion.span
                 className="ml-2"
                 animate={{ x: [0, 5, 0] }}
