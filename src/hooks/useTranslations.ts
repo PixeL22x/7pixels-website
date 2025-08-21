@@ -223,7 +223,7 @@ export const translations = {
     teamRoleFuture: "Future Team Member",
     
     // Team Member Descriptions
-    teamMemberPiero: "Operations manager y experto en SEO con una pasión incansable por la innovación tecnológica. Especialista en estrategias de posicionamiento digital y optimización de motores de búsqueda. Lidera 7Pixels con enfoque en la excelencia operacional y el crecimiento estratégico del negocio.",
+    teamMemberPiero: "Operations manager y experto en SEO con una pasión incansable por la innovación tecnológica. Especialista en estrategias de posicionamiento digital y optimización de motores de búsqueda.",
     teamMemberJose: "BS in Software Engineering con 8 años de experiencia en la industria. Cofundador de Claxo y arquitecto de soluciones tecnológicas escalables que impulsan el futuro digital de las empresas.",
     teamMemberFuture: "Este espacio está reservado para alguien extraordinario que se una a nuestra misión. ¿Tienes lo necesario para completar nuestro dream team y llevar 7Pixels al siguiente nivel del mercado digital?",
     
@@ -469,7 +469,7 @@ export const translations = {
     teamRoleFuture: "Future Team Member",
     
     // Team Member Descriptions
-    teamMemberPiero: "Operations manager and SEO expert with an unwavering passion for technological innovation. Specialist in digital positioning strategies and search engine optimization. Leads 7Pixels with focus on operational excellence and strategic business growth.",
+    teamMemberPiero: "Operations manager and SEO expert with an unwavering passion for technological innovation. Specialist in digital positioning strategies and search engine optimization.",
     teamMemberJose: "BS in Software Engineering with 8 years of industry experience. Co-founder of Claxo and architect of scalable technological solutions that drive the digital future of businesses.",
     teamMemberFuture: "This space is reserved for someone extraordinary who joins our mission. Do you have what it takes to complete our dream team and take 7Pixels to the next level of the digital market?",
     
