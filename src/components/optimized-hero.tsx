@@ -84,7 +84,7 @@ const OptimizedHero = memo(function OptimizedHero() {
 
   return (
     <BackgroundLines 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 pb-4"
+      className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-4 pb-4"
       svgOptions={{ duration: 15 }} // Slower animation for better performance
     >
       {/* Simplified gradient orbs with CSS transforms */}
