@@ -101,13 +101,7 @@ export default function ModernTestimonials() {
             transition={{ duration: 0.6, type: "spring" }}
             className="inline-flex items-center px-6 py-3 mb-8 bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-lg rounded-full border border-green-500/20"
           >
-            <motion.span
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="mr-3 text-2xl"
-            >
-              💬
-            </motion.span>
+
             <span className="text-green-700 dark:text-green-400 font-medium">{t.testimonialsTag}</span>
           </motion.div>
 
