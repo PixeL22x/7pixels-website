@@ -112,12 +112,12 @@ export default function Portfolio() {
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-black relative overflow-hidden">
       {/* Modern Navbar */}
       <ModernNavbar />
       
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-white to-gray-100 dark:from-gray-900 dark:via-black dark:to-gray-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(92,184,92,0.08)_0%,_transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(108,194,108,0.06)_0%,_transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,_rgba(76,154,76,0.04)_0%,_transparent_70%)]"></div>
@@ -148,13 +148,13 @@ export default function Portfolio() {
                 {t.portfolioBadge}
               </span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tight">
+                         <h1 className="text-6xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">
               {t.portfolioTitle}{' '}
               <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 bg-clip-text text-transparent">
                 {t.portfolioHighlight}
               </span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
+                         <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
               {t.portfolioDescription}
             </p>
 
@@ -164,11 +164,11 @@ export default function Portfolio() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    selectedCategory === category
-                      ? 'bg-green-500 text-black shadow-lg shadow-green-500/25'
-                      : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700/50'
-                  }`}
+                                     className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                     selectedCategory === category
+                       ? 'bg-green-500 text-black shadow-lg shadow-green-500/25'
+                       : 'bg-gray-200/80 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-300/80 dark:hover:bg-gray-700/50 border border-gray-300/50 dark:border-gray-700/50'
+                   }`}
                 >
                   {category}
                 </button>
@@ -182,7 +182,7 @@ export default function Portfolio() {
               <PixelCard 
                 key={item.id} 
                 variant="green" 
-                className="group h-[420px] bg-gradient-to-br from-gray-900/80 via-gray-900/60 to-black/80 backdrop-blur-2xl border border-gray-700/30 rounded-3xl overflow-hidden hover:border-[#6cb86c]/60 transition-all duration-700 hover:shadow-2xl hover:shadow-[#5cb85c]/20 hover:-translate-y-2 transform-gpu"
+                                 className="group h-[420px] bg-gradient-to-br from-gray-100/90 via-white/80 to-gray-50/90 dark:from-gray-900/80 dark:via-gray-900/60 dark:to-black/80 backdrop-blur-2xl border border-gray-300/30 dark:border-gray-700/30 rounded-3xl overflow-hidden hover:border-[#6cb86c]/60 transition-all duration-700 hover:shadow-2xl hover:shadow-[#5cb85c]/20 hover:-translate-y-2 transform-gpu"
                 onMouseEnter={() => setHoveredCard(item.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
