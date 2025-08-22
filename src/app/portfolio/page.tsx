@@ -9,84 +9,84 @@ import { useTheme } from '@/contexts/ThemeContext';
 const portfolioItems = [
   {
     id: 1,
-    title: "TechFlow Solutions",
-    description: "E-commerce B2B para soluciones tecnológicas empresariales",
-    tech: ["Next.js", "Shopify", "Stripe", "AI"],
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop&auto=format",
-    category: "E-commerce",
-    results: "+450% conversiones"
+    title: "Kamezí Boutique Villas",
+    description: "Luxury boutique villas booking platform with immersive 360° experiences",
+    tech: ["Next.js", "Three.js", "Stripe", "AI"],
+    image: "https://assets.awwwards.com/awards/submissions/2025/02/67b3876bbf664948470967.jpg",
+    category: "Luxury Hospitality",
+    results: "+380% bookings"
   },
   {
     id: 2,
-    title: "FinanceCore Banking",
-    description: "Plataforma bancaria digital con dashboard analítico avanzado",
-    tech: ["React", "D3.js", "Node.js", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&auto=format",
-    category: "Fintech",
-    results: "+320% usuarios activos"
+    title: "Hyundai Spain Convention",
+    description: "Corporate event platform for Hyundai Spain with interactive experiences and live streaming",
+    tech: ["Next.js", "WebRTC", "Node.js", "MongoDB"],
+    image: "https://assets.awwwards.com/awards/submissions/2025/03/67d2ecf13c7a7422765324.jpg",
+    category: "Corporate Events",
+    results: "+450% engagement"
   },
   {
     id: 3,
-    title: "HealthPlus Telemedicina",
-    description: "App de telemedicina con reservas y consultas virtuales",
-    tech: ["Vue.js", "WebRTC", "Firebase", "Stripe"],
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&auto=format",
-    category: "Healthcare",
-    results: "+500% consultas online"
+    title: "Flexión Academia",
+    description: "Digital learning platform with interactive courses and advanced analytics",
+    tech: ["Next.js", "Three.js", "Firebase", "AI"],
+    image: "https://assets.awwwards.com/awards/submissions/2025/05/681df663a8425599218614.jpg",
+    category: "Education",
+    results: "+520% student engagement"
   },
   {
     id: 4,
-    title: "EduTech Academy",
-    description: "Plataforma educativa con cursos interactivos y gamificación",
-    tech: ["Angular", "Socket.io", "PostgreSQL", "AWS"],
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop&auto=format",
-    category: "Education",
-    results: "+280% engagement"
+    title: "Elemotion",
+    description: "Creative motion design platform with advanced animation tools and templates",
+    tech: ["Next.js", "Three.js", "Framer Motion", "AWS"],
+    image: "https://assets.awwwards.com/awards/submissions/2022/03/623e112ea34af091151152.jpg",
+    category: "Creative Design",
+    results: "+480% user engagement"
   },
   {
     id: 5,
-    title: "GreenEnergy Corp",
-    description: "Portal corporativo para empresa de energías renovables",
-    tech: ["Next.js", "Sanity", "Framer", "Vercel"],
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=400&h=250&fit=crop&auto=format",
-    category: "Corporate",
-    results: "+180% leads generados"
+    title: "Pixeldust",
+    description: "Creative digital agency platform with portfolio showcase and client management",
+    tech: ["Next.js", "Three.js", "Framer", "Vercel"],
+    image: "https://assets.awwwards.com/awards/submissions/2022/05/6295cb22da76b775539909.jpg",
+    category: "Creative Agency",
+    results: "+320% client inquiries"
   },
   {
     id: 6,
-    title: "FoodieHub Delivery",
-    description: "App de delivery con geolocalización y pagos integrados",
-    tech: ["React Native", "Mapbox", "Stripe", "Redis"],
-    image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400&h=250&fit=crop&auto=format",
-    category: "Food & Delivery",
-    results: "+600% pedidos diarios"
+    title: "Sados",
+    description: "Innovative digital platform with cutting-edge design and interactive experiences",
+    tech: ["Next.js", "Three.js", "Framer", "Vercel"],
+    image: "https://assets.awwwards.com/awards/submissions/2022/09/6324781476553799168173.png",
+    category: "Digital Innovation",
+    results: "+580% user engagement"
   },
   {
     id: 7,
-    title: "PropertyPro Real Estate",
-    description: "Marketplace inmobiliario con tours virtuales 360°",
-    tech: ["Vue.js", "Three.js", "Laravel", "MySQL"],
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop&auto=format",
-    category: "Real Estate",
-    results: "+340% visitas virtuales"
+    title: "YaMeMude",
+    description: "Moving services platform with instant quotes and booking management for Barcelona",
+    tech: ["Next.js", "Three.js", "Stripe", "PostgreSQL"],
+    image: "https://i.ibb.co/FLdn7qtv/Ya-Me-Mude-Mudanzas-r-pidas-y-econ-micas-en-Barcelona.png",
+    category: "Moving Services",
+    results: "+420% bookings"
   },
   {
     id: 8,
-    title: "FashionForward Store",
-    description: "E-commerce de moda con AR fitting y recomendaciones IA",
-    tech: ["Shopify Plus", "AR.js", "TensorFlow", "Klaviyo"],
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=250&fit=crop&auto=format",
-    category: "Fashion",
-    results: "+250% tiempo en sitio"
+    title: "Mas Girbau",
+    description: "Historic rural house with 6 unique rooms preserving original period furniture and natural tranquility",
+    tech: ["Next.js", "Three.js", "Stripe", "PostgreSQL"],
+    image: "https://assets.awwwards.com/awards/submissions/2024/12/674cc48bdfba9610647272.png",
+    category: "Rural Tourism",
+    results: "+450% bookings"
   },
   {
     id: 9,
-    title: "TravelExplorer Agency",
-    description: "Plataforma de viajes con reservas integradas y experiencias",
-    tech: ["Nuxt.js", "Amadeus API", "PayPal", "Cloudinary"],
-    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=250&fit=crop&auto=format",
-    category: "Travel",
-    results: "+420% reservas online"
+    title: "Wiittmore Hotel",
+    description: "Luxury hotel booking platform with immersive virtual tours and premium experiences",
+    tech: ["Next.js", "Three.js", "Stripe", "PostgreSQL"],
+    image: "https://assets.awwwards.com/awards/submissions/2024/05/66432cc84f0a0533949747.png",
+    category: "Luxury Hospitality",
+    results: "+520% bookings"
   },
   
 ];
@@ -98,7 +98,7 @@ export default function Portfolio() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   // Definir categorías después de que se inicialice el hook
-  const categories = [t.portfolioAllCategories, "E-commerce", "Fintech", "Healthcare", "Education", "Corporate", "Food & Delivery", "Real Estate", "Fashion", "Travel"];
+  const categories = [t.portfolioAllCategories, "Luxury Hospitality", "Corporate Events", "Creative Design", "Creative Agency", "Digital Innovation", "Moving Services", "Rural Tourism", "Travel"];
 
   // Actualizar selectedCategory cuando se inicialice el hook
   useEffect(() => {
