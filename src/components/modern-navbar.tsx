@@ -7,6 +7,7 @@ const ModernNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { theme, language, toggleLanguage } = useTheme();
 
   // Detectar scroll para cambiar estilos
@@ -37,6 +38,18 @@ const ModernNavbar = () => {
     }
   }, []);
 
+  // Cerrar dropdown de idioma cuando se hace clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isLanguageDropdownOpen) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isLanguageDropdownOpen]);
+
   // Navegación inteligente para secciones (siempre va a index)
   const scrollToSection = (sectionId: string) => {
     const currentPath = window.location.pathname;
@@ -60,6 +73,14 @@ const ModernNavbar = () => {
   const navigateToPage = (path: string) => {
     window.location.href = path;
     setIsMobileMenuOpen(false);
+  };
+
+  // Cambiar idioma y cerrar dropdown
+  const changeLanguage = (newLanguage: 'es' | 'en') => {
+    if (newLanguage !== language) {
+      toggleLanguage();
+    }
+    setIsLanguageDropdownOpen(false);
   };
 
   const menuItems = [
@@ -136,16 +157,51 @@ const ModernNavbar = () => {
 
               {/* Theme & Language Controls */}
               <div className="flex items-center space-x-2 ml-4">
-                {/* Language Toggle */}
-                <motion.button
-                  className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-sm font-bold text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={toggleLanguage}
-                  title={`Cambiar a ${language === 'es' ? 'English' : 'Español'}`}
-                >
-                  {language === 'es' ? '🇺🇸' : '🇪🇸'}
-                </motion.button>
+                {/* Language Dropdown */}
+                <div className="relative">
+                  <motion.button
+                    className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                    title="Seleccionar idioma"
+                  >
+                    🌐
+                  </motion.button>
+                  
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isLanguageDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        className="absolute right-0 top-12 w-32 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+                      >
+                        <button
+                          onClick={() => changeLanguage('en')}
+                          className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                            language === 'en' 
+                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          🇺🇸 English
+                        </button>
+                        <button
+                          onClick={() => changeLanguage('es')}
+                          className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                            language === 'es' 
+                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          🇪🇸 Español
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
 
               </div>
@@ -230,16 +286,52 @@ const ModernNavbar = () => {
                   transition={{ delay: 0.4 }}
                   className="flex space-x-4 mt-6"
                 >
-                  {/* Language Toggle Mobile */}
-                  <motion.button
-                    className="flex-1 h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={toggleLanguage}
-                  >
-                    <span className="text-sm font-medium">
-                      {language === 'es' ? 'Eng' : 'Esp'}
-                    </span>
-                  </motion.button>
+                  {/* Language Dropdown Mobile */}
+                  <div className="flex-1 relative">
+                    <motion.button
+                      className="w-full h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                    >
+                      <span className="text-lg mr-2">🌐</span>
+                      <span className="text-sm font-medium">
+                        {language === 'es' ? 'Español' : 'English'}
+                      </span>
+                    </motion.button>
+                    
+                    {/* Dropdown Menu Mobile */}
+                    <AnimatePresence>
+                      {isLanguageDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          className="absolute top-14 left-0 right-0 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+                        >
+                          <button
+                            onClick={() => changeLanguage('en')}
+                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                              language === 'en' 
+                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                            }`}
+                          >
+                            🇺🇸 English
+                          </button>
+                          <button
+                            onClick={() => changeLanguage('es')}
+                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                              language === 'es' 
+                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                            }`}
+                          >
+                            🇪🇸 Español
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
 
 
                 </motion.div>
