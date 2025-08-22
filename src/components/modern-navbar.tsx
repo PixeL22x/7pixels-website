@@ -181,16 +181,6 @@ const ModernNavbar = () => {
                         className="absolute right-0 top-12 w-32 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
                       >
                         <button
-                          onClick={() => changeLanguage('en')}
-                          className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
-                            language === 'en' 
-                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                          }`}
-                        >
-                          🇺🇸 English
-                        </button>
-                        <button
                           onClick={() => changeLanguage('es')}
                           className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                             language === 'es' 
@@ -199,6 +189,16 @@ const ModernNavbar = () => {
                           }`}
                         >
                           🇪🇸 Español
+                        </button>
+                        <button
+                          onClick={() => changeLanguage('en')}
+                          className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                            language === 'en' 
+                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          🇺🇸 English
                         </button>
                       </motion.div>
                     )}
@@ -215,7 +215,7 @@ const ModernNavbar = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection("contact")}
               >
-                Comenzar Proyecto
+                {t.heroCta1}
               </motion.button>
             </div>
 
@@ -311,16 +311,6 @@ const ModernNavbar = () => {
                           className="absolute top-14 left-0 right-0 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
                         >
                           <button
-                            onClick={() => changeLanguage('en')}
-                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
-                              language === 'en' 
-                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                            }`}
-                          >
-                            🇺🇸 English
-                          </button>
-                          <button
                             onClick={() => changeLanguage('es')}
                             className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                               language === 'es' 
@@ -329,6 +319,16 @@ const ModernNavbar = () => {
                             }`}
                           >
                             🇪🇸 Español
+                          </button>
+                          <button
+                            onClick={() => changeLanguage('en')}
+                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
+                              language === 'en' 
+                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                            }`}
+                          >
+                            🇺🇸 English
                           </button>
                         </motion.div>
                       )}
@@ -346,7 +346,7 @@ const ModernNavbar = () => {
                   className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl text-lg shadow-lg shadow-green-500/25"
                   onClick={() => scrollToSection("contact")}
                 >
-                  🚀 Comenzar Proyecto
+                  {t.heroCta1}
                 </motion.button>
               </div>
             </motion.div>
