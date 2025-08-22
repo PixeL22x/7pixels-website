@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useTranslations } from "@/hooks/useTranslations";
 
 const ModernNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,6 +10,7 @@ const ModernNavbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { theme, language, toggleLanguage } = useTheme();
+  const t = useTranslations();
 
   // Detectar scroll para cambiar estilos
   useEffect(() => {
@@ -84,10 +86,10 @@ const ModernNavbar = () => {
   };
 
   const menuItems = [
-    { id: "home", label: "Inicio", type: "scroll" }, // Siempre va a index
-    { id: "portfolio", label: "Portfolio", type: "page", path: "/portfolio" }, // Página separada
-    { id: "equipo", label: "Team", type: "page", path: "/equipo" }, // Página separada
-    { id: "contact", label: "Contacto", type: "page", path: "/contacto" }, // Página separada
+    { id: "home", label: t.navHome, type: "scroll" }, // Siempre va a index
+    { id: "portfolio", label: t.navPortfolio, type: "page", path: "/portfolio" }, // Página separada
+    { id: "equipo", label: t.navTeam, type: "page", path: "/equipo" }, // Página separada
+    { id: "contact", label: t.navContact, type: "page", path: "/contacto" }, // Página separada
   ];
 
   return (

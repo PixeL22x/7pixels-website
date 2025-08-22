@@ -178,6 +178,8 @@ export const translations = {
 
     // Navigation
     navHome: "Inicio",
+    navPortfolio: "Portfolio",
+    navTeam: "Team",
     navStats: "Logros", 
     navServices: "Servicios",
     navTestimonials: "Testimonios",
@@ -424,6 +426,8 @@ export const translations = {
 
     // Navigation
     navHome: "Home",
+    navPortfolio: "Portfolio",
+    navTeam: "Team",
     navStats: "Results",
     navServices: "Services", 
     navTestimonials: "Testimonials",
