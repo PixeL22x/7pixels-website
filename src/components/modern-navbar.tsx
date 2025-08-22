@@ -7,7 +7,7 @@ const ModernNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { theme, toggleTheme, language, toggleLanguage } = useTheme();
+  const { theme, language, toggleLanguage } = useTheme();
 
   // Detectar scroll para cambiar estilos
   useEffect(() => {
@@ -147,16 +147,7 @@ const ModernNavbar = () => {
                   {language === 'es' ? '🇺🇸' : '🇪🇸'}
                 </motion.button>
 
-                {/* Theme Toggle */}
-                <motion.button
-                  className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.1, rotate: 180 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={toggleTheme}
-                  title={`Cambiar a modo ${theme === 'dark' ? 'claro' : 'oscuro'}`}
-                >
-                  {theme === 'dark' ? '☀️' : '🌙'}
-                </motion.button>
+
               </div>
 
               {/* CTA Button */}
@@ -250,16 +241,7 @@ const ModernNavbar = () => {
                     </span>
                   </motion.button>
 
-                  {/* Theme Toggle Mobile */}
-                  <motion.button
-                    className="flex-1 h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
-                    whileTap={{ scale: 0.95 }}
-                    onClick={toggleTheme}
-                  >
-                    <span className="text-2xl">
-                      {theme === 'dark' ? '☀️' : '🌙'}
-                    </span>
-                  </motion.button>
+
                 </motion.div>
 
                 {/* Mobile CTA */}
