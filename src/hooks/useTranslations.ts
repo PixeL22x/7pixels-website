@@ -93,7 +93,7 @@ export const translations = {
     
     // Contact Details
     emailAddress: "contacto@7pixels.es",
-    phoneNumber: "925 20 20 10",
+    phoneNumber: "925404010",
     officeLocation: "Barcelona, España",
     
     // Contact Page Text
@@ -124,7 +124,7 @@ export const translations = {
     footerServiceDesign: "Diseño & Branding",
     footerServiceWeb: "Desarrollo Web",
     footerContactEmail: "📧 contacto@7pixels.es",
-    footerContactPhone: "📱 +34 925 20 20 10",
+    footerContactPhone: "📱 +34 925404010",
     footerContactLocation: "📍 Barcelona, España",
     footerContactSchedule: "⏰ Lun - Vie: 9AM - 6PM",
     footerCopyright: "© 2024 7Pixels. Todos los derechos reservados. Transformando ideas en realidad digital.",
@@ -341,7 +341,7 @@ export const translations = {
     
     // Contact Details
     emailAddress: "contacto@7pixels.es",
-    phoneNumber: "925 20 20 10",
+    phoneNumber: "925404010",
     officeLocation: "Barcelona, Spain",
     
     // Contact Page Text
@@ -372,7 +372,7 @@ export const translations = {
     footerServiceDesign: "Design & Branding",
     footerServiceWeb: "Web Development",
     footerContactEmail: "📧 contacto@7pixels.es",
-    footerContactPhone: "📱 +34 925 20 20 10",
+    footerContactPhone: "📱 +34 925404010",
     footerContactLocation: "📍 Barcelona, Spain",
     footerContactSchedule: "⏰ Mon - Fri: 9AM - 6PM",
     footerCopyright: "© 2024 7Pixels. All rights reserved. Transforming ideas into digital reality.",
