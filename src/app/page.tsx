@@ -4,6 +4,7 @@ import OptimizedHero from "@/components/optimized-hero";
 import StatsSection from "@/components/stats-section";
 import ScrollProgress from "@/components/scroll-progress";
 import ModernNavbar from "@/components/modern-navbar";
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
 
 // Lazy load heavy components below the fold
 const OptimizedParticles = lazy(() => import("@/components/optimized-particles"));
@@ -31,39 +32,39 @@ export default function Home() {
     <div className="min-h-screen w-full overflow-hidden bg-white dark:bg-black transition-colors duration-300">
       {/* Modern Navbar */}
       <ModernNavbar />
-      
+
       {/* Scroll Progress Bar */}
       <ScrollProgress />
-      
+
       {/* Optimized Particles Background */}
       <Suspense fallback={<div className="fixed inset-0 -z-10" />}>
         <OptimizedParticles />
       </Suspense>
-      
+
       {/* Optimized Hero Section */}
       <section id="hero">
         <OptimizedHero />
       </section>
-      
+
       {/* Stats Section */}
       <section id="stats">
         <StatsSection />
       </section>
-      
+
       {/* Services Section */}
       <section id="services">
         <Suspense fallback={<div className="h-screen bg-neutral-900 animate-pulse" />}>
           <EnhancedServices />
         </Suspense>
       </section>
-      
+
       {/* Testimonials Section */}
       <section id="testimonials">
         <Suspense fallback={<div className="h-screen bg-black animate-pulse" />}>
           <ModernTestimonials />
         </Suspense>
       </section>
-      
+
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 bg-black relative">
         <div className="max-w-4xl mx-auto text-center">
@@ -87,21 +88,27 @@ export default function Home() {
                 7Pixels
               </h4>
               <p className="text-neutral-300 mb-6 leading-relaxed">
-                Somos la agencia de marketing digital que transforma tu visión en resultados extraordinarios. 
+                Somos la agencia de marketing digital que transforma tu visión en resultados extraordinarios.
                 Especializados en hacer crecer negocios en el mundo digital.
               </p>
               <div className="flex space-x-4">
-                {['📘', '📷', '🐦', '💼'].map((icon, index) => (
-                  <button 
+                {[
+                  { icon: <Facebook className="w-5 h-5" />, name: "Facebook" },
+                  { icon: <Instagram className="w-5 h-5" />, name: "Instagram" },
+                  { icon: <Twitter className="w-5 h-5" />, name: "Twitter" },
+                  { icon: <Linkedin className="w-5 h-5" />, name: "LinkedIn" }
+                ].map((social, index) => (
+                  <button
                     key={index}
                     className="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center text-lg hover:bg-neutral-700 transition-colors duration-300"
+                    title={social.name}
                   >
-                    {icon}
+                    {social.icon}
                   </button>
                 ))}
               </div>
             </div>
-            
+
             {/* Quick Links */}
             <div>
               <h5 className="font-semibold text-white mb-4">Servicios</h5>
@@ -112,19 +119,19 @@ export default function Home() {
                 <li>Desarrollo Web</li>
               </ul>
             </div>
-            
+
             {/* Contact Info */}
             <div>
               <h5 className="font-semibold text-white mb-4">Contacto</h5>
               <ul className="space-y-2 text-neutral-300">
-                <li>📧 contacto@7pixels.es</li>
-                <li>📱 +34 610 154 191</li>
-                <li>📍 Barcelona, España</li>
-                <li>⏰ Lun - Vie: 9AM - 6PM</li>
+                <li className="flex items-center gap-2"><Mail className="w-4 h-4" /> contacto@7pixels.es</li>
+                <li className="flex items-center gap-2"><Phone className="w-4 h-4" /> +34 610 154 191</li>
+                <li className="flex items-center gap-2"><MapPin className="w-4 h-4" /> Barcelona, España</li>
+                <li className="flex items-center gap-2"><Clock className="w-4 h-4" /> Lun - Vie: 9AM - 6PM</li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-neutral-800 pt-8 text-center">
             <p className="text-neutral-400">
               © 2024 7Pixels. Todos los derechos reservados. Transformando ideas en realidad digital.

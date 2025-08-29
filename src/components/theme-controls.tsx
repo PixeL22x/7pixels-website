@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { Sun, Moon, Languages } from "lucide-react";
 
 export default function ThemeControls() {
   const { theme, language, toggleTheme, toggleLanguage } = useTheme();
@@ -23,27 +24,27 @@ export default function ThemeControls() {
           {/* Sun Icon */}
           <motion.div
             className="absolute text-yellow-500"
-            animate={{ 
+            animate={{
               opacity: theme === "light" ? 1 : 0,
               rotate: theme === "light" ? 0 : 180,
               scale: theme === "light" ? 1 : 0.5
             }}
             transition={{ duration: 0.3 }}
           >
-            ☀️
+            <Sun className="w-5 h-5" />
           </motion.div>
-          
+
           {/* Moon Icon */}
           <motion.div
             className="absolute text-blue-300"
-            animate={{ 
+            animate={{
               opacity: theme === "dark" ? 1 : 0,
               rotate: theme === "dark" ? 0 : -180,
               scale: theme === "dark" ? 1 : 0.5
             }}
             transition={{ duration: 0.3 }}
           >
-            🌙
+            <Moon className="w-5 h-5" />
           </motion.div>
         </div>
 
@@ -56,8 +57,8 @@ export default function ThemeControls() {
         <motion.div
           className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
           animate={{
-            background: theme === "light" 
-              ? "linear-gradient(to right, #fbbf24, #f97316)" 
+            background: theme === "light"
+              ? "linear-gradient(to right, #fbbf24, #f97316)"
               : "linear-gradient(to right, #3b82f6, #8b5cf6)"
           }}
         />
@@ -74,27 +75,27 @@ export default function ThemeControls() {
           {/* Spanish Flag */}
           <motion.div
             className="absolute text-lg"
-            animate={{ 
+            animate={{
               opacity: language === "es" ? 1 : 0,
               rotate: language === "es" ? 0 : 180,
               scale: language === "es" ? 1 : 0.5
             }}
             transition={{ duration: 0.3 }}
           >
-            🇪🇸
+            <Languages className="w-5 h-5" />
           </motion.div>
-          
+
           {/* English Flag */}
           <motion.div
             className="absolute text-lg"
-            animate={{ 
+            animate={{
               opacity: language === "en" ? 1 : 0,
               rotate: language === "en" ? 0 : -180,
               scale: language === "en" ? 1 : 0.5
             }}
             transition={{ duration: 0.3 }}
           >
-            🇺🇸
+            <Languages className="w-5 h-5" />
           </motion.div>
         </div>
 
@@ -107,8 +108,8 @@ export default function ThemeControls() {
         <motion.div
           className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
           animate={{
-            background: language === "es" 
-              ? "linear-gradient(to right, #ef4444, #fbbf24)" 
+            background: language === "es"
+              ? "linear-gradient(to right, #ef4444, #fbbf24)"
               : "linear-gradient(to right, #3b82f6, #ef4444)"
           }}
         />

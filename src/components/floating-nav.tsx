@@ -2,6 +2,7 @@
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import { useTranslations } from "@/hooks/useTranslations";
+import { Home, BarChart3, Target, MessageCircle, Mail } from "lucide-react";
 
 export default function FloatingNav() {
   const t = useTranslations();
@@ -28,11 +29,11 @@ export default function FloatingNav() {
   };
 
   const navItems = [
-    { id: "hero", label: t.navHome, icon: "🏠" },
-    { id: "stats", label: t.navStats, icon: "📊" },
-    { id: "services", label: t.navServices, icon: "🎯" },
-    { id: "testimonials", label: t.navTestimonials, icon: "💬" },
-    { id: "contact", label: t.navContact, icon: "📧" },
+    { id: "hero", label: t.navHome, icon: <Home className="w-5 h-5" /> },
+    { id: "stats", label: t.navStats, icon: <BarChart3 className="w-5 h-5" /> },
+    { id: "services", label: t.navServices, icon: <Target className="w-5 h-5" /> },
+    { id: "testimonials", label: t.navTestimonials, icon: <MessageCircle className="w-5 h-5" /> },
+    { id: "contact", label: t.navContact, icon: <Mail className="w-5 h-5" /> },
   ];
 
   return (

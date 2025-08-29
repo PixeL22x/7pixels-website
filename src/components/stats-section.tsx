@@ -1,18 +1,19 @@
 "use client";
 import { motion } from "motion/react";
+import { Rocket, Star, TrendingUp, MessageCircle } from "lucide-react";
 
 export default function StatsSection() {
   const stats = [
-    { number: "500+", label: "Proyectos Completados", icon: "🚀" },
-    { number: "98%", label: "Clientes Satisfechos", icon: "⭐" },
-    { number: "250%", label: "ROI Promedio", icon: "📈" },
-    { number: "24/7", label: "Soporte Disponible", icon: "💬" },
+    { number: "500+", label: "Proyectos Completados", icon: <Rocket className="w-12 h-12 text-blue-600 dark:text-blue-400" /> },
+    { number: "98%", label: "Clientes Satisfechos", icon: <Star className="w-12 h-12 text-yellow-500" /> },
+    { number: "250%", label: "ROI Promedio", icon: <TrendingUp className="w-12 h-12 text-green-600 dark:text-green-400" /> },
+    { number: "24/7", label: "Soporte Disponible", icon: <MessageCircle className="w-12 h-12 text-purple-600 dark:text-purple-400" /> },
   ];
 
   return (
     <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
       <div className="max-w-7xl mx-auto px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

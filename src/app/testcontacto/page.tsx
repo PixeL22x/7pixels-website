@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
+import { Loader2, Rocket, Search, Mail, ArrowLeft } from 'lucide-react';
 
 export default function TestContacto() {
   const [formData, setFormData] = useState({
@@ -21,10 +22,10 @@ export default function TestContacto() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     console.log('🚀 INICIANDO ENVÍO');
     console.log('📋 Datos:', formData);
-    
+
     // Validaciones
     if (!formData.name.trim()) {
       setStatus('error');
@@ -32,14 +33,14 @@ export default function TestContacto() {
       console.log('❌ Nombre requerido');
       return;
     }
-    
+
     if (!formData.email.trim()) {
       setStatus('error');
       setMessage('El email es requerido');
       console.log('❌ Email requerido');
       return;
     }
-    
+
     if (!formData.message.trim()) {
       setStatus('error');
       setMessage('El mensaje es requerido');
@@ -113,7 +114,7 @@ export default function TestContacto() {
                 className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400"
               />
             </div>
-            
+
             <div>
               <label className="block text-white font-medium mb-2">
                 Email *
@@ -127,7 +128,7 @@ export default function TestContacto() {
                 className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400"
               />
             </div>
-            
+
             <div>
               <label className="block text-white font-medium mb-2">
                 Empresa
@@ -141,7 +142,7 @@ export default function TestContacto() {
                 className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400"
               />
             </div>
-            
+
             <div>
               <label className="block text-white font-medium mb-2">
                 Mensaje *
@@ -155,7 +156,7 @@ export default function TestContacto() {
                 className="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 resize-none"
               />
             </div>
-            
+
             <button
               type="submit"
               disabled={status === 'loading'}
@@ -163,27 +164,26 @@ export default function TestContacto() {
             >
               {status === 'loading' ? (
                 <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
+                  <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
                   Enviando...
                 </span>
               ) : (
-                '🚀 Enviar Mensaje'
+                <span className="flex items-center gap-2">
+                  <Rocket className="w-5 h-5" />
+                  Enviar Mensaje
+                </span>
               )}
             </button>
           </form>
-          
+
           {/* Status Message */}
           {message && (
-            <div className={`mt-4 p-3 rounded-lg text-center font-medium ${
-              status === 'success' 
-                ? 'bg-green-500/20 text-green-300 border border-green-500/30' 
+            <div className={`mt-4 p-3 rounded-lg text-center font-medium ${status === 'success'
+                ? 'bg-green-500/20 text-green-300 border border-green-500/30'
                 : status === 'error'
-                ? 'bg-red-500/20 text-red-300 border border-red-500/30'
-                : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
-            }`}>
+                  ? 'bg-red-500/20 text-red-300 border border-red-500/30'
+                  : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+              }`}>
               {message}
             </div>
           )}
@@ -191,17 +191,20 @@ export default function TestContacto() {
 
         {/* Debug Info */}
         <div className="mt-6 text-center text-gray-400 text-sm">
-          <p>🔍 Abre F12 → Console para ver logs de debugging</p>
-          <p>📧 Los emails llegaran a: pieroarbuluromanxd@gmail.com</p>
+          <p className="flex items-center justify-center gap-2"><Search className="w-4 h-4" /> Abre F12 → Console para ver logs de debugging</p>
+          <p className="flex items-center justify-center gap-2"><Mail className="w-4 h-4" /> Los emails llegaran a: pieroarbuluromanxd@gmail.com</p>
         </div>
 
         {/* Back Button */}
         <div className="mt-4 text-center">
-          <Link 
+          <Link
             href="/"
             className="inline-block px-6 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors duration-300"
           >
-            ← Volver a 7Pixels
+            <span className="flex items-center gap-2">
+              <ArrowLeft className="w-4 h-4" />
+              Volver a 7Pixels
+            </span>
           </Link>
         </div>
       </div>

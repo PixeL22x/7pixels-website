@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Smartphone, Search, Palette, Code, Bot, BarChart3, Hand, Target, MessageSquare } from "lucide-react";
 
 const ModernContactForm = () => {
   const [formData, setFormData] = useState({
@@ -10,28 +11,28 @@ const ModernContactForm = () => {
     services: [] as string[],
     message: ""
   });
-  
+
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState("");
-  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const serviceOptions = [
-    { id: "social", label: "Marketing en Redes Sociales", icon: "📱" },
-    { id: "seo", label: "SEO & Google Ads", icon: "🔍" },
-    { id: "design", label: "Diseño & Branding", icon: "🎨" },
-    { id: "web", label: "Desarrollo Web", icon: "💻" },
-    { id: "automation", label: "Marketing Automation", icon: "🤖" },
-    { id: "analytics", label: "Analytics & Data", icon: "📊" }
+    { id: "social", label: "Marketing en Redes Sociales", icon: <Smartphone className="w-6 h-6" /> },
+    { id: "seo", label: "SEO & Google Ads", icon: <Search className="w-6 h-6" /> },
+    { id: "design", label: "Diseño & Branding", icon: <Palette className="w-6 h-6" /> },
+    { id: "web", label: "Desarrollo Web", icon: <Code className="w-6 h-6" /> },
+    { id: "automation", label: "Marketing Automation", icon: <Bot className="w-6 h-6" /> },
+    { id: "analytics", label: "Analytics & Data", icon: <BarChart3 className="w-6 h-6" /> }
   ];
 
 
 
   const steps = [
-    { id: "contact", title: "Información Personal", icon: "👋" },
-    { id: "services", title: "Servicios de Interés", icon: "🎯" },
-    { id: "message", title: "Cuéntanos tu Proyecto", icon: "💭" }
+    { id: "contact", title: "Información Personal", icon: <Hand className="w-6 h-6" /> },
+    { id: "services", title: "Servicios de Interés", icon: <Target className="w-6 h-6" /> },
+    { id: "message", title: "Cuéntanos tu Proyecto", icon: <MessageSquare className="w-6 h-6" /> }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,8 +54,8 @@ const ModernContactForm = () => {
   };
 
   const validateStep = (step: number) => {
-    const newErrors: {[key: string]: string} = {};
-    
+    const newErrors: { [key: string]: string } = {};
+
     switch (step) {
       case 0:
         if (!formData.name.trim()) newErrors.name = "El nombre es requerido";
@@ -72,7 +73,7 @@ const ModernContactForm = () => {
         if (!formData.message.trim()) newErrors.message = "Describe tu proyecto";
         break;
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -89,16 +90,16 @@ const ModernContactForm = () => {
 
   const handleSubmit = async () => {
     if (!validateStep(currentStep)) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          services: formData.services.map(id => 
+          services: formData.services.map(id =>
             serviceOptions.find(s => s.id === id)?.label
           ).join(", ")
         })
@@ -166,19 +167,17 @@ const ModernContactForm = () => {
           {steps.map((step, index) => (
             <div key={step.id} className="flex items-center">
               <motion.div
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold border-2 ${
-                  index <= currentStep
+                className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold border-2 ${index <= currentStep
                     ? "bg-gradient-to-r from-green-500 to-emerald-500 border-green-400 text-white"
                     : "border-gray-600 text-gray-400"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.1 }}
               >
                 {step.icon}
               </motion.div>
               {index < steps.length - 1 && (
-                <div className={`w-8 h-1 mx-2 rounded ${
-                  index < currentStep ? "bg-green-500" : "bg-gray-600"
-                }`} />
+                <div className={`w-8 h-1 mx-2 rounded ${index < currentStep ? "bg-green-500" : "bg-gray-600"
+                  }`} />
               )}
             </div>
           ))}
@@ -214,9 +213,8 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
-                    focusedField === "name" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
-                  } ${errors.name ? "border-red-400" : ""}`}
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${focusedField === "name" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
+                    } ${errors.name ? "border-red-400" : ""}`}
                   placeholder="Tu nombre completo"
                 />
                 {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
@@ -233,9 +231,8 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
-                    focusedField === "email" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
-                  } ${errors.email ? "border-red-400" : ""}`}
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${focusedField === "email" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
+                    } ${errors.email ? "border-red-400" : ""}`}
                   placeholder="tu@email.com"
                 />
                 {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
@@ -252,9 +249,8 @@ const ModernContactForm = () => {
                   onChange={handleInputChange}
                   onFocus={() => setFocusedField("company")}
                   onBlur={() => setFocusedField("")}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${
-                    focusedField === "company" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
-                  }`}
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 ${focusedField === "company" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
+                    }`}
                   placeholder="Nombre de tu empresa"
                 />
               </div>
@@ -277,11 +273,10 @@ const ModernContactForm = () => {
                     key={service.id}
                     type="button"
                     onClick={() => handleServiceToggle(service.id)}
-                    className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
-                      formData.services.includes(service.id)
+                    className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${formData.services.includes(service.id)
                         ? "border-green-400 bg-green-500/10 text-green-400"
                         : "border-gray-600 bg-white/5 text-gray-300 hover:border-gray-500"
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -314,9 +309,8 @@ const ModernContactForm = () => {
                   onFocus={() => setFocusedField("message")}
                   onBlur={() => setFocusedField("")}
                   rows={6}
-                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 resize-none ${
-                    focusedField === "message" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
-                  } ${errors.message ? "border-red-400" : ""}`}
+                  className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-gray-400 transition-all duration-300 resize-none ${focusedField === "message" ? "border-green-400 shadow-lg shadow-green-400/25" : "border-gray-600"
+                    } ${errors.message ? "border-red-400" : ""}`}
                   placeholder="Describe tu proyecto, objetivos, timeline, o cualquier detalle que consideres importante..."
                 />
                 {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
@@ -328,7 +322,7 @@ const ModernContactForm = () => {
                 <div className="space-y-2 text-sm text-gray-300">
                   <p><strong>Contacto:</strong> {formData.name} ({formData.email})</p>
                   {formData.company && <p><strong>Empresa:</strong> {formData.company}</p>}
-                  <p><strong>Servicios:</strong> {formData.services.map(id => 
+                  <p><strong>Servicios:</strong> {formData.services.map(id =>
                     serviceOptions.find(s => s.id === id)?.label
                   ).join(", ")}</p>
                 </div>
@@ -343,11 +337,10 @@ const ModernContactForm = () => {
             type="button"
             onClick={prevStep}
             disabled={currentStep === 0}
-            className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-              currentStep === 0
+            className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${currentStep === 0
                 ? "opacity-50 cursor-not-allowed text-gray-500"
                 : "text-gray-300 hover:text-white hover:bg-white/10"
-            }`}
+              }`}
             whileHover={currentStep > 0 ? { scale: 1.05 } : {}}
             whileTap={currentStep > 0 ? { scale: 0.95 } : {}}
           >
@@ -369,9 +362,8 @@ const ModernContactForm = () => {
               type="button"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className={`px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-green-500/25 ${
-                isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:from-green-400 hover:to-emerald-400"
-              }`}
+              className={`px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-green-500/25 ${isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:from-green-400 hover:to-emerald-400"
+                }`}
               whileHover={!isSubmitting ? { scale: 1.05 } : {}}
               whileTap={!isSubmitting ? { scale: 0.95 } : {}}
             >

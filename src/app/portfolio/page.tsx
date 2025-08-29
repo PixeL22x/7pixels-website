@@ -3,6 +3,7 @@
 import PixelCard from '@/components/PixelCard';
 import ModernNavbar from '@/components/modern-navbar';
 import { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 const portfolioItems = [
   {
@@ -86,7 +87,7 @@ const portfolioItems = [
     category: "Travel",
     results: "+420% reservas online"
   },
-  
+
 ];
 
 const categories = ["Todos", "E-commerce", "Fintech", "Healthcare", "Education", "Corporate", "Food & Delivery", "Real Estate", "Fashion", "Travel"];
@@ -95,15 +96,15 @@ export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const filteredItems = selectedCategory === "Todos" 
-    ? portfolioItems 
+  const filteredItems = selectedCategory === "Todos"
+    ? portfolioItems
     : portfolioItems.filter(item => item.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Modern Navbar */}
       <ModernNavbar />
-      
+
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(92,184,92,0.08)_0%,_transparent_50%)]"></div>
@@ -127,7 +128,7 @@ export default function Portfolio() {
         ))}
       </div>
 
-                <div className="relative z-10 pt-32 pb-20 px-4">
+      <div className="relative z-10 pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
@@ -143,7 +144,7 @@ export default function Portfolio() {
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-12">
-              Cada línea de código, cada pixel diseñado, cada estrategia implementada. 
+              Cada línea de código, cada pixel diseñado, cada estrategia implementada.
               Descubre cómo hemos revolucionado la presencia digital de marcas líderes en sus industrias.
             </p>
 
@@ -153,11 +154,10 @@ export default function Portfolio() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    selectedCategory === category
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category
                       ? 'bg-green-500 text-black shadow-lg shadow-green-500/25'
                       : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700/50'
-                  }`}
+                    }`}
                 >
                   {category}
                 </button>
@@ -168,9 +168,9 @@ export default function Portfolio() {
           {/* Portfolio Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item) => (
-              <PixelCard 
-                key={item.id} 
-                variant="green" 
+              <PixelCard
+                key={item.id}
+                variant="green"
                 className="group h-[420px] bg-gradient-to-br from-gray-900/80 via-gray-900/60 to-black/80 backdrop-blur-2xl border border-gray-700/30 rounded-3xl overflow-hidden hover:border-[#6cb86c]/60 transition-all duration-700 hover:shadow-2xl hover:shadow-[#5cb85c]/20 hover:-translate-y-2 transform-gpu"
                 onMouseEnter={() => setHoveredCard(item.id)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -179,24 +179,24 @@ export default function Portfolio() {
                   {/* Decorative Elements */}
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#6cb86c] via-[#5cb85c] to-[#4cae4c] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#6cb86c]/10 rounded-full blur-xl group-hover:bg-[#6cb86c]/20 transition-colors duration-500"></div>
-                  
+
                   {/* Image Container */}
                   <div className="relative h-44 overflow-hidden rounded-t-3xl">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#5cb85c]/5 to-[#6cb86c]/5 z-10"></div>
-                    <img 
-                      src={item.image} 
+                    <img
+                      src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110 filter brightness-95"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-20"></div>
-                    
+
                     {/* Floating Elements */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
                       <div className="absolute top-6 left-6 w-2 h-2 bg-[#6cb86c] rounded-full animate-pulse"></div>
                       <div className="absolute top-10 right-8 w-1 h-1 bg-[#5cb85c] rounded-full animate-pulse delay-150"></div>
                       <div className="absolute bottom-8 left-8 w-1.5 h-1.5 bg-[#7cc87c] rounded-full animate-pulse delay-300"></div>
                     </div>
-                    
+
                     {/* Enhanced Category Badge */}
                     <div className="absolute top-5 left-5 z-40">
                       <div className="relative">
@@ -217,14 +217,14 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    
+
                   </div>
 
                   {/* Content Area */}
                   <div className="flex-1 p-5 flex flex-col justify-between relative">
                     {/* Background Pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_rgba(92,184,92,0.03)_0%,_transparent_50%)]"></div>
-                    
+
                     <div className="relative z-10">
                       {/* Title Section */}
                       <div className="mb-4">
@@ -233,7 +233,7 @@ export default function Portfolio() {
                         </h3>
                         <div className="w-12 h-0.5 bg-gradient-to-r from-[#6cb86c] to-[#5cb85c] rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                       </div>
-                      
+
                       <p className="text-gray-300 text-sm mb-4 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                         {item.description}
                       </p>
@@ -252,7 +252,7 @@ export default function Portfolio() {
                           </div>
                         ))}
                       </div>
-                      
+
                       {/* Enhanced Hover CTA */}
                       <div className={`transition-all duration-500 transform ${hoveredCard === item.id ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'}`}>
                         <button className="w-full py-2.5 bg-gradient-to-r from-[#5cb85c] via-[#6cb86c] to-[#4cae4c] text-white font-bold rounded-xl text-sm hover:from-[#6cb86c] hover:via-[#7cc87c] hover:to-[#5cb85c] transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#5cb85c]/25 relative overflow-hidden group/btn">
@@ -260,9 +260,7 @@ export default function Portfolio() {
                           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
                           <span className="relative flex items-center justify-center gap-2">
                             Ver Proyecto
-                            <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
+                            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
                           </span>
                         </button>
                       </div>
@@ -302,7 +300,7 @@ export default function Portfolio() {
             <div className="relative bg-gradient-to-r from-green-500/5 via-emerald-500/5 to-green-500/5 rounded-3xl p-12 border border-green-500/10 backdrop-blur-sm overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(34,197,94,0.05)_0%,_transparent_70%)]"></div>
-              
+
               <div className="relative z-10">
                 <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
                   ¿Listo para ser el
@@ -311,7 +309,7 @@ export default function Portfolio() {
                   </span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                  Cada proyecto que creamos está diseñado para superar expectativas y generar resultados extraordinarios. 
+                  Cada proyecto que creamos está diseñado para superar expectativas y generar resultados extraordinarios.
                   Tu marca merece destacar en el mundo digital.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -45,8 +45,6 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -76,6 +74,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
 }
 
 .dark {
@@ -120,12 +120,12 @@
     @apply bg-background text-foreground;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
+
   /* Smooth transitions for theme switching */
   html {
     transition: background-color 0.3s ease;
   }
-  
+
   /* Performance optimizations */
   .motion-element {
     will-change: transform, opacity;
@@ -133,17 +133,17 @@
     perspective: 1000px;
     transform: translateZ(0);
   }
-  
+
   .gpu-accelerated {
     transform: translate3d(0, 0, 0);
     will-change: transform;
   }
-  
+
   /* Optimize animations */
   .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-  
+
   @keyframes pulse {
     0%, 100% {
       opacity: 1;
@@ -152,20 +152,20 @@
       opacity: .5;
     }
   }
-  
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     @apply bg-neutral-100 dark:bg-neutral-800;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     @apply bg-green-500 rounded-full;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-green-600;
   }

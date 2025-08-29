@@ -1,11 +1,12 @@
 "use client";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll } from "motion/react";
 import { useRef, useState, memo } from "react";
+import { Smartphone, Target, Palette, Zap, Code, BarChart3 } from "lucide-react";
 
 const EnhancedServices = memo(function EnhancedServices() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -17,7 +18,7 @@ const EnhancedServices = memo(function EnhancedServices() {
 
   const services = [
     {
-      icon: "📱",
+      icon: <Smartphone className="w-8 h-8" />,
       title: "Social Media Marketing",
       description: "Estrategias que conectan tu marca con millones de usuarios activos en todas las plataformas.",
       features: ["Content Strategy", "Community Management", "Influencer Marketing", "Paid Advertising"],
@@ -26,7 +27,7 @@ const EnhancedServices = memo(function EnhancedServices() {
       delay: 0
     },
     {
-      icon: "🎯",
+      icon: <Target className="w-8 h-8" />,
       title: "SEO & Google Ads",
       description: "Dominamos los algoritmos para posicionar tu marca en los primeros resultados de búsqueda.",
       features: ["Technical SEO", "Keyword Research", "PPC Campaigns", "Analytics & Reporting"],
@@ -35,7 +36,7 @@ const EnhancedServices = memo(function EnhancedServices() {
       delay: 0.2
     },
     {
-      icon: "🎨",
+      icon: <Palette className="w-8 h-8" />,
       title: "Creative Design",
       description: "Diseños que capturan la esencia de tu marca y la transforman en experiencias memorables.",
       features: ["Brand Identity", "UI/UX Design", "Motion Graphics", "Print & Digital"],
@@ -44,7 +45,7 @@ const EnhancedServices = memo(function EnhancedServices() {
       delay: 0.4
     },
     {
-      icon: "⚡",
+      icon: <Zap className="w-8 h-8" />,
       title: "Marketing Automation",
       description: "Sistemas inteligentes que nutren leads y convierten prospects en clientes leales.",
       features: ["Email Workflows", "Lead Scoring", "CRM Integration", "Behavioral Triggers"],
@@ -53,7 +54,7 @@ const EnhancedServices = memo(function EnhancedServices() {
       delay: 0.6
     },
     {
-      icon: "💻",
+      icon: <Code className="w-8 h-8" />,
       title: "Web Development",
       description: "Sitios web que no solo se ven increíbles, sino que convierten visitantes en ventas.",
       features: ["React/Next.js", "E-commerce", "PWA", "Performance Optimization"],
@@ -62,7 +63,7 @@ const EnhancedServices = memo(function EnhancedServices() {
       delay: 0.8
     },
     {
-      icon: "📊",
+      icon: <BarChart3 className="w-8 h-8" />,
       title: "Data Analytics",
       description: "Insights profundos que revelan oportunidades ocultas y optimizan cada inversión.",
       features: ["Advanced Analytics", "Custom Dashboards", "Conversion Optimization", "ROI Tracking"],
@@ -73,7 +74,7 @@ const EnhancedServices = memo(function EnhancedServices() {
   ];
 
   return (
-          <section ref={containerRef} className="py-6 bg-neutral-900 relative overflow-hidden">
+    <section ref={containerRef} className="py-6 bg-neutral-900 relative overflow-hidden">
       {/* Subtle Background Effects - Much Reduced */}
       <div className="absolute inset-0">
         <motion.div
@@ -96,7 +97,7 @@ const EnhancedServices = memo(function EnhancedServices() {
 
       <div className="max-w-7xl mx-auto px-4 relative z-50">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-14"
         >
           <motion.div
@@ -110,12 +111,12 @@ const EnhancedServices = memo(function EnhancedServices() {
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               className="mr-3 text-2xl"
             >
-              ⚡
+              <Zap className="w-8 h-8 text-yellow-400" />
             </motion.span>
             <span className="text-green-300 font-semibold text-lg">Servicios Premium</span>
           </motion.div>
 
-                    <motion.h3 className="text-5xl md:text-7xl font-black mb-6">
+          <motion.h3 className="text-5xl md:text-7xl font-black mb-6">
             {"Soluciones que Transforman".split(' ').map((word, index) => (
               <motion.span
                 key={index}
@@ -128,21 +129,21 @@ const EnhancedServices = memo(function EnhancedServices() {
               </motion.span>
             ))}
           </motion.h3>
-          
-                           <motion.p
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.8, delay: 0.2 }}
-                   className="text-xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-12"
-                 >
-                   Cada servicio está diseñado para impulsar tu negocio hacia el siguiente nivel
-                 </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-12"
+          >
+            Cada servicio está diseñado para impulsar tu negocio hacia el siguiente nivel
+          </motion.p>
         </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-                        <motion.div
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 50, rotateX: -15 }}
               whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -152,8 +153,8 @@ const EnhancedServices = memo(function EnhancedServices() {
                 type: "spring",
                 stiffness: 100
               }}
-              whileHover={{ 
-                y: -10, 
+              whileHover={{
+                y: -10,
                 rotateX: 5,
                 rotateY: 5,
                 scale: 1.02
@@ -197,10 +198,10 @@ const EnhancedServices = memo(function EnhancedServices() {
 
                 {/* Content */}
                 <div className="relative z-10">
-                                          <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-green-300 group-[.active]:text-green-300 transition-colors duration-300">
-                          {service.title}
-                        </h4>
-                  
+                  <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-green-300 group-[.active]:text-green-300 transition-colors duration-300">
+                    {service.title}
+                  </h4>
+
                   <p className="text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
