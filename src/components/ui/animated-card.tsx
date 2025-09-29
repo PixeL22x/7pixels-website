@@ -147,12 +147,15 @@ export const StatsSkeleton = ({
   ]);
 
   useEffect(() => {
-    animate(sequence, {
-      // @ts-ignore
-      repeat: Infinity,
-      repeatDelay: 2,
-    });
-  }, []);
+    const runAnimation = async () => {
+      while (true) {
+        await animate(sequence);
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+    };
+    
+    runAnimation();
+  }, [sequence]);
 
   const colorClasses = {
     green: "text-green-600",

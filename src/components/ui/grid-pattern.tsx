@@ -58,7 +58,7 @@ export function GridPattern({
   x: string;
   y: string;
   squares?: number[][];
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   const patternId = useId();
 

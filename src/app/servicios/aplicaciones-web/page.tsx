@@ -70,8 +70,8 @@ export default function AplicacionesWebPage() {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <ShieldCheckIcon className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">{t.serviceAppsSecurityTitle}</h3>
-              <p className="text-gray-600">{t.serviceAppsSecurityDesc}</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">{t.serviceAppsSecureTitle}</h3>
+              <p className="text-gray-600">{t.serviceAppsSecureDesc}</p>
             </div>
           </div>
         </div>
