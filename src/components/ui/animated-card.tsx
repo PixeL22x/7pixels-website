@@ -134,28 +134,7 @@ export const StatsSkeleton = ({
   mainNumber: string;
   color?: string;
 }) => {
-  const scale = [1, 1.05, 1];
-  const transform = ["translateY(0px)", "translateY(-2px)", "translateY(0px)"];
-  
-  const sequence = icons.map((_, index) => [
-    `.circle-${index + 1}`,
-    {
-      scale,
-      transform,
-    },
-    { duration: 0.6 },
-  ]);
-
-  useEffect(() => {
-    const runAnimation = async () => {
-      while (true) {
-        await animate(sequence);
-        await new Promise(resolve => setTimeout(resolve, 2000));
-      }
-    };
-    
-    runAnimation();
-  }, [sequence]);
+  // Simplified animation without complex Framer Motion sequences
 
   const colorClasses = {
     green: "text-green-600",
