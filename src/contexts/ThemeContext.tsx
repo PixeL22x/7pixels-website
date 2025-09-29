@@ -13,7 +13,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme] = useState<Theme>("dark");
+  const [theme] = useState<Theme>("light");
   const [language, setLanguage] = useState<Language>("es");
   const [mounted, setMounted] = useState(false);
 
@@ -31,13 +31,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  // Aplicar tema al HTML - siempre dark mode
+  // Aplicar tema al HTML - siempre light mode
   useEffect(() => {
     if (mounted) {
       const html = document.documentElement;
       html.classList.remove("light", "dark");
-      html.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+      html.classList.add("light");
+      localStorage.setItem("theme", "light");
     }
   }, [mounted]);
 

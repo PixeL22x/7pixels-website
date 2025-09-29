@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState, useMemo, memo } from "react";
 import { motion } from "motion/react";
-import { BackgroundLines } from "@/components/ui/background-lines";
 import { useTranslations } from "@/hooks/useTranslations";
+import { ComputerDesktopIcon, RocketLaunchIcon, SparklesIcon } from "@heroicons/react/24/outline";
 
 const OptimizedHero = memo(function OptimizedHero() {
   const t = useTranslations();
@@ -83,50 +83,46 @@ const OptimizedHero = memo(function OptimizedHero() {
   }), []);
 
   return (
-    <BackgroundLines 
-      className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-4 pb-4"
-      svgOptions={{ duration: 15 }} // Slower animation for better performance
-    >
-      {/* Simplified gradient orbs with CSS transforms */}
-      <div className="absolute inset-0 overflow-hidden will-change-transform">
+    <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-4 pb-4 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <div
-          className="absolute w-96 h-96 bg-gradient-to-r from-green-400/20 to-emerald-500/20 rounded-full blur-3xl transition-transform duration-1000 ease-out"
+          className="absolute w-96 h-96 bg-gradient-to-r from-green-200/30 to-emerald-200/30 rounded-full blur-3xl transition-transform duration-1000 ease-out"
           style={{
             left: "10%",
             top: "20%",
-            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`,
+            transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)`,
           }}
         />
         <div
-          className="absolute w-80 h-80 bg-gradient-to-r from-blue-400/15 to-cyan-500/15 rounded-full blur-3xl transition-transform duration-1000 ease-out"
+          className="absolute w-80 h-80 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl transition-transform duration-1000 ease-out"
           style={{
             right: "10%",
             bottom: "20%",
-            transform: `translate(${-mousePosition.x * 0.3}px, ${-mousePosition.y * 0.3}px)`,
+            transform: `translate(${-mousePosition.x * 0.1}px, ${-mousePosition.y * 0.1}px)`,
           }}
         />
       </div>
 
-      {/* Optimized floating shapes - fewer elements */}
-      <div className="absolute inset-0 will-change-transform">
-        {[...Array(3)].map((_, i) => (
+      {/* Minimal decorative elements */}
+      <div className="absolute inset-0">
+        {[...Array(2)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-4 h-4 bg-gradient-to-r from-green-400 to-emerald-500 opacity-40"
+            className="absolute w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 opacity-20 rounded-full"
             style={{
-              left: `${30 + i * 20}%`,
-              top: `${40 + i * 10}%`,
-              clipPath: i % 2 === 0 ? "polygon(50% 0%, 0% 100%, 100% 100%)" : "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+              left: `${40 + i * 30}%`,
+              top: `${30 + i * 20}%`,
             }}
             animate={{
-              y: [-10, 10, -10],
-              rotate: [0, 180, 360],
+              y: [-5, 5, -5],
+              scale: [1, 1.1, 1],
             }}
             transition={{
-              duration: 6 + i * 2,
+              duration: 4 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5,
+              delay: i * 1,
             }}
           />
         ))}
@@ -142,46 +138,38 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Badge */}
         <motion.div
           variants={itemVariants}
-          className="inline-flex items-center px-6 py-3 mb-8 bg-white/10 dark:bg-black/10 backdrop-blur-sm rounded-full border border-white/20 dark:border-white/10"
+          className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 bg-gradient-to-r from-green-100 to-blue-100 backdrop-blur-sm rounded-full border border-green-200 text-xs sm:text-sm"
         >
-          <span className="text-sm font-medium text-green-400">
+          <ComputerDesktopIcon className="w-4 h-4 text-green-600 mr-2" />
+          <span className="text-xs sm:text-sm font-medium text-green-700">
             {t.heroTag}
           </span>
-          <div className="ml-3 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+          <div className="ml-3 w-2 h-2 bg-green-500 rounded-full animate-pulse" />
         </motion.div>
 
         {/* Optimized Main Title */}
         <motion.div variants={itemVariants} className="mb-4">
-          <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-black mb-3 will-change-transform"
-            style={{
-              background: "linear-gradient(135deg, #10b981, #059669, #047857)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              textShadow: "0 0 30px rgba(16, 185, 129, 0.3)",
-            }}
-          >
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-3 bg-gradient-to-r from-green-500 via-emerald-600 to-blue-600 bg-clip-text text-transparent">
             {t.heroTitle}
           </h1>
         </motion.div>
 
         {/* Optimized Subtitle */}
         <motion.div variants={itemVariants} className="mb-4">
-          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-black dark:text-white mb-3 leading-tight">
+          <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 leading-tight">
             {t.heroSubtitle}{" "}
             <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 {displayText}
               </span>
-              <span className="absolute text-green-400 animate-pulse top-0 left-full ml-1">
+              <span className="absolute text-green-600 animate-pulse top-0 left-full ml-1">
                 |
               </span>
             </span>
           </h2>
-          <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             {t.heroDescription}{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent font-bold">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-semibold">
               {t.heroHighlight}
             </span>
           </p>
@@ -190,30 +178,32 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Optimized CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 px-4"
         >
           <motion.button
-            className="group px-10 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-green-500/25"
+            className="group px-6 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white font-semibold rounded-full text-base sm:text-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-green-500/25 w-full sm:w-auto"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
               const contactSection = document.getElementById('contact');
               contactSection?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
-            <span className="flex items-center">
+            <span className="flex items-center justify-center">
+              <RocketLaunchIcon className="w-5 h-5 mr-2" />
               {t.heroCta1}
               <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </span>
           </motion.button>
 
           <motion.button
-            className="group px-10 py-4 border-2 border-gray-400 dark:border-white/20 text-gray-800 dark:text-white font-bold rounded-full text-lg backdrop-blur-sm hover:bg-gray-200 dark:hover:bg-white/5 transition-all duration-300 hover:scale-105"
+            className="group px-6 sm:px-10 py-3 sm:py-4 border-2 border-green-300 text-green-700 font-semibold rounded-full text-base sm:text-lg backdrop-blur-sm hover:bg-green-50 transition-all duration-300 hover:scale-105 w-full sm:w-auto"
             whileTap={{ scale: 0.95 }}
             onClick={() => {
-              window.location.href = '/portfolio';
+              window.location.href = '/proyectos';
             }}
           >
-            <span className="flex items-center">
+            <span className="flex items-center justify-center">
+              <SparklesIcon className="w-5 h-5 mr-2" />
               {t.heroCta2}
               <span className="ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">↗</span>
             </span>
@@ -225,12 +215,12 @@ const OptimizedHero = memo(function OptimizedHero() {
           variants={itemVariants}
           className="max-w-4xl mx-auto"
         >
-          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed text-center">
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed text-center">
             {t.heroFullDescription}
           </p>
         </motion.div>
       </motion.div>
-    </BackgroundLines>
+    </div>
   );
 });
 

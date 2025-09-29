@@ -3,12 +3,15 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useTranslations } from "@/hooks/useTranslations";
+import { GlobeAltIcon, ChevronDownIcon, ComputerDesktopIcon, ShoppingBagIcon, CodeBracketIcon, MagnifyingGlassIcon, WrenchScrewdriverIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 
 const ModernNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const { theme, language, toggleLanguage } = useTheme();
   const t = useTranslations();
 
@@ -40,17 +43,20 @@ const ModernNavbar = () => {
     }
   }, []);
 
-  // Cerrar dropdown de idioma cuando se hace clic fuera
+  // Cerrar dropdowns cuando se hace clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isLanguageDropdownOpen) {
         setIsLanguageDropdownOpen(false);
       }
+      if (isServicesDropdownOpen) {
+        setIsServicesDropdownOpen(false);
+      }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [isLanguageDropdownOpen]);
+  }, [isLanguageDropdownOpen, isServicesDropdownOpen]);
 
   // Navegación inteligente para secciones (siempre va a index)
   const scrollToSection = (sectionId: string) => {
@@ -68,7 +74,6 @@ const ModernNavbar = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setActiveSection(sectionId);
     }
-    setIsMobileMenuOpen(false);
   };
 
   // Navegación a páginas
@@ -85,10 +90,49 @@ const ModernNavbar = () => {
     setIsLanguageDropdownOpen(false);
   };
 
+  const servicesItems = [
+    { 
+      id: "desarrollo-web", 
+      label: t.serviceWeb, 
+      description: t.serviceWebDesc, 
+      icon: <ComputerDesktopIcon className="w-5 h-5" />
+    },
+    { 
+      id: "ecommerce", 
+      label: t.serviceEcommerce, 
+      description: t.serviceEcommerceDesc, 
+      icon: <ShoppingBagIcon className="w-5 h-5" />
+    },
+    { 
+      id: "aplicaciones-web", 
+      label: t.serviceApps, 
+      description: t.serviceAppsDesc, 
+      icon: <CodeBracketIcon className="w-5 h-5" />
+    },
+    { 
+      id: "posicionamiento-seo", 
+      label: t.serviceSEO, 
+      description: t.serviceSEODesc, 
+      icon: <MagnifyingGlassIcon className="w-5 h-5" />
+    },
+    { 
+      id: "mantenimiento-web", 
+      label: t.serviceAutomation, 
+      description: t.serviceAutomationDesc, 
+      icon: <WrenchScrewdriverIcon className="w-5 h-5" />
+    },
+    { 
+      id: "consultoria", 
+      label: t.navConsulting, 
+      description: t.navConsultingDesc, 
+      icon: <ChatBubbleLeftRightIcon className="w-5 h-5" />
+    },
+  ];
+
   const menuItems = [
     { id: "home", label: t.navHome, type: "scroll" }, // Siempre va a index
-    { id: "portfolio", label: t.navPortfolio, type: "page", path: "/portfolio" }, // Página separada
-    { id: "equipo", label: t.navTeam, type: "page", path: "/equipo" }, // Página separada
+    { id: "proyectos", label: t.navPortfolio, type: "page", path: "/proyectos" }, // Página separada
+    { id: "precios", label: t.navPricing, type: "page", path: "/precios" }, // Página separada
     { id: "contact", label: t.navContact, type: "page", path: "/contacto" }, // Página separada
   ];
 
@@ -98,10 +142,11 @@ const ModernNavbar = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-2xl"
-            : "bg-white/80 dark:bg-transparent backdrop-blur-sm"
+            ? "bg-white/95 backdrop-blur-xl border-b border-green-200 shadow-lg"
+            : "bg-white/90 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,35 +154,138 @@ const ModernNavbar = () => {
             {/* Logo */}
             <motion.div
               className="flex items-center cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
               onClick={() => navigateToPage("/")}
             >
-              <div className="text-2xl font-black bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+              <div className="text-2xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 7Pixels
               </div>
-              <div className="ml-2 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
             </motion.div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-1">
-              {menuItems.map((item) => (
+              {/* Inicio */}
+              <motion.button
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  activeSection === "home"
+                    ? "text-green-600"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                onClick={() => {
+                  window.location.href = "/";
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                {t.navHome}
+                
+                {/* Indicador activo */}
+                {activeSection === "home" && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute inset-0 bg-green-500/10 border border-green-500/30 rounded-full"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                  />
+                )}
+              </motion.button>
+
+              {/* Servicios Dropdown */}
+              <div className="relative">
+                <motion.button
+                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center space-x-1 ${
+                    isServicesDropdownOpen
+                      ? "text-green-600"
+                      : "text-gray-600 hover:text-gray-800"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                  onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                  onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                >
+                  <span>{t.navServices}</span>
+                  <motion.div
+                    animate={{ rotate: isServicesDropdownOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDownIcon className="w-4 h-4" />
+                  </motion.div>
+                  
+                  {/* Indicador activo */}
+                  {isServicesDropdownOpen && (
+                    <motion.div
+                      layoutId="activeIndicatorServices"
+                      className="absolute inset-0 bg-green-500/10 border border-green-500/30 rounded-full"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                    />
+                  )}
+                </motion.button>
+                
+                {/* Services Dropdown Menu */}
+                <AnimatePresence>
+                  {isServicesDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                      onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                      className="absolute left-0 top-12 w-[360px] bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50"
+                    >
+                      <div className="p-3">
+                        <div className="grid grid-cols-2 gap-2">
+                          {servicesItems.map((service, index) => (
+                            <motion.button
+                              key={service.id}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: index * 0.05 }}
+                              className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
+                              onClick={() => {
+                                window.location.href = `/servicios/${service.id}`;
+                                setIsServicesDropdownOpen(false);
+                              }}
+                            >
+                              <div className="text-gray-600 group-hover:text-green-600 transition-colors duration-200 flex-shrink-0">
+                                {service.icon}
+                              </div>
+                              <div className="flex-1 text-left min-w-0">
+                                <div className="font-semibold text-gray-800 text-xs group-hover:text-green-700 transition-colors duration-200">
+                                  {service.label}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {service.description}
+                                </div>
+                              </div>
+                            </motion.button>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Resto del menú */}
+              {menuItems.slice(1).map((item) => (
                 <motion.button
                   key={item.id}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeSection === item.id
-                      ? "text-green-400"
-                      : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+                      ? "text-green-600"
+                      : "text-gray-600 hover:text-gray-800"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
                     if (item.type === "page") {
                       navigateToPage(item.path!);
-                    } else if (item.id === "home") {
-                      // Inicio siempre va a la página principal sin hash
-                      window.location.href = "/";
-                      setIsMobileMenuOpen(false);
                     } else {
                       scrollToSection(item.id);
                     }
@@ -162,13 +310,13 @@ const ModernNavbar = () => {
                 {/* Language Dropdown */}
                 <div className="relative">
                   <motion.button
-                    className="w-10 h-10 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
+                    className="w-10 h-10 bg-gradient-to-r from-green-100 to-blue-100 backdrop-blur-sm rounded-full flex items-center justify-center text-lg text-gray-700 hover:from-green-200 hover:to-blue-200 transition-all duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
                     title="Seleccionar idioma"
                   >
-                    🌐
+                    <GlobeAltIcon className="w-5 h-5" />
                   </motion.button>
                   
                   {/* Dropdown Menu */}
@@ -178,14 +326,14 @@ const ModernNavbar = () => {
                         initial={{ opacity: 0, y: -10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                        className="absolute right-0 top-12 w-32 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+                        className="absolute right-0 top-12 w-32 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden z-50"
                       >
                         <button
                           onClick={() => changeLanguage('es')}
                           className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                             language === 'es' 
-                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                              ? 'bg-green-500/10 text-green-600' 
+                              : 'text-gray-700 hover:bg-gray-100'
                           }`}
                         >
                           🇪🇸 Español
@@ -194,8 +342,8 @@ const ModernNavbar = () => {
                           onClick={() => changeLanguage('en')}
                           className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
                             language === 'en' 
-                              ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                              ? 'bg-green-500/10 text-green-600' 
+                              : 'text-gray-700 hover:bg-gray-100'
                           }`}
                         >
                           🇺🇸 English
@@ -210,8 +358,8 @@ const ModernNavbar = () => {
 
               {/* CTA Button */}
               <motion.button
-                className="ml-4 px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-full text-sm hover:from-green-400 hover:to-emerald-400 transition-all duration-300 shadow-lg shadow-green-500/25"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34, 197, 94, 0.4)" }}
+                className="ml-2 sm:ml-4 px-4 sm:px-6 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-full text-xs sm:text-sm hover:from-green-500 hover:to-emerald-500 transition-all duration-300 shadow-lg shadow-green-500/25"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(16, 185, 129, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection("contact")}
               >
@@ -226,17 +374,17 @@ const ModernNavbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span
-                className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
                   isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
                 }`}
               />
               <span
-                className={`w-6 h-0.5 bg-white transition-all duration-300 mt-1 ${
+                className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 mt-1 ${
                   isMobileMenuOpen ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`w-6 h-0.5 bg-white transition-all duration-300 mt-1 ${
+                className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 mt-1 ${
                   isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
                 }`}
               />
@@ -244,110 +392,152 @@ const ModernNavbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Simple and Clean */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
+              className="md:hidden bg-white border-t border-gray-200 shadow-lg"
             >
-              <div className="px-4 py-6 space-y-4">
-                {menuItems.map((item, index) => (
-                  <motion.button
-                    key={item.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className={`block w-full text-left px-4 py-3 rounded-xl text-lg font-medium transition-all duration-300 ${
-                      activeSection === item.id
-                        ? "text-green-400 bg-green-500/10"
-                        : "text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5"
-                    }`}
+              <div className="px-4 py-4 space-y-1">
+                {/* Inicio */}
+                <button
                     onClick={() => {
-                      if (item.type === "page") {
-                        navigateToPage(item.path!);
-                      } else if (item.id === "home") {
-                        // Inicio siempre va a la página principal sin hash
+                    setIsMobileMenuOpen(false);
                         window.location.href = "/";
-                        setIsMobileMenuOpen(false);
-                      } else {
-                        scrollToSection(item.id);
-                      }
-                    }}
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
-                
-                {/* Mobile Theme & Language Controls */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="flex space-x-4 mt-6"
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
+                    activeSection === "home"
+                      ? "bg-green-100 text-green-700"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
                 >
-                  {/* Language Dropdown Mobile */}
-                  <div className="flex-1 relative">
-                    <motion.button
-                      className="w-full h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-black dark:text-white hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300"
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                    >
-                      <span className="text-lg mr-2">🌐</span>
-                      <span className="text-sm font-medium">
-                        {language === 'es' ? 'Español' : 'English'}
-                      </span>
-                    </motion.button>
-                    
-                    {/* Dropdown Menu Mobile */}
+                  {t.navHome}
+                </button>
+
+                {/* Servicios Dropdown */}
+                <div>
+                  <button
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    className="w-full text-left px-4 py-3 rounded-lg font-medium transition-colors text-gray-700 hover:bg-gray-100 flex items-center justify-between"
+                  >
+                    <span>{t.navServices}</span>
+                    <ChevronDownIcon 
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isMobileServicesOpen ? "rotate-180" : ""
+                      }`} 
+                    />
+                  </button>
+                  
+                  {/* Services Dropdown Content */}
                     <AnimatePresence>
-                      {isLanguageDropdownOpen && (
+                    {isMobileServicesOpen && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                          className="absolute top-14 left-0 right-0 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
-                        >
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 space-y-1">
+                          {servicesItems.map((service) => (
                           <button
-                            onClick={() => changeLanguage('es')}
-                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
-                              language === 'es' 
-                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                            }`}
-                          >
-                            🇪🇸 Español
+                              key={service.id}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setIsMobileServicesOpen(false);
+                                window.location.href = `/servicios/${service.id}`;
+                              }}
+                              className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors rounded-lg"
+                            >
+                              {service.label}
                           </button>
-                          <button
-                            onClick={() => changeLanguage('en')}
-                            className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors duration-200 ${
-                              language === 'en' 
-                                ? 'bg-green-500/10 text-green-600 dark:text-green-400' 
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                            }`}
-                          >
-                            🇺🇸 English
-                          </button>
+                          ))}
+                        </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
 
+                {/* Rest of Main Navigation (excluding home) */}
+                {menuItems.slice(1).map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      if (item.type === "page") {
+                        window.location.href = item.path!;
+                      } else {
+                        setTimeout(() => scrollToSection(item.id), 100);
+                      }
+                    }}
+                    className={`w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
+                      activeSection === item.id
+                        ? "bg-green-100 text-green-700"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
 
-                </motion.div>
+                {/* Language */}
+                <div className="pt-2 border-t border-gray-100">
+                  <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                    Idioma
+                  </div>
+                  <div className="flex space-x-2 px-4">
+                    <button
+                      onClick={() => {
+                        changeLanguage('es');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                        language === 'es' 
+                          ? "bg-green-100 text-green-700" 
+                          : "text-gray-600 hover:bg-gray-100"
+                      }`}
+                    >
+                      🇪🇸 ES
+                    </button>
+                    <button
+                      onClick={() => {
+                        changeLanguage('en');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                        language === 'en' 
+                          ? "bg-green-100 text-green-700" 
+                          : "text-gray-600 hover:bg-gray-100"
+                      }`}
+                    >
+                      🇺🇸 EN
+                    </button>
+                  </div>
+                </div>
 
-                {/* Mobile CTA */}
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl text-lg shadow-lg shadow-green-500/25"
-                  onClick={() => scrollToSection("contact")}
+                {/* CTA Buttons */}
+                <div className="pt-2 border-t border-gray-100 space-y-2">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setTimeout(() => scrollToSection("contact"), 100);
+                    }}
+                    className="w-full py-3 px-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center"
                 >
                   {t.heroCta1}
-                </motion.button>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      window.location.href = "/proyectos";
+                    }}
+                    className="w-full py-3 px-4 border-2 border-green-300 text-green-700 font-semibold rounded-lg hover:bg-green-50 transition-all duration-300 text-center"
+                  >
+                    {t.heroCta2}
+                  </button>
+                </div>
               </div>
             </motion.div>
           )}

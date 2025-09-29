@@ -1,6 +1,8 @@
 "use client";
+import { useTranslations } from '@/hooks/useTranslations';
 
 export default function UltraSimpleForm() {
+  const t = useTranslations();
   const handleClick = () => {
     console.log('🔥🔥🔥 BOTÓN CLICKEADO - DEFINITIVO');
     alert('¡BOTÓN FUNCIONANDO!');
@@ -22,11 +24,11 @@ export default function UltraSimpleForm() {
     })
     .then(data => {
       console.log('📄 Data:', data);
-      alert('¡EMAIL ENVIADO! Revisa tu Gmail: pieroarbuluromanxd@gmail.com');
+      alert(t.ultraFormSuccess);
     })
     .catch(error => {
       console.log('❌ Error:', error);
-      alert('Error: ' + error.message);
+      alert(t.ultraFormError + error.message);
     });
   };
 
@@ -40,7 +42,7 @@ export default function UltraSimpleForm() {
       textAlign: 'center'
     }}>
       <h3 style={{color: 'white', marginBottom: '20px'}}>
-        FORMULARIO ULTRA SIMPLE
+        {t.ultraFormTitle}
       </h3>
       
       <button
@@ -59,11 +61,11 @@ export default function UltraSimpleForm() {
           cursor: 'pointer'
         }}
       >
-        🚀 CLICK AQUÍ PARA ENVIAR
+        {t.ultraFormButton}
       </button>
       
       <p style={{color: 'white', marginTop: '10px', fontSize: '12px'}}>
-        Si este botón no funciona, hay un problema del navegador
+        {t.ultraFormMessage}
       </p>
     </div>
   );

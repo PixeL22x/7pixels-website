@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "7Pixels - Agencia de Marketing Digital | Expertos en Crecimiento Online",
-  description: "Agencia #1 en marketing digital. Transformamos tu presencia digital en resultados extraordinarios. Servicios: SEO, Google Ads, Redes Sociales, Desarrollo Web y más.",
-  keywords: "marketing digital, agencia digital, SEO, Google Ads, redes sociales, desarrollo web, branding digital",
+  title: "7Pixels - Agencia de Desarrollo Web y Aplicaciones | Posicionamiento Google",
+  description: "Agencia #1 en desarrollo web profesional. Creamos sitios web modernos con React/Next.js y posicionamiento Google efectivo. +1,247 proyectos entregados.",
+  keywords: "desarrollo web, aplicaciones web, posicionamiento google, SEO, React, Next.js, agencia web, sitios web profesionales",
   openGraph: {
-    title: "7Pixels - Agencia de Marketing Digital",
-    description: "Transformamos tu presencia digital en resultados extraordinarios",
+    title: "7Pixels - Desarrollo Web y Posicionamiento Google",
+    description: "Sitios web profesionales con React/Next.js y posicionamiento Google efectivo",
     type: "website",
   },
 };
@@ -38,7 +40,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>

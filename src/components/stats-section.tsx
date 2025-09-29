@@ -1,51 +1,91 @@
 "use client";
+
+import React from "react";
 import { motion } from "motion/react";
+import { Card, CardTitle, CardDescription, CardSkeletonContainer, StatsSkeleton } from "@/components/ui/animated-card";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useTheme } from "@/contexts/ThemeContext";
+import { 
+  RocketLaunchIcon, 
+  StarIcon, 
+  ChartBarIcon, 
+  ChatBubbleLeftRightIcon,
+  ComputerDesktopIcon,
+  MagnifyingGlassIcon
+} from "@heroicons/react/24/outline";
 
 export default function StatsSection() {
   const t = useTranslations();
-  const { language } = useTheme();
+
   const stats = [
-    { number: "500+", label: t.statsProjects, icon: "🚀" },
-    { number: "98%", label: t.statsSatisfaction, icon: "⭐" },
-    { number: "250%", label: t.statsROI, icon: "📈" },
-    { number: "24/7", label: t.statsSupport, icon: "💬" },
+    {
+      title: "Proyectos Entregados",
+      description: "Sitios web profesionales desarrollados con tecnología moderna y resultados medibles.",
+      number: "1,247",
+      color: "green",
+      icons: [
+        <ComputerDesktopIcon key="1" className="h-4 w-4 text-green-600" />,
+        <RocketLaunchIcon key="2" className="h-5 w-5 text-green-600" />,
+        <ChartBarIcon key="3" className="h-4 w-4 text-green-600" />
+      ]
+    },
+    {
+      title: "Satisfacción Cliente",
+      description: "Nuestros clientes renuevan y recomiendan nuestros servicios constantemente.",
+      number: "4.9/5",
+      color: "blue",
+      icons: [
+        <StarIcon key="1" className="h-4 w-4 text-blue-600" />,
+        <ChatBubbleLeftRightIcon key="2" className="h-5 w-5 text-blue-600" />,
+        <StarIcon key="3" className="h-4 w-4 text-blue-600" />
+      ]
+    },
+    {
+      title: "Posicionamiento Google",
+      description: "Estrategias SEO efectivas y técnicas avanzadas que posicionan tu negocio en los primeros resultados de búsqueda.",
+      number: "2.3x",
+      color: "purple",
+      icons: [
+        <MagnifyingGlassIcon key="1" className="h-4 w-4 text-purple-600" />,
+        <ChartBarIcon key="2" className="h-5 w-5 text-purple-600" />,
+        <MagnifyingGlassIcon key="3" className="h-4 w-4 text-purple-600" />
+      ]
+    }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h3 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
-            {t.statsTitle}
-          </h3>
-          <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
-            {t.statsDescription}
+    <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4">
+            Resultados que hablan por sí solos
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+            Números reales de proyectos reales con clientes satisfechos
           </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        </div>
+        
+        <div className="grid max-w-5xl mx-auto grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
           {stats.map((stat, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={stat.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center p-6 rounded-2xl bg-white dark:bg-neutral-800 shadow-lg hover:shadow-xl transition-shadow"
+              viewport={{ once: true }}
             >
-              <div className="text-4xl mb-4">{stat.icon}</div>
-              <div className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-neutral-600 dark:text-neutral-300 font-medium">
-                {stat.label}
-              </div>
+              <Card className="min-h-[320px]">
+                <CardSkeletonContainer>
+                  <StatsSkeleton 
+                    icons={stat.icons}
+                    mainNumber={stat.number}
+                    color={stat.color}
+                  />
+                </CardSkeletonContainer>
+                <CardTitle>{stat.title}</CardTitle>
+                <CardDescription>
+                  {stat.description}
+                </CardDescription>
+              </Card>
             </motion.div>
           ))}
         </div>

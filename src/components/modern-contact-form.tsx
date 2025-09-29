@@ -1,12 +1,26 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useTheme } from "@/contexts/ThemeContext";
+import { 
+  CheckCircleIcon,
+  ComputerDesktopIcon,
+  ShoppingBagIcon,
+  MagnifyingGlassIcon,
+  DevicePhoneMobileIcon,
+  WrenchScrewdriverIcon,
+  BriefcaseIcon,
+  HandRaisedIcon,
+  CogIcon,
+  ChatBubbleLeftRightIcon
+} from '@heroicons/react/24/outline';
 
 const ModernContactForm = () => {
   const t = useTranslations();
   const { language } = useTheme();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,21 +35,32 @@ const ModernContactForm = () => {
   const [focusedField, setFocusedField] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({});
 
+  // Redirección después de 5 segundos cuando el mensaje se envía
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
+        router.push('/');
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitted, router]);
+
   const serviceOptions = [
-    { id: "social", label: "Marketing en Redes Sociales", icon: "📱" },
-    { id: "seo", label: "SEO & Google Ads", icon: "🔍" },
-    { id: "design", label: "Diseño & Branding", icon: "🎨" },
-    { id: "web", label: "Desarrollo Web", icon: "💻" },
-    { id: "automation", label: "Marketing Automation", icon: "🤖" },
-    { id: "analytics", label: "Analytics & Data", icon: "📊" }
+    { id: "web", label: t.serviceWeb, icon: <ComputerDesktopIcon className="w-5 h-5" /> },
+    { id: "ecommerce", label: t.serviceEcommerce, icon: <ShoppingBagIcon className="w-5 h-5" /> },
+    { id: "seo", label: t.serviceSEO, icon: <MagnifyingGlassIcon className="w-5 h-5" /> },
+    { id: "apps", label: t.serviceApps, icon: <DevicePhoneMobileIcon className="w-5 h-5" /> },
+    { id: "maintenance", label: t.serviceMaintenance, icon: <WrenchScrewdriverIcon className="w-5 h-5" /> },
+    { id: "consulting", label: t.serviceConsulting, icon: <BriefcaseIcon className="w-5 h-5" /> }
   ];
 
 
 
   const steps = [
-    { id: "contact", title: t.formStepContact, icon: "👋" },
-    { id: "services", title: t.formStepServices, icon: "🎯" },
-    { id: "message", title: t.formStepMessage, icon: "💭" }
+    { id: "contact", title: t.formStepContact, icon: <HandRaisedIcon className="w-5 h-5" /> },
+    { id: "services", title: t.formStepServices, icon: <CogIcon className="w-5 h-5" /> },
+    { id: "message", title: t.formStepMessage, icon: <ChatBubbleLeftRightIcon className="w-5 h-5" /> }
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -61,19 +86,19 @@ const ModernContactForm = () => {
     
     switch (step) {
       case 0:
-        if (!formData.name.trim()) newErrors.name = "El nombre es requerido";
-        if (!formData.email.trim()) newErrors.email = "El email es requerido";
+        if (!formData.name.trim()) newErrors.name = t.formErrorNameRequired;
+        if (!formData.email.trim()) newErrors.email = t.formErrorEmailRequired;
         if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
-          newErrors.email = "Email inválido";
+          newErrors.email = t.formErrorEmailInvalid;
         }
         break;
       case 1:
         if (formData.services.length === 0) {
-          newErrors.services = "Selecciona al menos un servicio";
+          newErrors.services = t.formErrorServicesRequired;
         }
         break;
       case 2:
-        if (!formData.message.trim()) newErrors.message = "Describe tu proyecto";
+        if (!formData.message.trim()) newErrors.message = t.formErrorMessageRequired;
         break;
     }
     
@@ -123,42 +148,48 @@ const ModernContactForm = () => {
 
   if (isSubmitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md mx-auto text-center"
-      >
-        <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-8 border border-green-500/30">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6"
-          >
-            <span className="text-3xl">✅</span>
-          </motion.div>
-          <h3 className="text-2xl font-bold text-black dark:text-white mb-4">
-            {t.formSuccessTitle}
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-6">
-            {t.formSuccessMessage}
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              setIsSubmitted(false);
-              setCurrentStep(0);
-              setFormData({
-                name: "", email: "", company: "", services: [] as string[], message: ""
-              });
-            }}
-            className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-400 hover:to-emerald-400 transition-all duration-300"
-          >
-            {t.formButtonSendAnother}
-          </motion.button>
-        </div>
-      </motion.div>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-lg mx-auto text-center"
+        >
+          <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-12 border border-green-500/30 shadow-2xl">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="w-24 h-24 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-8"
+            >
+              <CheckCircleIcon className="w-16 h-16 text-white" />
+            </motion.div>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-3xl font-bold text-gray-800 dark:text-white mb-6"
+            >
+              {t.formSuccessTitle}
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-gray-600 dark:text-gray-300 mb-8 text-lg"
+            >
+              {t.formSuccessMessage}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-sm text-gray-500 dark:text-gray-400"
+            >
+              {language === 'es' ? 'Redirigiendo al inicio en 5 segundos...' : 'Redirecting to home in 5 seconds...'}
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     );
   }
 

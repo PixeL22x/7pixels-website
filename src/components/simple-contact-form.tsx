@@ -1,7 +1,9 @@
 "use client";
 import { useState } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
 
 export default function SimpleContactForm() {
+  const t = useTranslations();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,20 +29,20 @@ export default function SimpleContactForm() {
     // Validaciones básicas
     if (!formData.name.trim()) {
       setStatus('error');
-      setMessage('El nombre es requerido');
+      setMessage(t.formErrorNameRequired);
       console.log('❌ Error: Nombre requerido');
       return;
     }
     
     if (!formData.email.trim()) {
       setStatus('error');
-      setMessage('El email es requerido');
+      setMessage(t.formErrorEmailRequired);
       console.log('❌ Error: Email requerido');
       return;
     }
     
     setStatus('loading');
-    setMessage('Enviando...');
+    setMessage(t.formSending);
 
     try {
       console.log('📡 Enviando datos:', formData);
@@ -127,7 +129,7 @@ export default function SimpleContactForm() {
         <div>
           <textarea
             name="message"
-            placeholder="Cuéntanos sobre tu proyecto..."
+            placeholder={t.formPlaceholderMessage}
             value={formData.message}
             onChange={handleChange}
             required
@@ -145,7 +147,7 @@ export default function SimpleContactForm() {
             e.stopPropagation();
           }}
         >
-          {status === 'loading' ? 'Enviando...' : '🚀 Comenzar Mi Proyecto'}
+          {status === 'loading' ? t.formSending : t.formButtonStart}
         </button>
       </form>
       

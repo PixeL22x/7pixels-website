@@ -225,7 +225,7 @@ export default function ContactSection() {
             <div className="ml-3 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
           </motion.div>
           
-          <h3 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 leading-tight px-4">
             {t.contactTitle.split(' ').map((word, index) => (
               <motion.span
                 key={index}
@@ -242,7 +242,7 @@ export default function ContactSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl text-neutral-300 max-w-3xl mx-auto leading-relaxed px-4"
           >
             {t.contactDescription}
           </motion.p>
@@ -250,7 +250,7 @@ export default function ContactSection() {
 
         {/* Contact Cards */}
         <motion.div 
-          className="grid md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, staggerChildren: 0.1 }}
@@ -264,13 +264,13 @@ export default function ContactSection() {
               whileHover={{ y: -10, scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <div className={`relative p-8 rounded-2xl ${card.bgColor} backdrop-blur-sm border ${card.borderColor} transition-all duration-300 group-hover:border-opacity-60`}>
+              <div className={`relative p-6 sm:p-8 rounded-2xl ${card.bgColor} backdrop-blur-sm border ${card.borderColor} transition-all duration-300 group-hover:border-opacity-60`}>
                 {/* Glow effect on hover */}
                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${card.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                 
                 {/* Icon */}
                 <motion.div 
-                  className="text-4xl mb-4"
+                  className="text-3xl sm:text-4xl mb-4"
                   animate={{ 
                     scale: hoveredCard === index ? 1.2 : 1,
                     rotate: hoveredCard === index ? 10 : 0 
@@ -281,10 +281,10 @@ export default function ContactSection() {
                 </motion.div>
                 
                 {/* Content */}
-                <h4 className="text-white font-bold text-xl mb-2">{card.title}</h4>
+                <h4 className="text-white font-bold text-lg sm:text-xl mb-2">{card.title}</h4>
                 <motion.a
                   href={card.href}
-                  className={`text-lg bg-gradient-to-r ${card.color} bg-clip-text text-transparent font-medium hover:underline block`}
+                  className={`text-base sm:text-lg bg-gradient-to-r ${card.color} bg-clip-text text-transparent font-medium hover:underline block`}
                   whileHover={{ scale: 1.05 }}
                 >
                   {card.value}
@@ -319,7 +319,7 @@ export default function ContactSection() {
                 {t.contactFormTitle}
               </h4>
               <p className="text-neutral-300 text-lg leading-relaxed">
-                Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas con una propuesta personalizada.
+                {t.contactDescription}
               </p>
             </div>
 
