@@ -3,7 +3,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 export const translations = {
   es: {
     // Hero Section
-    heroTag: "Agencia #1 en Desarrollo Web",
+    heroTag: "Desarrollo Web Profesional",
     heroTitle: "7Pixels",
     heroSubtitle: "Expertos en",
     heroTypewriter: [
@@ -16,8 +16,8 @@ export const translations = {
     heroDescription: "Desarrollamos tu sitio web y te ayudamos a",
     heroHighlight: "aparecer en Google",
     heroFullDescription: "Somos una agencia de desarrollo web especializada en crear sitios profesionales que funcionan. Combinamos diseño, tecnología y posicionamiento para hacer crecer tu negocio online.",
-    heroCta1: "Comenzar Proyecto",
-    heroCta2: "Ver Portfolio",
+    heroCta1: "Consulta Gratuita",
+    heroCta2: "Casos de Éxito",
 
     // Stats Section
     statsTitle: "Resultados que Hablan por Sí Solos",
@@ -37,6 +37,7 @@ export const translations = {
     // Service Items
     serviceWeb: "Desarrollo Web Profesional",
     serviceMaintenance: "Mantenimiento Web",
+    serviceMaintenanceDesc: "Sitios actualizados",
     serviceConsulting: "Consultoría",
     serviceWebDesc: "Sitios web modernos",
     serviceEcommerce: "Tiendas Online",
@@ -595,7 +596,7 @@ export const translations = {
   },
   en: {
     // Hero Section
-    heroTag: "#1 Web Development Agency",
+    heroTag: "Professional Web Development",
     heroTitle: "7Pixels",
     heroSubtitle: "Experts in",
     heroTypewriter: [
@@ -608,8 +609,8 @@ export const translations = {
     heroDescription: "We develop your website and help you",
     heroHighlight: "appear on Google",
     heroFullDescription: "We are a web development agency specialized in creating professional websites that work. We combine design, technology and positioning to grow your online business.",
-    heroCta1: "Start Project",
-    heroCta2: "View Portfolio",
+    heroCta1: "Free Consultation",
+    heroCta2: "Success Stories",
 
     // Stats Section
     statsTitle: "Results That Speak for Themselves",
@@ -629,6 +630,7 @@ export const translations = {
     // Service Items
     serviceWeb: "Professional Web Development",
     serviceMaintenance: "Web Maintenance",
+    serviceMaintenanceDesc: "Updated websites",
     serviceConsulting: "Consulting",
     serviceWebDesc: "Modern websites",
     serviceEcommerce: "Online Stores",

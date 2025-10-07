@@ -115,10 +115,10 @@ const ModernNavbar = () => {
       description: t.serviceSEODesc, 
       icon: <MagnifyingGlassIcon className="w-5 h-5" />
     },
-    { 
-      id: "mantenimiento-web", 
-      label: t.serviceAutomation, 
-      description: t.serviceAutomationDesc, 
+    {
+      id: "mantenimiento-web",
+      label: t.serviceMaintenance,
+      description: t.serviceMaintenanceDesc,
       icon: <WrenchScrewdriverIcon className="w-5 h-5" />
     },
     { 

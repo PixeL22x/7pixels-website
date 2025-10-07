@@ -178,7 +178,7 @@ const OptimizedHero = memo(function OptimizedHero() {
         {/* Optimized CTA Buttons */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 px-4"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 px-4"
         >
           <motion.button
             className="group px-6 sm:px-10 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white font-semibold rounded-full text-base sm:text-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-green-500/25 w-full sm:w-auto"

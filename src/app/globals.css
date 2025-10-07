@@ -9,22 +9,42 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Trust bar carousel animation */
-@keyframes scroll {
-  0% {
+/* Trust bar carousel animation - with 10 copies */
+@keyframes scroll-trust {
+  from {
     transform: translateX(0);
+  }
+  to {
+    transform: translateX(-90%);
+  }
+}
+
+.animate-scroll-trust {
+  animation: scroll-trust 120s linear infinite;
+}
+
+/* Marquee animation - simple and effective */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
   }
 }
 
-.animate-scroll {
-  animation: scroll 15s linear infinite;
+.animate-marquee {
+  animation: marquee 15s linear infinite;
 }
 
-.animate-scroll:hover {
-  animation-play-state: paused;
+@media (max-width: 768px) {
+  .animate-scroll-trust {
+    animation: scroll-trust 30s linear infinite;
+  }
+  
+  .animate-scroll-infinite {
+    animation: scroll-infinite 12s linear infinite;
+  }
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -195,4 +215,15 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-green-600;
   }
+  
+  /* Hide scrollbar for carousel */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
+

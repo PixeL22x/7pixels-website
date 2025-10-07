@@ -51,9 +51,10 @@ export default function Home() {
       {/* Trust Bar with Carousel */}
       <section className="py-8 bg-white border-b border-gray-100 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex animate-scroll">
-            {/* First set of trust elements */}
-            <div className="flex items-center gap-12 mr-12 whitespace-nowrap">
+          <div className="flex animate-scroll-trust">
+            {/* Repeat trust bar 10 times for truly infinite effect */}
+            {[...Array(10)].map((_, index) => (
+              <div key={index} className="flex items-center gap-12 mr-12 whitespace-nowrap">
               {/* Trust Metrics */}
               <div className="flex items-center gap-8 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
@@ -85,44 +86,121 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            
-            {/* Duplicate set for seamless loop */}
-            <div className="flex items-center gap-12 mr-12 whitespace-nowrap">
-              {/* Trust Metrics */}
-              <div className="flex items-center gap-8 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="font-semibold text-gray-800">1,247</span>
-                  <span>proyectos entregados</span>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Projects Gallery Section */}
+      <section className="pt-2 pb-8 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Gradient overlays for fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white/80 to-transparent z-10 pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="relative overflow-hidden">
+            <div className="flex gap-8 animate-marquee">
+              {/* First set */}
+              <div className="flex gap-8 shrink-0">
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/acabados7p2.png" 
+                    alt="Acabados 7P - Servicios" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="font-semibold text-gray-800">4.9/5</span>
-                  <span>satisfacción cliente</span>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/acabados7p3.png" 
+                    alt="Acabados 7P - Galería" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="font-semibold text-gray-800">2.3x</span>
-                  <span>mejora en tráfico</span>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p4.png" 
+                    alt="Acabados 7P - Contacto" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p5.png" 
+                    alt="Acabados 7P - Proyectos" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p6.png" 
+                    alt="Acabados 7P - Detalles" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
                 </div>
               </div>
               
-              {/* Tech Stack */}
-              <div className="flex items-center gap-4">
-                <span className="text-xs text-gray-500 uppercase tracking-wide">Tecnología:</span>
-                <div className="flex items-center gap-3">
-                  <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-700">WordPress</div>
-                  <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-700">Cloudflare</div>
-                  <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-700">Google Analytics</div>
-                  <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-700">React</div>
-                  <div className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-700">SSL</div>
+              {/* Second set for seamless loop */}
+              <div className="flex gap-8 shrink-0">
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/acabados7p2.png" 
+                    alt="Acabados 7P - Servicios" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/acabados7p3.png" 
+                    alt="Acabados 7P - Galería" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p4.png" 
+                    alt="Acabados 7P - Contacto" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p5.png" 
+                    alt="Acabados 7P - Proyectos" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+                </div>
+                <div className="group relative w-80 h-60 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-green-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img 
+                    src="/projects/Acabados7p6.png" 
+                    alt="Acabados 7P - Detalles" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
       
       {/* Services Section */}
       <section id="services">

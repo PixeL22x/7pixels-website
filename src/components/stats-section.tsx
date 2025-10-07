@@ -53,18 +53,18 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
+    <section className="py-8 sm:py-16 bg-gradient-to-r from-green-50 to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 px-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
             Resultados que hablan por sí solos
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Números reales de proyectos reales con clientes satisfechos
           </p>
         </div>
-        
-        <div className="grid max-w-5xl mx-auto grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-3">
+
+        <div className="grid max-w-6xl mx-auto grid-cols-1 gap-3 sm:gap-4 md:gap-6 sm:grid-cols-2 md:grid-cols-3">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.title}
@@ -73,16 +73,16 @@ export default function StatsSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="min-h-[320px]">
-                <CardSkeletonContainer>
-                  <StatsSkeleton 
+              <Card className="min-h-[280px] sm:min-h-[300px] md:min-h-[320px] h-full">
+                <CardSkeletonContainer className="h-32 sm:h-36 md:h-40">
+                  <StatsSkeleton
                     icons={stat.icons}
                     mainNumber={stat.number}
                     color={stat.color}
                   />
                 </CardSkeletonContainer>
-                <CardTitle>{stat.title}</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-sm sm:text-base font-semibold">{stat.title}</CardTitle>
+                <CardDescription className="text-xs sm:text-sm leading-relaxed">
                   {stat.description}
                 </CardDescription>
               </Card>

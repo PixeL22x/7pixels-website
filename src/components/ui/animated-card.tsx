@@ -13,7 +13,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "w-full p-6 rounded-xl bg-white shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100",
+        "w-full p-4 sm:p-5 md:p-6 rounded-xl bg-white shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100",
         className
       )}>
       {children}
@@ -30,7 +30,7 @@ export const CardTitle = ({
 }) => {
   return (
     <h3
-      className={cn("text-base font-semibold text-gray-800 mb-2", className)}>
+      className={cn("text-sm sm:text-base font-semibold text-gray-800 mb-2 leading-tight", className)}>
       {children}
     </h3>
   );
@@ -46,7 +46,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "text-sm font-normal text-neutral-600 max-w-sm",
+        "text-xs sm:text-sm font-normal text-neutral-600 leading-relaxed",
         className
       )}>
       {children}
@@ -65,7 +65,7 @@ export const CardSkeletonContainer = ({
 }) => {
   return (
     <div
-      className={cn("h-40 rounded-lg z-40 mb-4", className)}>
+      className={cn("h-32 sm:h-36 md:h-40 rounded-lg z-40 mb-3 sm:mb-4", className)}>
       {children}
     </div>
   );
@@ -143,24 +143,24 @@ export const StatsSkeleton = ({
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-full">
+    <div className="relative flex flex-col items-center justify-center h-full px-2">
       {/* Iconos animados */}
-      <div className="flex flex-row justify-center items-center gap-2 mb-4">
+      <div className="flex flex-row justify-center items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
         {icons.map((icon, index) => (
-          <Container 
+          <Container
             key={index}
-            className={`circle-${index + 1} ${index === 1 ? 'h-12 w-12' : 'h-8 w-8'}`}
+            className={`circle-${index + 1} ${index === 1 ? 'h-10 w-10 sm:h-12 sm:w-12' : 'h-6 w-6 sm:h-8 sm:w-8'}`}
           >
             {icon}
           </Container>
         ))}
       </div>
-      
+
       {/* Número principal */}
-      <div className={`text-3xl font-bold mb-2 ${colorClasses[color as keyof typeof colorClasses] || colorClasses.green}`}>
+      <div className={`text-2xl sm:text-3xl font-bold mb-1 sm:mb-2 ${colorClasses[color as keyof typeof colorClasses] || colorClasses.green}`}>
         {mainNumber}
       </div>
-      
+
       {/* Sparkles sutiles */}
       <div className="absolute inset-0 pointer-events-none">
         <Sparkles />
