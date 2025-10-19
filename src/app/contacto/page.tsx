@@ -63,26 +63,29 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* Phone */}
+            {/* WhatsApp */}
             <div className="text-center p-8 bg-white dark:bg-neutral-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">📱</span>
+              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">💬</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                {t.contactPhone}
+                WhatsApp
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
+              <a 
+                href="https://wa.me/34634968135"
+                className="text-gray-600 dark:text-gray-300 mb-4 block hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              >
                 +34 {t.phoneNumber}
-              </p>
+              </a>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t.contactPhoneDescription}
+                Chatea con nosotros directamente
               </p>
             </div>
 
-            {/* Office */}
+            {/* Horarios */}
             <div className="text-center p-8 bg-white dark:bg-neutral-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">📍</span>
+              <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">🕒</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                 {t.contactOffice}

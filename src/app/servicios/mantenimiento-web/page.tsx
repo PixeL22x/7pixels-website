@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import ModernNavbar from "@/components/modern-navbar";
 import { WrenchScrewdriverIcon, ShieldCheckIcon, ClockIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
 
 export default function MantenimientoWebPage() {
   const t = useTranslations();
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <ModernNavbar />
@@ -27,10 +29,16 @@ export default function MantenimientoWebPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-all duration-200">
+            <button 
+              className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-all duration-200"
+              onClick={() => router.push('/contacto')}
+            >
               {t.serviceMaintenanceCta}
             </button>
-            <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-green-500 hover:text-green-600 transition-all duration-200">
+            <button 
+              className="px-8 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-green-500 hover:text-green-600 transition-all duration-200"
+              onClick={() => router.push('/proyectos')}
+            >
               {t.serviceMaintenanceCta2}
             </button>
           </div>
@@ -152,7 +160,10 @@ export default function MantenimientoWebPage() {
                   <span className="text-gray-600">{t.serviceMaintenancePlanBasicReport}</span>
                 </li>
               </ul>
-              <button className="w-full px-6 py-3 border-2 border-green-500 text-green-600 font-semibold rounded-xl hover:bg-green-500 hover:text-white transition-all duration-200">
+              <button 
+                className="w-full px-6 py-3 border-2 border-green-500 text-green-600 font-semibold rounded-xl hover:bg-green-500 hover:text-white transition-all duration-200"
+                onClick={() => router.push('/contacto')}
+              >
                 {t.serviceMaintenancePlanBasicCta}
               </button>
             </div>
@@ -185,7 +196,10 @@ export default function MantenimientoWebPage() {
                   <span className="text-gray-600">{t.serviceMaintenancePlanPremiumSEO}</span>
                 </li>
               </ul>
-              <button className="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200">
+              <button 
+                className="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-200"
+                onClick={() => router.push('/contacto')}
+              >
                 {t.serviceMaintenancePlanPremiumCta}
               </button>
             </div>
@@ -202,7 +216,10 @@ export default function MantenimientoWebPage() {
           <p className="text-xl text-gray-600 mb-8">
             {t.serviceMaintenanceFinalDesc}
           </p>
-          <button className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-all duration-200">
+          <button 
+            className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-all duration-200"
+            onClick={() => router.push('/contacto')}
+          >
             {t.serviceMaintenanceCta}
           </button>
         </div>

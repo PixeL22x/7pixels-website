@@ -46,8 +46,8 @@ npm run build
 ## 📧 Información de Contacto
 
 - **Email**: contacto@7pixels.es
-- **Teléfono**: +34 610 154 191
-- **Ubicación**: Barcelona, España
+- **WhatsApp**: +34 634968135
+- **Horarios**: Lun - Vie: 9AM - 6PM CET
 
 ## 📄 Licencia
 

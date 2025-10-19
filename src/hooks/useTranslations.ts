@@ -94,14 +94,14 @@ export const translations = {
     contactCta: "🚀 Comenzar Mi Proyecto",
     contactEmail: "Email",
     contactPhone: "Teléfono", 
-    contactOffice: "Oficina",
+    contactOffice: "Horarios",
     contactSchedule: "Lun - Vie: 9AM - 6PM",
     contactSocial: "Síguenos en nuestras redes sociales",
     
     // Contact Details
     emailAddress: "contacto@7pixels.es",
-    phoneNumber: "925404010",
-    officeLocation: "Barcelona, España",
+    phoneNumber: "634968135",
+    officeLocation: "Lun - Vie: 9AM - 6PM CET",
     
     // Contact Page Text
     contactReadyTitle: "¿Listo para tener tu sitio web?",
@@ -115,7 +115,7 @@ export const translations = {
     contactInfoDescription: "Estamos aquí para ayudarte. Elige la forma que prefieras para contactarnos",
     contactEmailDescription: "Respuesta en menos de 24 horas",
     contactPhoneDescription: "Llamada directa con nuestro equipo",
-    contactOfficeDescription: "Visítanos en nuestra oficina",
+    contactOfficeDescription: "Horarios de atención al cliente",
     contactScheduleTitle: "Horario de Atención",
     contactScheduleDescription: "Estamos disponibles de lunes a viernes para atenderte",
     contactCtaTitle: "¿Listo para Empezar?",
@@ -131,8 +131,8 @@ export const translations = {
     footerServiceSEO: "Posicionamiento Google",
     footerServiceApps: "Aplicaciones Web",
     footerContactEmail: "📧 contacto@7pixels.es",
-    footerContactPhone: "📱 +34 925404010",
-    footerContactLocation: "📍 Barcelona, España",
+    footerContactPhone: "📱 +34 634968135",
+    footerContactLocation: "🕒 Lun - Vie: 9AM - 6PM CET",
     footerContactSchedule: "⏰ Lun - Vie: 9AM - 6PM",
     footerCopyright: "© 2024 7Pixels. Todos los derechos reservados. Transformando ideas en realidad digital.",
 
@@ -214,10 +214,11 @@ export const translations = {
     
     // Pricing Page
     pricingTag: "NUESTROS PRECIOS",
+    pricingTransparent: "PRECIOS TRANSPARENTES",
     pricingTitle: "Planes para tu",
     pricingTitleHighlight: "Proyecto Web",
     pricingDescription: "Precios claros sin costos ocultos. Elige el plan que mejor se adapte a tu presupuesto y necesidades.",
-    pricingOffer: "Ofertas válidas hasta noviembre de 2025",
+    pricingOffer: "Ofertas válidas hasta diciembre de 2025",
     pricingCompare: "Compara nuestros planes",
     pricingChooseTitle: "Elige tu",
     pricingChooseHighlight: "Plan Perfecto",
@@ -225,11 +226,14 @@ export const translations = {
     pricingBasic: "Básico",
     pricingPro: "Pro",
     pricingPremium: "Premium",
-    pricingBasicDesc: "Perfecto para pequeñas empresas y profesionales",
-    pricingProDesc: "Ideal para empresas en crecimiento",
-    pricingPremiumDesc: "Solución completa para empresas establecidas",
+    pricingBasicDesc: "Perfecto para pequeñas empresas y profesionales que necesitan presencia web básica",
+    pricingProDesc: "Ideal para empresas en crecimiento que necesitan más funcionalidades",
+    pricingPremiumDesc: "Solución completa para empresas establecidas con necesidades avanzadas",
     pricingBasicCta: "Empezar Básico",
     pricingProCta: "Elegir Pro",
+    pricingCustom: "A Medida",
+    pricingCustomDesc: "Solución completamente personalizada para proyectos únicos y específicos",
+    pricingCustomCta: "Consultar Proyecto",
     pricingPremiumCta: "Ir Premium",
     pricingFaqTitle: "Preguntas",
     pricingFaqHighlight: "Frecuentes",
@@ -246,7 +250,7 @@ export const translations = {
     pricingCtaHighlight: "plan elegir",
     pricingCtaDescription: "Contáctanos y te ayudaremos a elegir el plan perfecto para tu proyecto. Consulta gratuita sin compromiso.",
     pricingCtaButton: "Consulta Gratuita",
-    pricingCtaCall: "Llamar Ahora",
+    pricingCtaCall: "Chatea con nosotros",
     
     // Service Pages
     serviceWebDevTitle: "Desarrollo Web Profesional",
@@ -509,7 +513,108 @@ export const translations = {
     pricingNoCommitment: "Sin compromiso",
     pricingResponse24h: "Respuesta en 24h",
     pricingPersonalizedConsultation: "Consulta personalizada",
-    pricingTransparent: "Precios Transparentes",
+    // Web Pages Plans Features
+    pricingBasicFeatures: [
+      "Sitio web hasta 4 páginas",
+      "Diseño responsive completo",
+      "Formulario de contacto avanzado",
+      "SEO optimizado + Analytics",
+      "Hosting + dominio 1 año",
+      "Soporte por email",
+      "Entrega en 2-3 semanas"
+    ],
+    pricingProFeatures: [
+      "Sitio web hasta 8 páginas",
+      "Sistema de gestión completo",
+      "SEO avanzado + Google Analytics",
+      "Formularios avanzados + validación",
+      "Hosting premium + dominio",
+      "Soporte prioritario",
+      "Entrega en 3-4 semanas",
+      "Capacitación completa"
+    ],
+    pricingPremiumFeatures: [
+      "Sitio web hasta 12 páginas",
+      "E-commerce completo (hasta 50 productos)",
+      "SEO completo + consultoría",
+      "Integración redes sociales",
+      "Hosting empresarial + subdominios",
+      "Soporte 24/7",
+      "Entrega en 4-6 semanas",
+      "Mantenimiento 3 meses"
+    ],
+    pricingCustomFeatures: [
+      "Desarrollo completamente personalizado",
+      "Funcionalidades específicas a medida",
+      "Integraciones con sistemas externos",
+      "Diseño único y exclusivo",
+      "Hosting empresarial + SSL",
+      "Soporte técnico dedicado",
+      "Tiempo de desarrollo flexible",
+      "Mantenimiento personalizado"
+    ],
+    
+    // Web Apps Plans
+    pricingAppBasic: "App Básica",
+    pricingAppBasicDesc: "Aplicación web simple con funcionalidades básicas",
+    pricingAppBasicFeatures: [
+      "Aplicación web hasta 5 pantallas",
+      "Base de datos básica",
+      "Autenticación de usuarios",
+      "Panel de administración",
+      "API REST básica",
+      "Hosting + dominio 1 año",
+      "Soporte técnico",
+      "Entrega en 5-6 semanas"
+    ],
+    pricingAppBasicCta: "Empezar App Básica",
+    
+    pricingAppPro: "App Pro",
+    pricingAppProDesc: "Aplicación web con funcionalidades avanzadas",
+    pricingAppProFeatures: [
+      "Aplicación web hasta 8 pantallas",
+      "Base de datos avanzada",
+      "Sistema de roles y permisos",
+      "API REST completa",
+      "Panel de administración avanzado",
+      "Integraciones básicas",
+      "Hosting premium + SSL",
+      "Soporte prioritario",
+      "Entrega en 6-8 semanas"
+    ],
+    pricingAppProCta: "Elegir App Pro",
+    
+    pricingAppPremium: "App Premium",
+    pricingAppPremiumDesc: "Aplicación web empresarial completa",
+    pricingAppPremiumFeatures: [
+      "Aplicación web hasta 15 pantallas",
+      "Base de datos empresarial",
+      "Integraciones con sistemas externos",
+      "API REST + GraphQL",
+      "Panel de administración completo",
+      "Sistema de notificaciones",
+      "Hosting empresarial + SSL",
+      "Soporte 24/7",
+      "Entrega en 8-12 semanas",
+      "Mantenimiento 3 meses"
+    ],
+    pricingAppPremiumCta: "Ir App Premium",
+    
+    // Custom Plan
+    pricingCustomPrice: "Consultar",
+    // Custom Section
+    pricingCustomSectionTitle: "¿Necesitas algo más específico?",
+    pricingCustomSectionDesc: "Para proyectos únicos que requieren desarrollo completamente personalizado",
+    
+    // Offer Badge
+    pricingOfferBadge: "OFERTA",
+    
+    // WhatsApp Button
+    pricingWhatsAppSubtext: "• Respuesta rápida",
+    pricingWebPages: "Páginas Web",
+    pricingWebApps: "Aplicaciones Web",
+    pricingWebPagesDesc: "Sitios web estáticos y dinámicos para tu presencia online",
+    pricingWebAppsDesc: "Aplicaciones web personalizadas con funcionalidades avanzadas",
     
     // Enhanced Services Features
     serviceFeatureFastTitle: "Sitios rápidos y modernos",
@@ -687,14 +792,14 @@ export const translations = {
     contactCta: "🚀 Start My Project",
     contactEmail: "Email",
     contactPhone: "Phone",
-    contactOffice: "Office", 
+    contactOffice: "Hours", 
     contactSchedule: "Mon - Fri: 9AM - 6PM",
     contactSocial: "Follow us on social media",
     
     // Contact Details
     emailAddress: "contacto@7pixels.es",
-    phoneNumber: "925404010",
-    officeLocation: "Barcelona, Spain",
+    phoneNumber: "634968135",
+    officeLocation: "Mon - Fri: 9AM - 6PM CET",
     
     // Contact Page Text
     contactReadyTitle: "Ready to have your website?",
@@ -708,7 +813,7 @@ export const translations = {
     contactInfoDescription: "We're here to help. Choose your preferred way to reach us",
     contactEmailDescription: "Response within 24 hours",
     contactPhoneDescription: "Direct call with our team",
-    contactOfficeDescription: "Visit us at our office",
+    contactOfficeDescription: "Customer service hours",
     contactScheduleTitle: "Business Hours",
     contactScheduleDescription: "We're available Monday to Friday to assist you",
     contactCtaTitle: "Ready to Start?",
@@ -724,8 +829,8 @@ export const translations = {
     footerServiceSEO: "Google Positioning",
     footerServiceApps: "Web Applications",
     footerContactEmail: "📧 contacto@7pixels.es",
-    footerContactPhone: "📱 +34 925404010",
-    footerContactLocation: "📍 Barcelona, Spain",
+    footerContactPhone: "📱 +34 634968135",
+    footerContactLocation: "🕒 Mon - Fri: 9AM - 6PM CET",
     footerContactSchedule: "⏰ Mon - Fri: 9AM - 6PM",
     footerCopyright: "© 2024 7Pixels. All rights reserved. Transforming ideas into digital reality.",
 
@@ -807,10 +912,11 @@ export const translations = {
     
     // Pricing Page
     pricingTag: "OUR PRICES",
+    pricingTransparent: "TRANSPARENT PRICING",
     pricingTitle: "Plans for your",
     pricingTitleHighlight: "Web Project",
     pricingDescription: "Clear prices without hidden costs. Choose the plan that best fits your budget and needs.",
-    pricingOffer: "Offers valid until November 2025",
+    pricingOffer: "Offers valid until December 2025",
     pricingCompare: "Compare our plans",
     pricingChooseTitle: "Choose your",
     pricingChooseHighlight: "Perfect Plan",
@@ -818,11 +924,14 @@ export const translations = {
     pricingBasic: "Basic",
     pricingPro: "Pro",
     pricingPremium: "Premium",
-    pricingBasicDesc: "Perfect for small businesses and professionals",
-    pricingProDesc: "Ideal for growing companies",
-    pricingPremiumDesc: "Complete solution for established companies",
+    pricingBasicDesc: "Perfect for small businesses and professionals who need basic web presence",
+    pricingProDesc: "Ideal for growing companies that need more functionality",
+    pricingPremiumDesc: "Complete solution for established companies with advanced needs",
     pricingBasicCta: "Start Basic",
     pricingProCta: "Choose Pro",
+    pricingCustom: "Custom",
+    pricingCustomDesc: "Completely personalized solution for unique and specific projects",
+    pricingCustomCta: "Consult Project",
     pricingPremiumCta: "Go Premium",
     pricingFaqTitle: "Frequently Asked",
     pricingFaqHighlight: "Questions",
@@ -839,7 +948,7 @@ export const translations = {
     pricingCtaHighlight: "plan to choose",
     pricingCtaDescription: "Contact us and we'll help you choose the perfect plan for your project. Free consultation with no commitment.",
     pricingCtaButton: "Free Consultation",
-    pricingCtaCall: "Call Now",
+    pricingCtaCall: "Chatea con nosotros",
     
     // Service Pages
     serviceWebDevTitle: "Professional Web Development",
@@ -1102,7 +1211,108 @@ export const translations = {
     pricingNoCommitment: "No commitment",
     pricingResponse24h: "Response in 24h",
     pricingPersonalizedConsultation: "Personalized consultation",
-    pricingTransparent: "Transparent Pricing",
+    // Web Pages Plans Features
+    pricingBasicFeatures: [
+      "Website up to 4 pages",
+      "Complete responsive design",
+      "Advanced contact form",
+      "SEO optimized + Analytics",
+      "Hosting + domain 1 year",
+      "Email support",
+      "Delivery in 2-3 weeks"
+    ],
+    pricingProFeatures: [
+      "Website up to 8 pages",
+      "Complete management system",
+      "Advanced SEO + Google Analytics",
+      "Advanced forms + validation",
+      "Premium hosting + domain",
+      "Priority support",
+      "Delivery in 3-4 weeks",
+      "Complete training"
+    ],
+    pricingPremiumFeatures: [
+      "Website up to 12 pages",
+      "Complete e-commerce (up to 50 products)",
+      "Complete SEO + consultancy",
+      "Social media integration",
+      "Enterprise hosting + subdomains",
+      "24/7 support",
+      "Delivery in 4-6 weeks",
+      "3 months maintenance"
+    ],
+    pricingCustomFeatures: [
+      "Completely personalized development",
+      "Specific custom functionalities",
+      "External system integrations",
+      "Unique and exclusive design",
+      "Enterprise hosting + SSL",
+      "Dedicated technical support",
+      "Flexible development time",
+      "Personalized maintenance"
+    ],
+    
+    // Web Apps Plans
+    pricingAppBasic: "Basic App",
+    pricingAppBasicDesc: "Simple web application with basic functionalities",
+    pricingAppBasicFeatures: [
+      "Web application up to 5 screens",
+      "Basic database",
+      "User authentication",
+      "Administration panel",
+      "Basic REST API",
+      "Hosting + domain 1 year",
+      "Technical support",
+      "Delivery in 5-6 weeks"
+    ],
+    pricingAppBasicCta: "Start Basic App",
+    
+    pricingAppPro: "Pro App",
+    pricingAppProDesc: "Web application with advanced functionalities",
+    pricingAppProFeatures: [
+      "Web application up to 8 screens",
+      "Advanced database",
+      "Role and permission system",
+      "Complete REST API",
+      "Advanced administration panel",
+      "Basic integrations",
+      "Premium hosting + SSL",
+      "Priority support",
+      "Delivery in 6-8 weeks"
+    ],
+    pricingAppProCta: "Choose Pro App",
+    
+    pricingAppPremium: "Premium App",
+    pricingAppPremiumDesc: "Complete enterprise web application",
+    pricingAppPremiumFeatures: [
+      "Web application up to 15 screens",
+      "Enterprise database",
+      "External system integrations",
+      "REST API + GraphQL",
+      "Complete administration panel",
+      "Notification system",
+      "Enterprise hosting + SSL",
+      "24/7 support",
+      "Delivery in 8-12 weeks",
+      "3 months maintenance"
+    ],
+    pricingAppPremiumCta: "Go Premium App",
+    
+    // Custom Plan
+    pricingCustomPrice: "Consult",
+    // Custom Section
+    pricingCustomSectionTitle: "Need something more specific?",
+    pricingCustomSectionDesc: "For unique projects that require completely personalized development",
+    
+    // Offer Badge
+    pricingOfferBadge: "OFFER",
+    
+    // WhatsApp Button
+    pricingWhatsAppSubtext: "• Quick response",
+    pricingWebPages: "Web Pages",
+    pricingWebApps: "Web Applications",
+    pricingWebPagesDesc: "Static and dynamic websites for your online presence",
+    pricingWebAppsDesc: "Custom web applications with advanced functionalities",
     
     // Enhanced Services Features
     serviceFeatureFastTitle: "Fast and modern sites",

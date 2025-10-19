@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_Yy3zJmGK_9QF9tqnsmWn
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, company, message } = await request.json();
+    const { name, email, company, services, message } = await request.json();
 
     // Validación básica
     if (!name || !email || !message) {
@@ -44,6 +44,13 @@ export async function POST(request: NextRequest) {
             <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
               <strong style="color: #10b981;">🏢 Empresa:</strong>
               <p style="margin: 5px 0; color: #374151;">${company}</p>
+            </div>
+            ` : ''}
+            
+            ${services ? `
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+              <strong style="color: #10b981;">🛠️ Servicios de interés:</strong>
+              <p style="margin: 5px 0; color: #374151;">${services}</p>
             </div>
             ` : ''}
             

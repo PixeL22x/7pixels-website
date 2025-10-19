@@ -6,7 +6,6 @@ import ModernNavbar from "@/components/modern-navbar";
 import ModernContactForm from "@/components/modern-contact-form";
 import { useTranslations } from "@/hooks/useTranslations";
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import { Grid } from '@/components/ui/grid-pattern';
 import { ProcessFeatures } from '@/components/ui/process-features';
 import { FAQAccordion } from '@/components/ui/faq-accordion';
 import { IconPencil, IconPalette, IconCode, IconRocket } from "@tabler/icons-react";

@@ -115,22 +115,22 @@ export default function ContactSection() {
       borderColor: "border-green-500/30"
     },
     {
-      icon: "📱",
+      icon: "💬",
       title: t.contactPhone,
       value: `+34 ${t.phoneNumber}`,
-      href: `tel:+34${t.phoneNumber.replace(/\s/g, '')}`,
+      href: `https://wa.me/34634968135`,
       color: "from-blue-400 to-cyan-500",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/30"
     },
     {
-      icon: "📍",
+      icon: "🕒",
       title: t.contactOffice,
       value: t.officeLocation,
       href: "#",
-      color: "from-purple-400 to-pink-500",
-      bgColor: "bg-purple-500/10",
-      borderColor: "border-purple-500/30"
+      color: "from-orange-400 to-yellow-500",
+      bgColor: "bg-orange-500/10",
+      borderColor: "border-orange-500/30"
     }
   ];
 

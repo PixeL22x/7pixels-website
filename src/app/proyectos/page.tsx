@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ModernNavbar from "@/components/modern-navbar";
-import { ArrowTopRightOnSquareIcon, CodeBracketIcon, ShoppingBagIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ArrowTopRightOnSquareIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
 
 export default function ProyectosPage() {

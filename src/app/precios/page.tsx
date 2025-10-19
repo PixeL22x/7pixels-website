@@ -1,73 +1,118 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import ModernNavbar from "@/components/modern-navbar";
-import { CheckIcon, StarIcon, RocketLaunchIcon, SparklesIcon, ArrowRightIcon, ShieldCheckIcon, ClockIcon, CurrencyEuroIcon, TagIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, StarIcon, RocketLaunchIcon, SparklesIcon, ArrowRightIcon, ShieldCheckIcon, CurrencyEuroIcon, TagIcon, CogIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
 
 export default function PreciosPage() {
   const t = useTranslations();
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<'webpages' | 'webapps'>('webpages');
   
   const planes = [
     {
       id: "basico",
       nombre: t.pricingBasic,
       precio: "300",
+      precioOriginal: "500",
       descripcion: t.pricingBasicDesc,
       icono: <CheckIcon className="w-8 h-8" />,
       color: "green",
       popular: false,
-      caracteristicas: [
-        "Sitio web hasta 5 páginas",
-        "Diseño responsive completo",
-        "Formulario de contacto",
-        "SEO básico incluido",
-        "Hosting + dominio 1 año",
-        "Soporte por email",
-        "Entrega en 2-3 semanas"
-      ],
+      caracteristicas: t.pricingBasicFeatures,
       cta: t.pricingBasicCta,
       destacado: false
     },
     {
       id: "pro",
       nombre: t.pricingPro,
-      precio: "500",
+      precio: "900",
       descripcion: t.pricingProDesc,
       icono: <StarIcon className="w-8 h-8" />,
       color: "blue",
       popular: true,
-      caracteristicas: [
-        "Sitio web hasta 10 páginas",
-        "Sistema de gestión (CMS)",
-        "SEO avanzado + Google Analytics",
-        "Formularios avanzados",
-        "Hosting premium + dominio",
-        "Soporte prioritario",
-        "Entrega en 3-4 semanas",
-        "Capacitación incluida"
-      ],
+      caracteristicas: t.pricingProFeatures,
       cta: t.pricingProCta,
       destacado: true
     },
     {
       id: "premium",
       nombre: t.pricingPremium,
-      precio: "900",
+      precio: "1.200",
       descripcion: t.pricingPremiumDesc,
       icono: <SparklesIcon className="w-8 h-8" />,
       color: "purple",
       popular: false,
-      caracteristicas: [
-        "Páginas ilimitadas",
-        "E-commerce básico incluido",
-        "SEO completo + consultoría",
-        "Integración redes sociales",
-        "Hosting empresarial + subdominios",
-        "Soporte 24/7",
-        "Entrega en 4-6 semanas",
-        "Mantenimiento 3 meses"
-      ],
+      caracteristicas: t.pricingPremiumFeatures,
       cta: t.pricingPremiumCta,
+      destacado: false
+    },
+    {
+      id: "custom",
+      nombre: t.pricingCustom,
+      precio: t.pricingCustomPrice,
+      descripcion: t.pricingCustomDesc,
+      icono: <CogIcon className="w-8 h-8" />,
+      color: "orange",
+      popular: false,
+      caracteristicas: t.pricingCustomFeatures,
+      cta: t.pricingCustomCta,
+      destacado: false
+    }
+  ];
+
+  const planesWebApps = [
+    {
+      id: "basico-app",
+      nombre: t.pricingAppBasic,
+      precio: "1.200",
+      precioOriginal: undefined,
+      descripcion: t.pricingAppBasicDesc,
+      icono: <CheckIcon className="w-8 h-8" />,
+      color: "green",
+      popular: false,
+      caracteristicas: t.pricingAppBasicFeatures,
+      cta: t.pricingAppBasicCta,
+      destacado: false
+    },
+    {
+      id: "pro-app",
+      nombre: t.pricingAppPro,
+      precio: "3.500",
+      precioOriginal: undefined,
+      descripcion: t.pricingAppProDesc,
+      icono: <StarIcon className="w-8 h-8" />,
+      color: "blue",
+      popular: true,
+      caracteristicas: t.pricingAppProFeatures,
+      cta: t.pricingAppProCta,
+      destacado: true
+    },
+    {
+      id: "premium-app",
+      nombre: t.pricingAppPremium,
+      precio: "7.500",
+      precioOriginal: undefined,
+      descripcion: t.pricingAppPremiumDesc,
+      icono: <SparklesIcon className="w-8 h-8" />,
+      color: "purple",
+      popular: false,
+      caracteristicas: t.pricingAppPremiumFeatures,
+      cta: t.pricingAppPremiumCta,
+      destacado: false
+    },
+    {
+      id: "custom-app",
+      nombre: t.pricingCustom,
+      precio: t.pricingCustomPrice,
+      precioOriginal: undefined,
+      descripcion: t.pricingCustomDesc,
+      icono: <CogIcon className="w-8 h-8" />,
+      color: "orange",
+      popular: false,
+      caracteristicas: t.pricingCustomFeatures,
+      cta: t.pricingCustomCta,
       destacado: false
     }
   ];
@@ -94,6 +139,13 @@ export default function PreciosPage() {
         border: popular ? "border-purple-400" : "border-gray-200",
         button: "bg-purple-600 hover:bg-purple-700",
         accent: "text-purple-600"
+      },
+      orange: {
+        bg: popular ? "bg-gradient-to-br from-orange-500 to-red-600" : "bg-white",
+        text: popular ? "text-white" : "text-gray-800",
+        border: popular ? "border-orange-400" : "border-gray-200",
+        button: "bg-orange-600 hover:bg-orange-700",
+        accent: "text-orange-600"
       }
     };
     return colors[color as keyof typeof colors];
@@ -137,20 +189,51 @@ export default function PreciosPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 {t.pricingPageTitle}
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
                 {t.pricingPageDesc}
+              </p>
+              
+              {/* Tabs */}
+              <div className="flex justify-center mb-8">
+                <div className="bg-gray-100 rounded-2xl p-2 inline-flex">
+                  <button
+                    onClick={() => setActiveTab('webpages')}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                      activeTab === 'webpages'
+                        ? 'bg-white text-gray-800 shadow-lg'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    {t.pricingWebPages}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('webapps')}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                      activeTab === 'webapps'
+                        ? 'bg-white text-gray-800 shadow-lg'
+                        : 'text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    {t.pricingWebApps}
+                  </button>
+                </div>
+              </div>
+              
+              {/* Tab Description */}
+              <p className="text-base text-gray-500 max-w-xl mx-auto mb-8">
+                {activeTab === 'webpages' ? t.pricingWebPagesDesc : t.pricingWebAppsDesc}
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
-              {planes.map((plan) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto items-stretch">
+              {(activeTab === 'webpages' ? planes : planesWebApps).filter(plan => !plan.id.includes('custom')).map((plan) => {
                 const colors = getColorClasses(plan.color, plan.popular);
                 return (
                   <div
                     key={plan.id}
                     className={`relative rounded-3xl shadow-xl border-2 transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 ${colors.bg} ${colors.border} ${
                       plan.popular ? 'ring-1 ring-blue-50 ring-opacity-80 mt-8' : ''
-                    }`}
+                    } flex flex-col`}
                   >
                     {plan.popular && (
                       <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-10">
@@ -160,7 +243,7 @@ export default function PreciosPage() {
                       </div>
                     )}
                     
-                    <div className="p-4 sm:p-6">
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
                       {/* Plan Header */}
                       <div className="text-center mb-6">
                         <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${plan.popular ? 'bg-white/20 shadow-lg' : 'bg-gray-100 shadow-md'} transition-all duration-300`}>
@@ -172,6 +255,16 @@ export default function PreciosPage() {
                           {plan.nombre}
                         </h3>
                         <div className="mb-4">
+                          {plan.precioOriginal && (
+                            <div className="flex items-center justify-center gap-2 mb-2">
+                              <span className={`text-lg line-through ${colors.text} opacity-50`}>
+                                €{plan.precioOriginal}
+                              </span>
+                              <span className="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs font-bold">
+                                {t.pricingOfferBadge}
+                              </span>
+                            </div>
+                          )}
                           <span className={`text-4xl font-extrabold ${colors.text}`}>
                             €{plan.precio}
                           </span>
@@ -185,7 +278,7 @@ export default function PreciosPage() {
                       </div>
 
                       {/* Features */}
-                      <div className="mb-6">
+                      <div className="mb-6 flex-grow">
                         <ul className="space-y-2">
                           {plan.caracteristicas.map((caracteristica, index) => (
                             <li key={index} className="flex items-start group">
@@ -203,10 +296,7 @@ export default function PreciosPage() {
                       {/* CTA Button */}
                       <button
                         className={`w-full py-3 px-6 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center gap-2 ${colors.button}`}
-                        onClick={() => {
-                          const contactSection = document.getElementById('contact');
-                          contactSection?.scrollIntoView({ behavior: 'smooth' });
-                        }}
+                        onClick={() => router.push('/contacto')}
                       >
                         {plan.cta}
                         <ArrowRightIcon className="w-5 h-5" />
@@ -215,6 +305,75 @@ export default function PreciosPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Custom Plan Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-orange-50 to-red-50">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                {t.pricingCustomSectionTitle}
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                {t.pricingCustomSectionDesc}
+              </p>
+            </div>
+            
+            <div className="bg-white rounded-3xl shadow-2xl border-2 border-orange-200 p-8 md:p-12">
+              {(() => {
+                const customPlan = (activeTab === 'webpages' ? planes : planesWebApps).find(plan => plan.id.includes('custom'));
+                const colors = getColorClasses(customPlan?.color || 'orange', false);
+                return (
+                  <div className="text-center">
+                    {/* Plan Header */}
+                    <div className="mb-8">
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 bg-orange-100 shadow-lg">
+                        <div className="text-orange-600">
+                          {customPlan?.icono}
+                        </div>
+                      </div>
+                      <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                        {customPlan?.nombre}
+                      </h3>
+                      <div className="mb-6">
+                        <span className="text-5xl font-extrabold text-orange-600">
+                          {customPlan?.precio}
+                        </span>
+                      </div>
+                      <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                        {customPlan?.descripcion}
+                      </p>
+                    </div>
+
+                    {/* Features */}
+                    <div className="mb-8">
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                        {customPlan?.caracteristicas.map((caracteristica, index) => (
+                          <li key={index} className="flex items-start group">
+                            <div className="w-6 h-6 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0 bg-orange-100 group-hover:bg-orange-200 transition-colors duration-200">
+                              <CheckIcon className="w-4 h-4 text-orange-600" />
+                            </div>
+                            <span className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-200">
+                              {caracteristica}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                      className={`px-12 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-3 text-lg mx-auto ${colors.button}`}
+                      onClick={() => router.push('/contacto')}
+                    >
+                      <RocketLaunchIcon className="w-6 h-6" />
+                      {customPlan?.cta}
+                    </button>
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </section>
@@ -303,19 +462,18 @@ export default function PreciosPage() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <button 
                   className="px-10 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-bold rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 text-lg"
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    contactSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  onClick={() => router.push('/contacto')}
                 >
                   <RocketLaunchIcon className="w-6 h-6" />
                   {t.pricingCtaButton}
                 </button>
-                <button 
-                  className="px-10 py-4 bg-white text-gray-700 font-bold rounded-2xl border-2 border-gray-300 hover:border-gray-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 text-lg"
-                  onClick={() => window.open('tel:+34600000000', '_self')}
+                <button
+                  className="px-10 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white font-bold rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 text-lg"
+                  onClick={() => window.open('https://wa.me/34634968135', '_blank')}
                 >
-                  📞 {t.pricingCtaCall}
+                  <ChatBubbleLeftRightIcon className="w-6 h-6" />
+                  {t.pricingCtaCall}
+                  <span className="text-sm opacity-90">{t.pricingWhatsAppSubtext}</span>
                 </button>
               </div>
               
