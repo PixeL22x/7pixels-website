@@ -10,7 +10,7 @@ export default function ProyectosPage() {
   const t = useTranslations();
   const [categoriaActiva, setCategoriaActiva] = useState("Todos");
   
-  const proyectos = [
+  const proyectos = useMemo(() => [
     {
       id: 1,
       titulo: "MySkinVital - Centro de Estética",
@@ -154,12 +154,12 @@ export default function ProyectosPage() {
       destacado: true,
       cliente: "Gozzø Music"
     },
-  ];
+  ], []);
 
   const categorias = [t.projectsCategoryAll, t.projectsCategoryWeb, t.projectsCategoryEcommerce, t.projectsCategoryApps];
   
   // Estabilizar el array de URLs para evitar bucles infinitos
-  const projectUrls = useMemo(() => proyectos.map(proyecto => proyecto.url), []);
+  const projectUrls = useMemo(() => proyectos.map(proyecto => proyecto.url), [proyectos]);
   
   // Obtener metadatos de todos los proyectos
   const metadataList = useMultipleMetadata(projectUrls);
@@ -222,7 +222,7 @@ export default function ProyectosPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {proyectosFiltrados.map((proyecto, index) => {
+            {proyectosFiltrados.map((proyecto) => {
               // Encontrar el índice del proyecto en la lista original para obtener sus metadatos
               const originalIndex = proyectos.findIndex(p => p.id === proyecto.id);
               const metadata = metadataList[originalIndex] || { loading: true };

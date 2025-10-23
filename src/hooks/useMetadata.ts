@@ -54,7 +54,7 @@ const extractMetadata = async (url: string): Promise<Partial<ProjectMetadata>> =
             html = data.contents || '';
             break;
           }
-        } catch (jsonError) {
+        } catch {
           // Si no es JSON válido, usar el texto directamente
           if (text.includes('<html') || text.includes('<!DOCTYPE')) {
             html = text;
@@ -144,7 +144,7 @@ export const useMetadata = (url: string): ProjectMetadata => {
 // Hook para obtener metadatos de múltiples URLs
 export const useMultipleMetadata = (urls: string[]): ProjectMetadata[] => {
   // Estabilizar el array de URLs para evitar bucles infinitos
-  const stableUrls = useMemo(() => urls, [urls.join(',')]);
+  const stableUrls = useMemo(() => urls, [urls]);
   
   const [metadataList, setMetadataList] = useState<ProjectMetadata[]>(
     stableUrls.map(() => ({ loading: true }))
@@ -161,23 +161,23 @@ export const useMultipleMetadata = (urls: string[]): ProjectMetadata[] => {
     }
 
     const fetchAllMetadata = async () => {
-      const promises = stableUrls.map(async (url, index) => {
-        try {
-          const scrapedData = await extractMetadata(url);
-          
-          return {
-            ...scrapedData,
-            loading: false,
-            error: undefined
-          };
-        } catch (error) {
-          console.error(`Error fetching metadata for ${url}:`, error);
-          return {
-            loading: false,
-            error: error instanceof Error ? error.message : 'Error desconocido'
-          };
-        }
-      });
+               const promises = stableUrls.map(async (url) => {
+                 try {
+                   const scrapedData = await extractMetadata(url);
+
+                   return {
+                     ...scrapedData,
+                     loading: false,
+                     error: undefined
+                   };
+                 } catch (error) {
+                   console.error(`Error fetching metadata for ${url}:`, error);
+                   return {
+                     loading: false,
+                     error: error instanceof Error ? error.message : 'Error desconocido'
+                   };
+                 }
+               });
 
       const results = await Promise.all(promises);
       setMetadataList(results);
