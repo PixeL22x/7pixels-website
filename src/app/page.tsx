@@ -9,6 +9,19 @@ import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { ProcessFeatures } from '@/components/ui/process-features';
 import { FAQAccordion } from '@/components/ui/faq-accordion';
 import { IconPencil, IconPalette, IconCode, IconRocket } from "@tabler/icons-react";
+import LogoLoop from '@/components/LogoLoop';
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiWordpress, 
+  SiNodedotjs, 
+  SiMongodb, 
+  SiFigma, 
+  SiCloudflare, 
+  SiGoogle 
+} from 'react-icons/si';
 
 // Lazy load heavy components below the fold
 const EnhancedServices = lazy(() => import("@/components/enhanced-services"));
@@ -240,6 +253,42 @@ export default function Home() {
               }
             ]}
           />
+        </div>
+      </section>
+
+      {/* Technologies Section */}
+      <section className="py-12 px-4 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Tecnologías que Utilizamos</h3>
+            <p className="text-gray-600 text-sm">Las mejores herramientas para crear soluciones modernas y escalables</p>
+          </div>
+          
+          <div style={{ height: '60px', position: 'relative', overflow: 'hidden' }}>
+            <LogoLoop
+              logos={[
+                { node: <SiReact className="w-10 h-10" />, title: "React", href: "https://react.dev" },
+                { node: <SiNextdotjs className="w-10 h-10" />, title: "Next.js", href: "https://nextjs.org" },
+                { node: <SiTypescript className="w-10 h-10" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+                { node: <SiTailwindcss className="w-10 h-10" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+                { node: <SiWordpress className="w-10 h-10" />, title: "WordPress", href: "https://wordpress.org" },
+                { node: <SiNodedotjs className="w-10 h-10" />, title: "Node.js", href: "https://nodejs.org" },
+                { node: <SiMongodb className="w-10 h-10" />, title: "MongoDB", href: "https://mongodb.com" },
+                { node: <SiFigma className="w-10 h-10" />, title: "Figma", href: "https://figma.com" },
+                { node: <SiCloudflare className="w-10 h-10" />, title: "Cloudflare", href: "https://cloudflare.com" },
+                { node: <SiGoogle className="w-10 h-10" />, title: "Google", href: "https://google.com" }
+              ]}
+              speed={80}
+              direction="left"
+              logoHeight={40}
+              gap={40}
+              pauseOnHover
+              scaleOnHover
+              fadeOut
+              fadeOutColor="#f9fafb"
+              ariaLabel="Technologies we use"
+            />
+          </div>
         </div>
       </section>
 
