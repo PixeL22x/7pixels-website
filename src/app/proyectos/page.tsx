@@ -83,7 +83,7 @@ export default function ProyectosPage() {
       categoria: "Desarrollo Web",
       descripcion: "Sitio web premium para Real Club Náutico CAS, club exclusivo con más de 24 años de experiencia. Diseño que refleja la elegancia y lujo de un club náutico con más de 1,200 socios y 145+ botes y veleros.",
       tecnologias: ["WordPress", "SEO", "Google Analytics", "Cloudflare"],
-      imagen: "/screenshots/realclubnauticocas/realclubnauticocas-com-1024x768desktop-9b349c (1).jpg",
+      imagen: "/screenshots/realclubnauticocas/realclubnauticocas-com-1024x768desktop-9b349c.jpg",
       url: "https://realclubnauticocas.com/",
       destacado: true,
       cliente: "Real Club Náutico CAS"
