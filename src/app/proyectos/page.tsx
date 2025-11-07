@@ -3,7 +3,6 @@ import React, { useState, useMemo } from "react";
 import ModernNavbar from "@/components/modern-navbar";
 import { CodeBracketIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
-import { useMultipleMetadata } from '@/hooks/useMetadata';
 import ProjectCard from '@/components/ProjectCard';
 
 export default function ProyectosPage() {
@@ -158,12 +157,6 @@ export default function ProyectosPage() {
 
   const categorias = [t.projectsCategoryAll, t.projectsCategoryWeb, t.projectsCategoryEcommerce, t.projectsCategoryApps];
   
-  // Estabilizar el array de URLs para evitar bucles infinitos
-  const projectUrls = useMemo(() => proyectos.map(proyecto => proyecto.url), [proyectos]);
-  
-  // Obtener metadatos de todos los proyectos
-  const metadataList = useMultipleMetadata(projectUrls);
-  
   // Filtrar proyectos según la categoría activa
   const proyectosFiltrados = categoriaActiva === "Todos" 
     ? proyectos 
@@ -174,25 +167,25 @@ export default function ProyectosPage() {
       <ModernNavbar />
       
       {/* Hero Section */}
-      <section className="pt-16 pb-12 px-4">
+      <section className="pt-12 pb-6 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">
             <CodeBracketIcon className="w-4 h-4 mr-2" />
             {t.projectsTitle}
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-800 mb-4 px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-800 mb-3 px-4">
             {t.projectsPageTitle}
           </h1>
           
-          <p className="text-lg sm:text-xl text-gray-600 mb-6 max-w-3xl mx-auto px-4">
+          <p className="text-lg sm:text-xl text-gray-600 mb-4 max-w-3xl mx-auto px-4">
             {t.projectsDescription}
           </p>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-6 px-4 bg-white border-b border-gray-100">
+      <section className="py-4 px-4 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap justify-center gap-3">
             {categorias.map((categoria) => (
@@ -213,37 +206,30 @@ export default function ProyectosPage() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-12 px-4">
+      <section className="py-8 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <p className="text-gray-600">
               Mostrando {proyectosFiltrados.length} de {proyectos.length} proyectos
               {categoriaActiva !== "Todos" && ` en ${categoriaActiva}`}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {proyectosFiltrados.map((proyecto) => {
-              // Encontrar el índice del proyecto en la lista original para obtener sus metadatos
-              const originalIndex = proyectos.findIndex(p => p.id === proyecto.id);
-              const metadata = metadataList[originalIndex] || { loading: true };
-              
-              return (
-                <ProjectCard
-                  key={proyecto.id}
-                  proyecto={proyecto}
-                  metadata={metadata}
-                />
-              );
-            })}
+            {proyectosFiltrados.map((proyecto) => (
+              <ProjectCard
+                key={proyecto.id}
+                proyecto={proyecto}
+              />
+            ))}
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 px-4 bg-white">
+      <section className="py-8 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
               {t.projectsResultsTitle}
             </h2>
             <p className="text-gray-600">
@@ -269,12 +255,12 @@ export default function ProyectosPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 px-4 bg-gradient-to-br from-green-50 to-blue-50">
+      <section className="py-8 px-4 bg-gradient-to-br from-green-50 to-blue-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
             {t.projectsReadyTitle}
           </h2>
-          <p className="text-xl text-gray-600 mb-6">
+          <p className="text-xl text-gray-600 mb-4">
             {t.projectsReadyDesc}
           </p>
           <button className="px-8 py-3 bg-gradient-to-r from-green-600 to-blue-600 text-white font-semibold rounded-xl shadow-lg hover:scale-105 transition-all duration-200">

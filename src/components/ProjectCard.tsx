@@ -1,7 +1,6 @@
 "use client";
 import React from 'react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { ProjectMetadata } from '@/hooks/useMetadata';
 
 interface Project {
   id: number;
@@ -17,15 +16,11 @@ interface Project {
 
 interface ProjectCardProps {
   proyecto: Project;
-  metadata: ProjectMetadata;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, metadata }) => {
-  // Usar título de metadatos si está disponible, sino usar el título por defecto
-  const displayTitle = metadata.title ? metadata.title : proyecto.titulo;
-  
-  // Usar descripción de metadatos si está disponible, sino usar la descripción por defecto
-  const displayDescription = metadata.description ? metadata.description : proyecto.descripcion;
+const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto }) => {
+  const displayTitle = proyecto.titulo;
+  const displayDescription = proyecto.descripcion;
 
   return (
     <div
@@ -35,17 +30,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, metadata }) => {
     >
       {/* Project Image */}
       <div className="relative h-48 overflow-hidden">
-        {metadata.loading ? (
-          <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
-            <div className="text-gray-400">Cargando información...</div>
-          </div>
-        ) : (
-          <img 
-            src={proyecto.imagen} 
-            alt={displayTitle}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        )}
+        <img 
+          src={proyecto.imagen} 
+          alt={displayTitle}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
         
         <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
@@ -57,15 +46,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, metadata }) => {
           )}
         </div>
         
-        {/* Loading indicator */}
-        {metadata.loading && (
-          <div className="absolute top-4 left-4">
-            <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-600">
-              🔄 Obteniendo info...
-            </div>
-          </div>
-        )}
-
       </div>
 
       {/* Project Content */}
@@ -109,12 +89,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, metadata }) => {
           ))}
         </div>
         
-        {/* Error message - solo mostrar si no es modo desarrollo */}
-        {metadata.error && metadata.error !== 'Desactivado en desarrollo' && (
-          <div className="mt-3 text-xs text-red-500">
-            Error cargando metadatos: {metadata.error}
-          </div>
-        )}
       </div>
     </div>
   );

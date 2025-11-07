@@ -141,11 +141,11 @@ export default function PreciosPage() {
         accent: "text-purple-600"
       },
       orange: {
-        bg: popular ? "bg-gradient-to-br from-orange-500 to-red-600" : "bg-white",
+        bg: popular ? "bg-gradient-to-br from-emerald-500 to-green-600" : "bg-white",
         text: popular ? "text-white" : "text-gray-800",
-        border: popular ? "border-orange-400" : "border-gray-200",
-        button: "bg-orange-600 hover:bg-orange-700",
-        accent: "text-orange-600"
+        border: popular ? "border-emerald-400" : "border-gray-200",
+        button: "bg-emerald-600 hover:bg-emerald-700",
+        accent: "text-emerald-600"
       }
     };
     return colors[color as keyof typeof colors];
@@ -310,7 +310,7 @@ export default function PreciosPage() {
         </section>
 
         {/* Custom Plan Section */}
-        <section className="py-16 px-4 bg-gradient-to-br from-orange-50 to-red-50">
+        <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 via-green-50 to-blue-50">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -321,7 +321,7 @@ export default function PreciosPage() {
               </p>
             </div>
             
-            <div className="bg-white rounded-3xl shadow-2xl border-2 border-orange-200 p-8 md:p-12">
+            <div className="bg-white rounded-3xl shadow-2xl border-2 border-emerald-200 p-8 md:p-12">
               {(() => {
                 const customPlan = (activeTab === 'webpages' ? planes : planesWebApps).find(plan => plan.id.includes('custom'));
                 const colors = getColorClasses(customPlan?.color || 'orange', false);
@@ -329,8 +329,8 @@ export default function PreciosPage() {
                   <div className="text-center">
                     {/* Plan Header */}
                     <div className="mb-8">
-                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 bg-orange-100 shadow-lg">
-                        <div className="text-orange-600">
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 bg-emerald-100 shadow-lg">
+                        <div className="text-emerald-600">
                           {customPlan?.icono}
                         </div>
                       </div>
@@ -338,7 +338,7 @@ export default function PreciosPage() {
                         {customPlan?.nombre}
                       </h3>
                       <div className="mb-6">
-                        <span className="text-5xl font-extrabold text-orange-600">
+                        <span className="text-5xl font-extrabold text-emerald-600">
                           {customPlan?.precio}
                         </span>
                       </div>
@@ -352,8 +352,8 @@ export default function PreciosPage() {
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                         {customPlan?.caracteristicas.map((caracteristica, index) => (
                           <li key={index} className="flex items-start group">
-                            <div className="w-6 h-6 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0 bg-orange-100 group-hover:bg-orange-200 transition-colors duration-200">
-                              <CheckIcon className="w-4 h-4 text-orange-600" />
+                            <div className="w-6 h-6 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0 bg-emerald-100 group-hover:bg-emerald-200 transition-colors duration-200">
+                              <CheckIcon className="w-4 h-4 text-emerald-600" />
                             </div>
                             <span className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-200">
                               {caracteristica}

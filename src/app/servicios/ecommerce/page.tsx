@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import ModernNavbar from "@/components/modern-navbar";
 import { ShoppingBagIcon, CreditCardIcon, TruckIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
+import TrueFocus from '@/components/TrueFocus';
 
 export default function EcommercePage() {
   const t = useTranslations();
@@ -21,7 +22,15 @@ export default function EcommercePage() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-            {t.serviceEcommerceTitle}
+            <TrueFocus 
+              sentence="E-COMMERCE"
+              manualMode={false}
+              blurAmount={3}
+              borderColor="#10b981"
+              glowColor="rgba(16, 185, 129, 0.6)"
+              animationDuration={0.8}
+              pauseBetweenAnimations={1.5}
+            />
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">

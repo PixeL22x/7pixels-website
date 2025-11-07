@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import ModernNavbar from "@/components/modern-navbar";
 import { CheckCircleIcon, RocketLaunchIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import { useTranslations } from '@/hooks/useTranslations';
-import RotatingText from '@/components/RotatingText';
+import TrueFocus from '@/components/TrueFocus';
 
 export default function DesarrolloWebPage() {
   const t = useTranslations();
@@ -22,23 +22,16 @@ export default function DesarrolloWebPage() {
             {t.serviceWebDevTitle}
           </div>
           
-          <div className="relative h-24 md:h-32 flex items-center justify-center mb-6">
-            <div className="text-4xl md:text-6xl font-black text-center">
-              <span className="text-gray-800">Servicios de </span>
-              <RotatingText
-                texts={['Desarrollo Web', 'React & Next.js', 'WordPress', 'E-commerce', 'SEO Optimizado']}
-                mainClassName="overflow-hidden inline-block bg-gradient-to-r from-green-500 to-blue-600 text-white px-4 py-2 rounded-lg font-black shadow-lg"
-                staggerFrom={"first"}
-                initial={{ y: "150%", scale: 0.5, opacity: 0 }}
-                animate={{ y: 0, scale: 1, opacity: 1 }}
-                exit={{ y: "-150%", scale: 0.5, opacity: 0 }}
-                staggerDuration={0.05}
-                splitLevelClassName="overflow-hidden"
-                transition={{ type: "spring", damping: 15, stiffness: 150 }}
-                rotationInterval={4000}
-              />
-            </div>
-          </div>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+            <TrueFocus
+              sentence="SERVICIOS DE DESARROLLO WEB"
+              blurAmount={3}
+              borderColor="#10b981"
+              glowColor="rgba(16, 185, 129, 0.6)"
+              animationDuration={0.8}
+              pauseBetweenAnimations={1.5}
+            />
+          </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
             {t.serviceWebDevDescription}
