@@ -142,17 +142,6 @@ export default function ProyectosPage() {
       destacado: false,
       cliente: "El Reencuentro Tarifa"
     },
-    {
-      id: 13,
-      titulo: "Gozzø Music - Proyecto Slam",
-      categoria: "Desarrollo Web",
-      descripcion: "Sitio web para Gozzø Music, proyecto artístico multidisciplinario que combina música en vivo, poesía y estudio de grabación. Diseño que refleja la creatividad y magia de un artista que lleva la poesía al espectador a través de composiciones musicales contemporáneas.",
-      tecnologias: ["WordPress", "SEO", "Google Analytics", "React"],
-      imagen: "/screenshots/gozzomusic/gozzomusic-com-1024x768desktop-440cef.jpg",
-      url: "https://gozzomusic.com/",
-      destacado: true,
-      cliente: "Gozzø Music"
-    },
   ], []);
 
   const categorias = [t.projectsCategoryAll, t.projectsCategoryWeb, t.projectsCategoryEcommerce, t.projectsCategoryApps];
